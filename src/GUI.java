@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 public class GUI {
 
 	private JFrame frame;
+	private Controller Ctr;
 
 	/**
 	 * Launch the application.
@@ -34,6 +35,7 @@ public class GUI {
 	 */
 	public GUI() {
 		initialize();
+		Ctr = new Controller(this);
 	}
 
 	/**
