@@ -1,0 +1,24 @@
+                    00001           ;TPicSim1
+                    00002           ;Programm zum Test des 16F84-Simulators.
+                    00003           ;Es werden alle Literal-Befehle gepr�ft
+                    00004           ;(c) St. Lehmann
+                    00005           ;Ersterstellung: 23.03.2016
+                    00006           ;mod. 18.10.2018 Version HSO
+                    00007           ;
+                    00008           list c=132          ;Zeilenl�nge im LST auf 132 Zeichen setzen
+                    00009
+                    00010
+                    00011           ;Definition des Prozessors
+                    00012           device 16F84
+                    00013
+                    00014           ;Festlegen des Codebeginns
+                    00015           org 0
+                    00016  start
+0000 3001           00017           movlw ; wert 1 wird ins w register geschrieben
+0001 008C           00018           movwf ; w-reg (1) wird in die Adresse 0Ch geschrieben
+0002 0B8C           00019           decfsz ; decrement wert aus Aderesse 0Ch und über springe den nächsten schritt falls der wert 0 ist
+0003 3002           00020           movlw ; wert 2 wird ins w register geschrieben
+                    00023
+                    00024
+                    00027
+                    00028
