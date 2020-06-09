@@ -8,11 +8,20 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import java.awt.BorderLayout;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EtchedBorder;
 
 public class GUI {
 
 	private JFrame frame;
 	private Controller Ctr;
+	private JTable pinreg;
+	private JTable programcode;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -47,50 +56,83 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel RAM = new JPanel();
-		RAM.setBounds(26, 24, 191, 196);
-		frame.getContentPane().add(RAM);
-		RAM.setLayout(null);
+		JPanel spezialfunktionsregister = new JPanel();
+		spezialfunktionsregister.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		spezialfunktionsregister.setBounds(26, 229, 191, 363);
+		frame.getContentPane().add(spezialfunktionsregister);
+		spezialfunktionsregister.setLayout(new BorderLayout(0, 0));
 		
-		JPanel Spezialfunktionsregister = new JPanel();
-		Spezialfunktionsregister.setBounds(26, 229, 191, 363);
-		frame.getContentPane().add(Spezialfunktionsregister);
+		JPanel pins = new JPanel();
+		pins.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		pins.setBounds(227, 24, 127, 196);
+		frame.getContentPane().add(pins);
 		
-		JPanel Register = new JPanel();
-		Register.setBounds(227, 24, 127, 196);
-		frame.getContentPane().add(Register);
+		pinreg = new JTable();
+		pins.add(pinreg);
 		
-		JPanel Text = new JPanel();
-		Text.setBounds(226, 228, 604, 364);
-		frame.getContentPane().add(Text);
+		JPanel text = new JPanel();
+		text.setBorder(new CompoundBorder());
+		text.setBounds(227, 229, 604, 364);
+		frame.getContentPane().add(text);
+		text.setLayout(new BorderLayout(0, 0));
 		
-		JPanel Steuerung = new JPanel();
-		Steuerung.setBounds(949, 229, 101, 249);
-		frame.getContentPane().add(Steuerung);
+		JScrollPane scrollPane_1 = new JScrollPane();
+		text.add(scrollPane_1);
+		
+		programcode = new JTable();
+		programcode.setToolTipText("Programmcode");
+		text.add(programcode);
+		
+		JPanel steuerung = new JPanel();
+		steuerung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		steuerung.setBounds(949, 229, 101, 249);
+		frame.getContentPane().add(steuerung);
 		
 		JPanel panel_5 = new JPanel();
+		panel_5.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_5.setBounds(840, 229, 96, 248);
 		frame.getContentPane().add(panel_5);
 		
-		JPanel LCD = new JPanel();
-		LCD.setBounds(364, 24, 466, 52);
-		frame.getContentPane().add(LCD);
+		JPanel lcd = new JPanel();
+		lcd.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		lcd.setBounds(364, 24, 466, 52);
+		frame.getContentPane().add(lcd);
 		
-		JPanel Segmentanzeige = new JPanel();
-		Segmentanzeige.setBounds(363, 87, 231, 65);
-		frame.getContentPane().add(Segmentanzeige);
+		JPanel segmentanzeige = new JPanel();
+		segmentanzeige.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		segmentanzeige.setBounds(363, 87, 231, 65);
+		frame.getContentPane().add(segmentanzeige);
 		
-		JPanel Schalter = new JPanel();
-		Schalter.setBounds(602, 88, 228, 62);
-		frame.getContentPane().add(Schalter);
+		JPanel schalter = new JPanel();
+		schalter.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		schalter.setBounds(602, 87, 228, 65);
+		frame.getContentPane().add(schalter);
 		
-		JPanel LED = new JPanel();
-		LED.setBounds(937, 24, 113, 124);
-		frame.getContentPane().add(LED);
+		JPanel led = new JPanel();
+		led.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		led.setBounds(937, 24, 113, 128);
+		frame.getContentPane().add(led);
 		
-		JPanel Taster = new JPanel();
-		Taster.setBounds(841, 24, 78, 121);
-		frame.getContentPane().add(Taster);
+		JPanel taster = new JPanel();
+		taster.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		taster.setBounds(841, 24, 78, 128);
+		frame.getContentPane().add(taster);
+		
+		JPanel laufzeit = new JPanel();
+		laufzeit.setToolTipText("Laufzeit");
+		laufzeit.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		laufzeit.setBounds(949, 163, 101, 57);
+		frame.getContentPane().add(laufzeit);
+		
+		JButton reset_time = new JButton("zuruecksetzen");
+		laufzeit.add(reset_time);
+		
+		JScrollPane ram = new JScrollPane();
+		ram.setBounds(26, 24, 191, 194);
+		frame.getContentPane().add(ram);
+		
+		table = new JTable();
+		ram.setViewportView(table);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
