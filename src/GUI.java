@@ -3,16 +3,33 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.UIManager;
+import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Component;
+import javax.swing.table.DefaultTableModel;
 
 public class GUI {
 
-	private JFrame frame;
-	private Controller Ctr;
+	public JFrame frame;
+	public Controller Ctr;
+	public JTable table;
+	public JLabel lblUsedFileValue;
 
 	/**
 	 * Launch the application.
@@ -21,6 +38,7 @@ public class GUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					GUI window = new GUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -41,7 +59,7 @@ public class GUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1076, 689);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,13 +78,15 @@ public class GUI {
 		Register.setBounds(227, 24, 127, 196);
 		frame.getContentPane().add(Register);
 		
-		JPanel Text = new JPanel();
-		Text.setBounds(226, 228, 604, 364);
-		frame.getContentPane().add(Text);
-		
 		JPanel Steuerung = new JPanel();
 		Steuerung.setBounds(949, 229, 101, 249);
 		frame.getContentPane().add(Steuerung);
+		Steuerung.setLayout(null);
+		
+		JButton btnStart = new JButton("Start");
+		btnStart.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnStart.setBounds(5, 215, 89, 23);
+		Steuerung.add(btnStart);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBounds(840, 229, 96, 248);
@@ -92,6 +112,40 @@ public class GUI {
 		Taster.setBounds(841, 24, 78, 121);
 		frame.getContentPane().add(Taster);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBackground(Color.WHITE);
+		scrollPane.setVerifyInputWhenFocusTarget(false);
+		scrollPane.setBounds(227, 229, 602, 363);
+		frame.getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(35);
+		table.getColumnModel().getColumn(0).setMaxWidth(35);
+		table.getColumnModel().getColumn(1).setPreferredWidth(35);
+		table.getColumnModel().getColumn(1).setMaxWidth(35);
+		table.getColumnModel().getColumn(2).setPreferredWidth(45);
+		table.getColumnModel().getColumn(2).setMaxWidth(45);
+		table.getColumnModel().getColumn(3).setPreferredWidth(60);
+		table.getColumnModel().getColumn(3).setMaxWidth(60);
+		table.getColumnModel().getColumn(4).setPreferredWidth(130);
+		table.getColumnModel().getColumn(4).setMaxWidth(200);
+		scrollPane.setViewportView(table);
+		
+		JLabel lblUsedFile = new JLabel("Used File:");
+		lblUsedFile.setBounds(227, 603, 63, 14);
+		frame.getContentPane().add(lblUsedFile);
+		
+		JLabel lblUsedFileValue = new JLabel("");
+		lblUsedFileValue.setBounds(287, 603, 543, 14);
+		frame.getContentPane().add(lblUsedFileValue);
+		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
@@ -99,11 +153,75 @@ public class GUI {
 		menuBar.add(mnFile);
 		
 		JButton btnLoadFile = new JButton("Load File");
+		mnFile.add(btnLoadFile);
+		
 		btnLoadFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser fc = new JFileChooser();
+		        fc.showOpenDialog(frame);
+
+		        File file = fc.getSelectedFile();
+		        String filename = file.getAbsolutePath();
+		        Ctr.Mem.setFilename(filename);
+		        
+		       lblUsedFileValue.setText(filename);
+		        
+		        FileReader fileReader;
+		        BufferedReader bufferedReader;
+				try {
+					fileReader = new FileReader(filename);
+					bufferedReader = new BufferedReader(fileReader);
+					String line = null;
+		            while ((line = bufferedReader.readLine()) != null) {
+			            String pCounter = line.substring(0, 4);
+			            String pCode = line.substring(5, 9);
+			            String row = line.substring(20, 25);
+			            String label = " ";
+		            	String comand = " ";
+		            	String coment = " ";
+		            	String Test = line.substring(27, 28);
+			            if (!(line.substring(27, 28).equals(" "))) {
+			            	label = line.substring(27, 36);
+			            	comand = " ";
+			            	coment = " ";
+			            } else {
+			            	label = " ";
+			            	if (line.length() >=37) {
+			            		if (line.substring(36, 37).equals(";")) {
+			            			comand = " ";
+			            			coment = line.substring(36, line.length());
+			            		} else {
+			            			if (line.length() >= 56) {
+			            			comand = line.substring(36, 56);
+			            			coment = line.substring(56, line.length());
+			            			} else {
+			            				comand = line.substring(36, line.length());
+				            			coment = " ";
+			            			}
+			            			
+			            		}
+			            	} else {
+			            		comand = " ";
+				            	coment = " ";
+			            	}
+			            }
+			            
+			            DefaultTableModel model = (DefaultTableModel)table.getModel();
+			            model.addRow(new Object [] {pCounter, pCode, row, label, comand, coment});
+			            }
+		            bufferedReader.close();
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 			}
 		});
-		mnFile.add(btnLoadFile);
 	}
 }

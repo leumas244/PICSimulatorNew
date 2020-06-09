@@ -5,8 +5,9 @@ public class Memory {
     int[] stack = new int[8];
     int stackpointer = 0;
     int[] progcount = new int[1024];
+    String filename = "";
 
-    Controller Ctr;
+	Controller Ctr;
 
     public Memory(Controller ctr) {
     	this.Ctr = ctr;
@@ -75,4 +76,12 @@ public class Memory {
     public void setProgcount(int[] progcount) {
         this.progcount = progcount;
     }
+    
+    public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 }

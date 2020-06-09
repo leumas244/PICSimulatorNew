@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import javax.swing.JFileChooser;
+import javax.swing.table.DefaultTableModel;
 
 public class Controller {
 	public GUI Gui;
@@ -22,4 +29,53 @@ public class Controller {
         }
 	}
 	
+	public void loadFile() {
+		JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(Gui.frame);
+
+        File file = fc.getSelectedFile();
+        String filename = file.getAbsolutePath();
+        Mem.setFilename(filename);
+        
+        Gui.lblUsedFileValue.setText(filename);
+        
+        FileReader fileReader;
+        BufferedReader bufferedReader;
+		try {
+			fileReader = new FileReader(filename);
+			bufferedReader = new BufferedReader(fileReader);
+			String line = null;
+            while ((line = bufferedReader.readLine()) != null) {
+	            String pCounter = line.substring(0, 4);
+	            String pCode = line.substring(5, 9);
+	            String row = line.substring(20, 25);
+	            String label = " ";
+            	String comand = " ";
+            	String coment = " ";
+	            if (line.substring(27, 27) != " ") {
+	            	label = line.substring(27, 36);
+	            	comand = " ";
+	            	coment = " ";
+	            } else {
+	            	label = " ";
+	            	if (line.substring(36, 36) != ";") {
+	            		comand = " ";
+	            		coment = line.substring(36, line.length());
+	            	} else {
+	            		comand = line.substring(36, 56);
+	            		coment = line.substring(56, line.length());
+	            	}
+	            }
+	            
+	            DefaultTableModel model = (DefaultTableModel)Gui.table.getModel();
+	            model.addRow(new Object [] {pCounter, pCode, row, label, comand, coment});
+	            }
+            bufferedReader.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
 }
