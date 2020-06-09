@@ -124,7 +124,11 @@ public class GUI {
 		laufzeit.setBounds(949, 163, 101, 57);
 		frame.getContentPane().add(laufzeit);
 		
-		JButton reset_time = new JButton("zuruecksetzen");
+		JButton reset_time = new JButton("resettime");
+		reset_time.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		laufzeit.add(reset_time);
 		
 		JScrollPane ram = new JScrollPane();
