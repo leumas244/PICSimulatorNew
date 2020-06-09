@@ -38,4 +38,5 @@ public class Read {
 	            }
 	        }
 	        Ctr.Mem.setProgcount(progCounter);                                            //fertiges Array mit allen Befehlsziffern zurückgegeben
+	}
 }
