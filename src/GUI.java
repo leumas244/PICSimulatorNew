@@ -29,7 +29,7 @@ public class GUI {
 	public JFrame frame;
 	public Controller Ctr;
 	public JTable table;
-	public JLabel lblUsedFileValue;
+	public JLabel lblUsedFileValue = new JLabel("TEt");
 
 	/**
 	 * Launch the application.
@@ -142,7 +142,7 @@ public class GUI {
 		lblUsedFile.setBounds(227, 603, 63, 14);
 		frame.getContentPane().add(lblUsedFile);
 		
-		JLabel lblUsedFileValue = new JLabel("");
+		JLabel lblUsedFileValue = new JLabel(" ");
 		lblUsedFileValue.setBounds(287, 603, 543, 14);
 		frame.getContentPane().add(lblUsedFileValue);
 		
@@ -157,64 +157,9 @@ public class GUI {
 		
 		btnLoadFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser fc = new JFileChooser();
-		        fc.showOpenDialog(frame);
-
-		        File file = fc.getSelectedFile();
-		        String filename = file.getAbsolutePath();
-		        Ctr.Mem.setFilename(filename);
-		        
-		       lblUsedFileValue.setText(filename);
-		        
-		        FileReader fileReader;
-		        BufferedReader bufferedReader;
-				try {
-					fileReader = new FileReader(filename);
-					bufferedReader = new BufferedReader(fileReader);
-					String line = null;
-		            while ((line = bufferedReader.readLine()) != null) {
-			            String pCounter = line.substring(0, 4);
-			            String pCode = line.substring(5, 9);
-			            String row = line.substring(20, 25);
-			            String label = " ";
-		            	String comand = " ";
-		            	String coment = " ";
-		            	String Test = line.substring(27, 28);
-			            if (!(line.substring(27, 28).equals(" "))) {
-			            	label = line.substring(27, 36);
-			            	comand = " ";
-			            	coment = " ";
-			            } else {
-			            	label = " ";
-			            	if (line.length() >=37) {
-			            		if (line.substring(36, 37).equals(";")) {
-			            			comand = " ";
-			            			coment = line.substring(36, line.length());
-			            		} else {
-			            			if (line.length() >= 56) {
-			            			comand = line.substring(36, 56);
-			            			coment = line.substring(56, line.length());
-			            			} else {
-			            				comand = line.substring(36, line.length());
-				            			coment = " ";
-			            			}
-			            			
-			            		}
-			            	} else {
-			            		comand = " ";
-				            	coment = " ";
-			            	}
-			            }
-			            
-			            DefaultTableModel model = (DefaultTableModel)table.getModel();
-			            model.addRow(new Object [] {pCounter, pCode, row, label, comand, coment});
-			            }
-		            bufferedReader.close();
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				Ctr.loadFile();
+				String filename = Ctr.Mem.getFilename();
+				lblUsedFileValue.setText(filename);
 			}
 		});
 		
@@ -223,5 +168,9 @@ public class GUI {
 				
 			}
 		});
+	}
+	
+	public void setlblUsedFileValue(String text) {
+		lblUsedFileValue.setText("Resdt");
 	}
 }

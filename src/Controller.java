@@ -37,7 +37,7 @@ public class Controller {
         String filename = file.getAbsolutePath();
         Mem.setFilename(filename);
         
-        Gui.lblUsedFileValue.setText(filename);
+        //Gui.setlblUsedFileValue(filename);
         
         FileReader fileReader;
         BufferedReader bufferedReader;
@@ -52,18 +52,30 @@ public class Controller {
 	            String label = " ";
             	String comand = " ";
             	String coment = " ";
-	            if (line.substring(27, 27) != " ") {
+            	String Test = line.substring(27, 28);
+	            if (!(line.substring(27, 28).equals(" "))) {
 	            	label = line.substring(27, 36);
 	            	comand = " ";
 	            	coment = " ";
 	            } else {
 	            	label = " ";
-	            	if (line.substring(36, 36) != ";") {
-	            		comand = " ";
-	            		coment = line.substring(36, line.length());
+	            	if (line.length() >=37) {
+	            		if (line.substring(36, 37).equals(";")) {
+	            			comand = " ";
+	            			coment = line.substring(36, line.length());
+	            		} else {
+	            			if (line.length() >= 56) {
+	            			comand = line.substring(36, 56);
+	            			coment = line.substring(56, line.length());
+	            			} else {
+	            				comand = line.substring(36, line.length());
+		            			coment = " ";
+	            			}
+	            			
+	            		}
 	            	} else {
-	            		comand = line.substring(36, 56);
-	            		coment = line.substring(56, line.length());
+	            		comand = " ";
+		            	coment = " ";
 	            	}
 	            }
 	            
@@ -76,6 +88,5 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 	}
 }
