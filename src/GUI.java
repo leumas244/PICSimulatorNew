@@ -8,8 +8,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
@@ -22,6 +27,9 @@ public class GUI {
 	private JTable pinreg;
 	private JTable programcode;
 	public JTable ramtable;
+  public JTable table;
+	public JLabel lblUsedFileValue;
+
 
 	/**
 	 * Launch the application.
@@ -30,6 +38,7 @@ public class GUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					GUI window = new GUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -45,13 +54,12 @@ public class GUI {
 	public GUI() {
 		Ctr = new Controller(this);
 		initialize();
-		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1076, 689);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,6 +76,32 @@ public class GUI {
 		pins.setBounds(227, 24, 127, 196);
 		frame.getContentPane().add(pins);
 		
+
+		JPanel Spezialfunktionsregister = new JPanel();
+		Spezialfunktionsregister.setBounds(36, 231, 191, 363);
+		frame.getContentPane().add(Spezialfunktionsregister);
+		
+		JLabel lbWReg = new JLabel("W-Register");
+		lbWReg.setHorizontalAlignment(SwingConstants.LEFT);
+		Spezialfunktionsregister.add(lbWReg);
+		
+		JLabel lblWRegValue = new JLabel(" ");
+		Spezialfunktionsregister.add(lblWRegValue);
+		
+		JPanel Register = new JPanel();
+		Register.setBounds(227, 24, 127, 196);
+		frame.getContentPane().add(Register);
+		
+		JPanel Steuerung = new JPanel();
+		Steuerung.setBounds(949, 229, 101, 249);
+		frame.getContentPane().add(Steuerung);
+		Steuerung.setLayout(null);
+		
+		JButton btnStart = new JButton("Start");
+		btnStart.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnStart.setBounds(5, 215, 89, 23);
+		Steuerung.add(btnStart);
+    
 		pinreg = new JTable();
 		pins.add(pinreg);
 		
@@ -88,6 +122,7 @@ public class GUI {
 		steuerung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		steuerung.setBounds(949, 229, 101, 249);
 		frame.getContentPane().add(steuerung);
+
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -144,6 +179,40 @@ public class GUI {
 		
 			
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBackground(Color.WHITE);
+		scrollPane.setVerifyInputWhenFocusTarget(false);
+		scrollPane.setBounds(227, 229, 602, 363);
+		frame.getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(35);
+		table.getColumnModel().getColumn(0).setMaxWidth(35);
+		table.getColumnModel().getColumn(1).setPreferredWidth(35);
+		table.getColumnModel().getColumn(1).setMaxWidth(35);
+		table.getColumnModel().getColumn(2).setPreferredWidth(45);
+		table.getColumnModel().getColumn(2).setMaxWidth(45);
+		table.getColumnModel().getColumn(3).setPreferredWidth(60);
+		table.getColumnModel().getColumn(3).setMaxWidth(60);
+		table.getColumnModel().getColumn(4).setPreferredWidth(130);
+		table.getColumnModel().getColumn(4).setMaxWidth(200);
+		scrollPane.setViewportView(table);
+		
+		JLabel lblUsedFile = new JLabel("Used File:");
+		lblUsedFile.setBounds(227, 603, 63, 14);
+		frame.getContentPane().add(lblUsedFile);
+		
+		JLabel lblUsedFileValue = new JLabel(" ");
+		lblUsedFileValue.setBounds(287, 603, 543, 14);
+		frame.getContentPane().add(lblUsedFileValue);
+		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
@@ -151,11 +220,20 @@ public class GUI {
 		menuBar.add(mnFile);
 		
 		JButton btnLoadFile = new JButton("Load File");
+		mnFile.add(btnLoadFile);
+		
 		btnLoadFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				Ctr.loadFile();
+				String filename = Ctr.Mem.getFilename();
+				lblUsedFileValue.setText(filename);
 			}
 		});
-		mnFile.add(btnLoadFile);
+		
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Ctr.startprogramm();
+			}
+		});
 	}
 }
