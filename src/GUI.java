@@ -21,7 +21,7 @@ public class GUI {
 	private Controller Ctr;
 	private JTable pinreg;
 	private JTable programcode;
-	private JTable ramtable;
+	public JTable ramtable;
 
 	/**
 	 * Launch the application.
@@ -45,6 +45,7 @@ public class GUI {
 	public GUI() {
 		Ctr = new Controller(this);
 		initialize();
+		
 	}
 
 	/**
