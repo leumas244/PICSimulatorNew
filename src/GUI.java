@@ -22,12 +22,12 @@ import javax.swing.border.EtchedBorder;
 
 public class GUI {
 
-	private JFrame frame;
-	private Controller Ctr;
-	private JTable pinreg;
-	private JTable programcode;
+	public JFrame frame;
+	public Controller Ctr;
+	public JTable pinreg;
+	public JTable programcode;
 	public JTable ramtable;
-  public JTable table;
+	public JTable table;
 	public JLabel lblUsedFileValue;
 
 
