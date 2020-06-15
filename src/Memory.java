@@ -6,6 +6,7 @@ public class Memory {
     int stackpointer = 0;
     int[] progcount = new int[1024];
     String filename = "";
+    int aktuellerPC;
 
 	Controller Ctr;
 
@@ -83,5 +84,13 @@ public class Memory {
 
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+	
+	public int getAktuellerPC() {
+		return aktuellerPC;
+	}
+
+	public void setAktuellerPC(int aktuellerPC) {
+		this.aktuellerPC = aktuellerPC;
 	}
 }

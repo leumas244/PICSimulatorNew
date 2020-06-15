@@ -43,8 +43,8 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
-		initialize();
 		Ctr = new Controller(this);
+		initialize();
 	}
 
 	/**
@@ -163,12 +163,8 @@ public class GUI {
 		
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				Ctr.startprogramm();
 			}
 		});
-	}
-	
-	public void setlblUsedFileValue(String text) {
-		lblUsedFileValue.setText("Resdt");
 	}
 }
