@@ -29,7 +29,7 @@ public class GUI {
 	public JFrame frame;
 	public Controller Ctr;
 	public JTable table;
-	public JLabel lblUsedFileValue = new JLabel("TEt");
+	public JLabel lblUsedFileValue;
 
 	/**
 	 * Launch the application.
@@ -71,8 +71,15 @@ public class GUI {
 		RAM.setLayout(null);
 		
 		JPanel Spezialfunktionsregister = new JPanel();
-		Spezialfunktionsregister.setBounds(26, 229, 191, 363);
+		Spezialfunktionsregister.setBounds(36, 231, 191, 363);
 		frame.getContentPane().add(Spezialfunktionsregister);
+		
+		JLabel lbWReg = new JLabel("W-Register");
+		lbWReg.setHorizontalAlignment(SwingConstants.LEFT);
+		Spezialfunktionsregister.add(lbWReg);
+		
+		JLabel lblWRegValue = new JLabel(" ");
+		Spezialfunktionsregister.add(lblWRegValue);
 		
 		JPanel Register = new JPanel();
 		Register.setBounds(227, 24, 127, 196);

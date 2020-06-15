@@ -52,7 +52,6 @@ public class Controller {
 	            String label = " ";
             	String comand = " ";
             	String coment = " ";
-            	String Test = line.substring(27, 28);
 	            if (!(line.substring(27, 28).equals(" "))) {
 	            	label = line.substring(27, 36);
 	            	comand = " ";
