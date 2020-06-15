@@ -37,7 +37,6 @@ public class Memory {
 
     public void setRam(int[] ram) {
         this.ram = ram;
-		Ctr.Gui.ramtable.repaint();
     }
 
     public int getwRegister(){

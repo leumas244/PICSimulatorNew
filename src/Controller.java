@@ -28,8 +28,9 @@ public class Controller {
 		int[] programmSpeicher = Mem.getProgcount();
         for (int i = 0; i < 1024; i++) {
         	Mem.setAktuellerPC(i);
-        	int row = getrow();
+        //	int row = getrow();
             i = Mk.vorsortieren(programmSpeicher[i], i);
+    		Gui.ramtable.repaint();
             
         }
 	}
