@@ -21,7 +21,7 @@ public class GUI {
 	private Controller Ctr;
 	private JTable pinreg;
 	private JTable programcode;
-	private JTable table;
+	private JTable ramtable;
 
 	/**
 	 * Launch the application.
@@ -135,8 +135,11 @@ public class GUI {
 		ram.setBounds(26, 24, 191, 194);
 		frame.getContentPane().add(ram);
 		
-		table = new JTable();
-		ram.setViewportView(table);
+		
+		String[] columnNames = {"0","1","2","3","4","5","6","7"};
+		Object[][] newram = Ctr.ramAktualisiern();
+		ramtable = new JTable(newram, columnNames);
+		ram.setViewportView(ramtable);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
