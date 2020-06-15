@@ -80,6 +80,7 @@ public class GUI {
 		frame.getContentPane().add(Register);
 		
 		JPanel Steuerung = new JPanel();
+		Steuerung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		Steuerung.setBounds(949, 229, 101, 249);
 		frame.getContentPane().add(Steuerung);
 		Steuerung.setLayout(null);
