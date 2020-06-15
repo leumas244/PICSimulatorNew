@@ -25,7 +25,6 @@ public class GUI {
 	public JFrame frame;
 	public Controller Ctr;
 	public JTable pinreg;
-	public JTable programcode;
 	public JTable ramtable;
 	public JTable table;
 	public JLabel lblUsedFileValue;
@@ -76,18 +75,6 @@ public class GUI {
 		pins.setBounds(227, 24, 127, 196);
 		frame.getContentPane().add(pins);
 		
-
-		JPanel Spezialfunktionsregister = new JPanel();
-		Spezialfunktionsregister.setBounds(36, 231, 191, 363);
-		frame.getContentPane().add(Spezialfunktionsregister);
-		
-		JLabel lbWReg = new JLabel("W-Register");
-		lbWReg.setHorizontalAlignment(SwingConstants.LEFT);
-		Spezialfunktionsregister.add(lbWReg);
-		
-		JLabel lblWRegValue = new JLabel(" ");
-		Spezialfunktionsregister.add(lblWRegValue);
-		
 		JPanel Register = new JPanel();
 		Register.setBounds(227, 24, 127, 196);
 		frame.getContentPane().add(Register);
@@ -104,19 +91,6 @@ public class GUI {
     
 		pinreg = new JTable();
 		pins.add(pinreg);
-		
-		JPanel text = new JPanel();
-		text.setBorder(new CompoundBorder());
-		text.setBounds(227, 229, 604, 364);
-		frame.getContentPane().add(text);
-		text.setLayout(new BorderLayout(0, 0));
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		text.add(scrollPane_1);
-		
-		programcode = new JTable();
-		programcode.setToolTipText("Programmcode");
-		text.add(programcode);
 		
 		JPanel steuerung = new JPanel();
 		steuerung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
