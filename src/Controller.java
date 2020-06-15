@@ -22,19 +22,12 @@ public class Controller {
         }
 	}
 	public Object[][] ramAktualisiern() {
-		int[] ram = new int[256];
+		int [] ram = Mem.getRam();
 		Object[][] newram = new Object [32][8];
 		
-		ram = Mem.getRam();
-		
-		for(int i = 0; i<ram.length; i++) {
-			int g=0;
-			for(int h=0;;h++) {
-					if(h==8) {h=0; g++;}
-					newram[g][h]=ram[i];
-					
-				}
-				
+		for(int i = 0; i<255; i++) {
+			
+			//newram[g][h]=ram[i];
 			}
 		System.out.println(newram);
 		
