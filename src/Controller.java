@@ -21,7 +21,7 @@ public class Controller {
 
         }
 	}
-	public Object[][] ramAktualisiern() {
+	public Object[][] ramUmwandeln() {
 		int [] ram = Mem.getRam();
 		Object[][] newram = new Object [32][8];
 		int h = 0;
@@ -35,8 +35,14 @@ public class Controller {
 			newram[g][h]=ram[i];
 			h++;
 			}
-		
+
+
+
+			
 		 return newram;	
+	}
+	public void ramaktualisieren() {
+		Gui.ramtable.repaint();
 	}
 	
 	

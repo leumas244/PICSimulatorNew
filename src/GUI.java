@@ -138,9 +138,11 @@ public class GUI {
 		
 		
 		String[] columnNames = {"0","1","2","3","4","5","6","7"};
-		Object[][] newram = Ctr.ramAktualisiern();
+		Object[][] newram = Ctr.ramUmwandeln();
 		ramtable = new JTable(newram, columnNames);
 		ram.setViewportView(ramtable);
+		
+			
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
