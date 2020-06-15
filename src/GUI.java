@@ -43,8 +43,8 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
-		initialize();
 		Ctr = new Controller(this);
+		initialize();
 	}
 
 	/**
