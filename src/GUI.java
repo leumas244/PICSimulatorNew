@@ -128,9 +128,10 @@ public class GUI {
 		laufzeit.add(reset_time);
 		
 		JScrollPane ram = new JScrollPane();
+		ram.setViewportBorder(null);
 		ram.setInheritsPopupMenu(true);
 		ram.setIgnoreRepaint(true);
-		ram.setBounds(26, 24, 265, 544);
+		ram.setBounds(26, 24, 265, 539);
 		frame.getContentPane().add(ram);
 		
 		
