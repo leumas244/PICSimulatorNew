@@ -110,6 +110,111 @@ public class Controller {
 	public void updateRamGui(int x, int y, int value) {
 		gui.updateRamtable(x, y, Integer.toHexString(value));
 	}
+	
+	public void updateSFR() {
+		int[] RAM = getMem().getRam();
+		gui.updateWReg(Integer.toHexString(getMem().getwRegister()));
+		gui.updatePC(Integer.toHexString(getMem().getAktuellerPC()));
+		gui.updateFSR(Integer.toHexString(RAM[0x4]));
+		gui.updatePCL(Integer.toHexString(RAM[0x2]));
+	    gui.updatePCLATH(Integer.toHexString(RAM[0xA]));
+	    
+	    this.updateSFRStatus();
+	    this.updateSFROption();
+	}
+	
+	public void updateSFRStatus() {
+		int[] RAM = getMem().getRam();
+		int Status = RAM[0x3];
+		gui.updateStatus(Integer.toHexString(Status));
+		if ((Status & 0x80) == 0x80) {
+			gui.updateStatusIRP("1");
+		} else {
+			gui.updateStatusIRP("0");
+		}
+		if ((Status & 0x40) == 0x40) {
+			gui.updateStatusRP1("1");
+		} else {
+			gui.updateStatusRP1("0");
+		}
+		if ((Status & 0x20) == 0x20) {
+			gui.updateStatusRP0("1");
+		} else {
+			gui.updateStatusRP0("0");
+		}
+		if ((Status & 0x10) == 0x10) {
+			gui.updateStatusTo("1");
+		} else {
+			gui.updateStatusTo("0");
+		}
+		if ((Status & 0x8) == 0x8) {
+			gui.updateStatusPd("1");
+		} else {
+			gui.updateStatusPd("0");
+		}
+		if ((Status & 0x4) == 0x4) {
+			gui.updateStatusZ("1");
+		} else {
+			gui.updateStatusZ("0");
+		}
+		if ((Status & 0x2) == 0x2) {
+			gui.updateStatusDc("1");
+		} else {
+			gui.updateStatusDc("0");
+		}
+		if ((Status & 0x1) == 0x1) {
+			gui.updateStatusC("1");
+		} else {
+			gui.updateStatusC("0");
+		}
+	}
+	
+	public void updateSFROption() {
+		int[] RAM = getMem().getRam();
+		int Option = RAM[0x81];
+		gui.updateOption(Integer.toHexString(Option));
+		if ((Option & 0x80) == 0x80) {
+			gui.updateOptionRBP("1");
+		} else {
+			gui.updateOptionRBP("0");
+		}
+		if ((Option & 0x40) == 0x40) {
+			gui.updateOptionIntEdg("1");
+		} else {
+			gui.updateOptionIntEdg("0");
+		}
+		if ((Option & 0x20) == 0x20) {
+			gui.updateOptionT0CS("1");
+		} else {
+			gui.updateOptionT0CS("0");
+		}
+		if ((Option & 0x10) == 0x10) {
+			gui.updateOptionT0SE("1");
+		} else {
+			gui.updateOptionT0SE("0");
+		}
+		if ((Option & 0x8) == 0x8) {
+			gui.updateOptionPsa("1");
+		} else {
+			gui.updateOptionPsa("0");
+		}
+		if ((Option & 0x4) == 0x4) {
+			gui.updateOptionPs2("1");
+		} else {
+			gui.updateOptionPs2("0");
+		}
+		if ((Option & 0x2) == 0x2) {
+			gui.updateOptionPs1("1");
+		} else {
+			gui.updateOptionPs1("0");
+		}
+		if ((Option & 0x1) == 0x1) {
+			gui.updateOptionPs0("1");
+		} else {
+			gui.updateOptionPs0("0");
+		}
+	}
+	
 	private void initializeRamtable() {
 		for(int i=0;i<32;i++) {
 			gui.addRowToRam(new Object[] {Integer.toHexString(i*8), "00", "00", "00", "00", "00", "00", "00", "00"});

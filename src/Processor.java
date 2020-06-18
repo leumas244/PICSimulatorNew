@@ -14,7 +14,7 @@ public class Processor extends Thread {
 			int code = ctr.getMem().getCurrentCommand(ctr.getMem().getAktuellerPC());
             ctr.getMk().vorsortieren(code);
 			
-			
+            
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
