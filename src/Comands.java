@@ -9,17 +9,19 @@ public class Comands {
 	    public void nop() {
 	        System.out.println("No Operation");
 	        printCDCZ();
+        	Ctr.getMem().incPc();
 	    }
 
 	    public void clrwdt(int befehl) {
 	        System.out.println("START - Clear WatchdogTimer");
 	        printCDCZ();
 	        System.out.println("FINISH - Clear WatchdogTimer");
+        	Ctr.getMem().incPc();
 	    }
 
-	    public int retfie() {
+	    public void retfie() {
 	        System.out.println("START - Return from Interrupt");
-	        int i = Ctr.getMem().getStack();
+	        int pc = Ctr.getMem().getStack();
 
 	        int[] RAM = Ctr.getMem().getRam();
 	        int intconReg = RAM[0xB];
@@ -29,24 +31,23 @@ public class Comands {
 	        Ctr.getMem().setRam(RAM);
 	        printCDCZ();
 	        System.out.println("FINISH - Return from Interrupt");
-	        return i;
+	        Ctr.getMem().setPC(pc);
 	    }
 
-	    public int returnbef() {
+	    public void returnbef() {
 	        System.out.println("START - Retrun from Subroutine");
-	        int i = Ctr.getMem().getStack();
+	        int pc = Ctr.getMem().getStack();
 
-	        int i3 = i +1;
-	        System.out.println("Kehre zurück zu: "+ i3);
 	        printCDCZ();
 	        System.out.println("FINISH - Retrun from Subroutine");
-	        return i;
+	        Ctr.getMem().setPC(pc);
 	    }
 
 	    public void sleep() {
 	        System.out.println("START - Go into standbymode");
 	        printCDCZ();
 	        System.out.println("FINISH - Go into standbymode");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void addwf(int befehl) {
@@ -114,6 +115,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Add w to f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void andwf(int befehl) {
@@ -141,6 +143,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - And w with f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void comf(int befehl) {
@@ -168,6 +171,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Compliment f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void decf(int befehl) {
@@ -199,9 +203,10 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Decrement f");
+	        Ctr.getMem().incPc();
 	    }
 
-	    public int decfsz(int befehl, int i) {
+	    public void decfsz(int befehl) {
 	        System.out.println("START - Decrement f, Skip if 0");
 	        int lAcht = Ctr.getAc().byteDefault(befehl);
 	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
@@ -222,7 +227,7 @@ public class Comands {
 	        RAM[3] = hRegister;
 
 	        if (ergebniss == 0x0) {
-	            i++;
+	        	Ctr.getMem().incPc();
 	        }
 
 	        if (dest == 1) {
@@ -234,7 +239,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Decrement f, Skip if 0");
-	        return i;
+        	Ctr.getMem().incPc();
 	    }
 
 	    public void incf(int befehl) {
@@ -266,9 +271,10 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Increment f");
+	        Ctr.getMem().incPc();
 	    }
 
-	    public int incfsz(int befehl, int i) {
+	    public void incfsz(int befehl) {
 	        System.out.println("START - Increment f, Skip if 0");
 	        int lAcht = Ctr.getAc().byteDefault(befehl);
 	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
@@ -289,7 +295,7 @@ public class Comands {
 	        RAM[3] = hRegister;
 
 	        if (ergebniss == 0x0) {
-	            i++;
+	        	Ctr.getMem().incPc();
 	        }
 
 	        if (dest == 1) {
@@ -302,7 +308,7 @@ public class Comands {
 
 	        printCDCZ();
 	        System.out.println("FINISH - Increment f, Skip if 0");
-	        return i;
+        	Ctr.getMem().incPc();
 	    }
 
 	    public void iorwf(int befehl) {
@@ -330,6 +336,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Inclusive Or w with f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void movf(int befehl) {
@@ -355,6 +362,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Move f to destiantion w or f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void rlf(int befehl) {
@@ -392,6 +400,7 @@ public class Comands {
 	        System.out.println(CNeu);
 	        printCDCZ();
 	        System.out.println("FINISH - Rotate Left f through Carry");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void rrf(int befehl) {
@@ -429,6 +438,7 @@ public class Comands {
 	        System.out.println(CNeu);
 	        printCDCZ();
 	        System.out.println("FINISH - Rotate Right f through Carry");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void subwf(int befehl) {
@@ -492,6 +502,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Subtract W from f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void swapf(int befehl) {
@@ -521,6 +532,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Swap nibbles in f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void xorwf(int befehl) {
@@ -549,6 +561,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Exclusive OR W with f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void andlw(int befehl) {
@@ -568,6 +581,7 @@ public class Comands {
 
 	        printCDCZ();
 	        System.out.println("FINISH - Add literal and W");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void iorlw(int befehl) {
@@ -588,6 +602,7 @@ public class Comands {
 
 	        printCDCZ();
 	        System.out.println("FINISH - Inclusive OR literal with W");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void xorlw(int befehl) {
@@ -607,6 +622,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Exclusive OR literal with W");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void clrf(int befehl) {
@@ -626,6 +642,7 @@ public class Comands {
 	        printCDCZ();
 
 	        System.out.println("FINISH - Clear f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void clrw() {
@@ -644,6 +661,7 @@ public class Comands {
 	        printCDCZ();
 
 	        System.out.println("FINISH - Clear w");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void movwf(int befehl) {
@@ -660,6 +678,7 @@ public class Comands {
 	        Ctr.getMem().setRam(RAM);
 	        printCDCZ();
 	        System.out.println("FINISH - Move W to f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void bcf(int befehl) {
@@ -718,6 +737,7 @@ public class Comands {
 	        System.out.println(RAM[fAddr]);
 	        printCDCZ();
 	        System.out.println("FINISH - Bit Clear f");
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void bsf(int befehl) {
@@ -776,9 +796,10 @@ public class Comands {
 	        System.out.println(RAM[fAddr]);
 	        printCDCZ();
 	        System.out.println("FINISH - Bit Set f");
+	        Ctr.getMem().incPc();
 	    }
 
-	    public int btfsc(int befehl, int i) {
+	    public void btfsc(int befehl) {
 	        System.out.println("START - Bit Test f, Skip if Clear");
 	        int lZehn = Ctr.getAc().bitOrientDefault(befehl);
 	        int b = Ctr.getAc().bitConv(lZehn);
@@ -792,58 +813,58 @@ public class Comands {
 	            case 0:
 	                ergebnis = fRegister & 0x1;
 	                if (ergebnis == 0x0) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 1:
 	                ergebnis = fRegister & 0x2;
 	                if (ergebnis == 0x0) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 2:
 	                ergebnis = fRegister & 0x4;
 	                if (ergebnis == 0x0) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 3:
 	                ergebnis = fRegister & 0x8;
 	                if (ergebnis == 0x0) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 4:
 	                ergebnis = fRegister & 0x10;
 	                if (ergebnis == 0x0) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 5:
 	                ergebnis = fRegister & 0x20;
 	                if (ergebnis == 0x0) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 6:
 	                ergebnis = fRegister & 0x40;
 	                if (ergebnis == 0x0) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 7:
 	                ergebnis = fRegister & 0x80;
 	                if (ergebnis == 0x0) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	        }
 	        printCDCZ();
 	        System.out.println("FINISH - Bit Test f, Skip if Clear");
-	        return i;
+        	Ctr.getMem().incPc();
 	    }
 
-	    public int btfss(int befehl, int i) {
+	    public void btfss(int befehl) {
 	        System.out.println("START - Bit Test f, Skip if Set");
 	        int lZehn = Ctr.getAc().bitOrientDefault(befehl);
 	        int b = Ctr.getAc().bitConv(lZehn);
@@ -857,55 +878,55 @@ public class Comands {
 	            case 0:
 	                ergebnis = fRegister & 0x1;
 	                if (ergebnis == 0x1) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 1:
 	                ergebnis = fRegister & 0x2;
 	                if (ergebnis == 0x2) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 2:
 	                ergebnis = fRegister & 0x4;
 	                if (ergebnis == 0x4) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 3:
 	                ergebnis = fRegister & 0x8;
 	                if (ergebnis == 0x8) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 4:
 	                ergebnis = fRegister & 0x10;
 	                if (ergebnis == 0x10) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 5:
 	                ergebnis = fRegister & 0x20;
 	                if (ergebnis == 0x20) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 6:
 	                ergebnis = fRegister & 0x40;
 	                if (ergebnis == 0x40) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 7:
 	                ergebnis = fRegister & 0x80;
 	                if (ergebnis == 0x80) {
-	                    i++;
+	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	        }
 	        printCDCZ();
 	        System.out.println("FINISH - Bit Test f, Skip if Set");
-	        return i;
+        	Ctr.getMem().incPc();
 	    }
 
 	    public void movlw(int befehl) {
@@ -916,20 +937,19 @@ public class Comands {
 	        Ctr.getMem().setwRegister(k);
 	        printCDCZ();
 	        System.out.println("FINISH - Move literal to W");
+	        Ctr.getMem().incPc();
 	    }
 
-	    public int retlw(int befehl) {
+	    public void retlw(int befehl) {
 	        System.out.println("START - Return with literal in W");
-	        int i = Ctr.getMem().getStack();
+	        int pc = Ctr.getMem().getStack();
 
 	        int k = Ctr.getAc().byteDefault(befehl);
 	        Ctr.getMem().setwRegister(k);
 
-	        int i3 = i + 1;
-	        System.out.println("Kehre zurück zu: "+ i3);
 	        printCDCZ();
 	        System.out.println("FINISH - Return with literal in W");
-	        return i;
+	        Ctr.getMem().setPC(pc);
 	    }
 
 	    public void addlw(int befehl) {
@@ -988,6 +1008,7 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Add literal and W");
+        	Ctr.getMem().incPc();
 	    }
 
 	    public void sublw(int befehl) {
@@ -1043,12 +1064,12 @@ public class Comands {
 	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Subtract W from literal");
-
+        	Ctr.getMem().incPc();
 	    }
 
-	    public int call(int befehl, int i) {
+	    public void call(int befehl) {
 	        System.out.println("START - Call subroutine");
-	        Ctr.getMem().setStack(i);
+	        Ctr.getMem().setStack(Ctr.getMem().getAktuellerPC());
 
 	        int k = Ctr.getAc().elvenbitconv(befehl);
 	        int[] RAM = Ctr.getMem().getRam();
@@ -1056,16 +1077,14 @@ public class Comands {
 
 	        pclath &= 0x18;
 	        pclath = pclath << 8;
-	        int ineu = k + pclath - 1;
+	        int pcneu = k + pclath;
 
-	        int iprint = ineu + 1;
-	        System.out.println("Gehe zu: "+ iprint);
 	        printCDCZ();
 	        System.out.println("FINISH - Call subroutine");
-	        return ineu;
+	        Ctr.getMem().setPC(pcneu);
 	    }
 
-	    public int gotobef(int befehl) {
+	    public void gotobef(int befehl) {
 	        System.out.println("START - Go to address");
 	        int k = Ctr.getAc().elvenbitconv(befehl);
 	        int[] RAM = Ctr.getMem().getRam();
@@ -1073,13 +1092,11 @@ public class Comands {
 
 	        pclath &= 0x18;
 	        pclath = pclath << 8;
-	        int i = k + pclath - 1;
-	        int iprint = i +1;
+	        int pcneu = k + pclath;
 
-	        System.out.println("Gehe zu: "+ iprint);
 	        printCDCZ();
 	        System.out.println("FINISH - Go to address");
-	        return i;
+	        Ctr.getMem().setPC(pcneu);
 	    }
 
 	    public int checkZflag(int ergebnis, int RAM3) {

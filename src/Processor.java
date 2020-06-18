@@ -8,9 +8,9 @@ public class Processor extends Thread {
 	}
 	public void run() {
 		while (!exit) {
-			
+			ctr.setRunning(true);
 			int code = ctr.getMem().getCurrentCommand(ctr.getMem().getAktuellerPC());
-            int pc = ctr.getMk().vorsortieren(code, ctr.getMem().getAktuellerPC());
+            ctr.getMk().vorsortieren(code);
 			
 			
 			try {

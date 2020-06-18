@@ -3,3 +3,20 @@
 
 /.settings/
 /bin/
+
+/src/Adresschecking.class
+/src/Comands.class
+/src/Controller.class
+/src/GUI$1.class
+/src/GUI$2.class
+/src/GUI$3.class
+/src/GUI$4.class
+/src/GUI.class
+/src/Masks.class
+/src/Memory.class
+/src/Processor.class
+/src/Read.class
+/src/GUI$5.class
+
+/src/.classpath
+/src/.project

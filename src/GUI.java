@@ -95,6 +95,15 @@ public class GUI {
 		btnStart.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnStart.setBounds(5, 215, 89, 23);
 		Steuerung.add(btnStart);
+		
+		JButton btnStop = new JButton("Stop");
+		btnStop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Ctr.stopProcessor();
+			}
+		});
+		btnStop.setBounds(5, 181, 89, 23);
+		Steuerung.add(btnStop);
     
 		pinreg = new JTable();
 		pins.add(pinreg);

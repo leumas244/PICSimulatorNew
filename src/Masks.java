@@ -6,7 +6,7 @@ public class Masks {
         this.Ctr = ctr;
     }
 
-    public int vorsortieren(int befehl, int i) {
+    public void vorsortieren(int befehl) {
         /*
         Methode um die festen Befehle rauszupicken, welche immer die gleichen Befehlsziffern haben.
         Ist der Befehl hier nicht dabei, wird die sortier Methode mit Masken aufgerufen.
@@ -17,7 +17,7 @@ public class Masks {
             case 0x0020:
             case 0x0040:
             case 0x0060:
-                System.out.println("NOP; PC = " + i);
+                System.out.println("NOP");
                 Ctr.getCom().nop();
                 break;
             case 0x0064:
@@ -26,23 +26,22 @@ public class Masks {
                 break;
             case 0x0009:
                 System.out.println("RETFIE");
-                i = Ctr.getCom().retfie();
+                Ctr.getCom().retfie();
                 break;
             case 0x0008:
-                System.out.println("RETURN; PC = " + i);
-                i = Ctr.getCom().returnbef();
+                System.out.println("RETURN");
+                Ctr.getCom().returnbef();
                 break;
             case 0x0063:
                 System.out.println("SLEEP");
                 Ctr.getCom().sleep();
                 break;
             default:
-                i = sortieren(befehl, i);
+                sortieren(befehl);
         }
-        return i;
     }
 
-    public int sortieren(int befehl, int i) {
+    public void sortieren(int befehl) {
         /*
         Methode um die Befhele zu Identifizieren, welche keine festen Befehlsziffern haben.
         Der Befhels String wird in eine Hexzahl umgewandelt und mit den jeweiligen Masken logisch verundet.
@@ -69,7 +68,7 @@ public class Masks {
                 break;
             case 0x0B00:
                 System.out.println("DECFSZ");
-                i = Ctr.getCom().decfsz(befehl, i);
+                Ctr.getCom().decfsz(befehl);
                 break;
             case 0x0A00:
                 System.out.println("INCF");
@@ -77,7 +76,7 @@ public class Masks {
                 break;
             case 0x0F00:
                 System.out.println("INCFSZ");
-                i = Ctr.getCom().incfsz(befehl, i);
+                Ctr.getCom().incfsz(befehl);
                 break;
             case 0x0400:
                 System.out.println("IORWF");
@@ -145,24 +144,24 @@ public class Masks {
                 break;
             case 0x1800:
                 System.out.println("BTSFC");
-                i = Ctr.getCom().btfsc(befehl, i);
+                Ctr.getCom().btfsc(befehl);
                 break;
             case 0x1C00:
                 System.out.println("BTFSS");
-                i = Ctr.getCom().btfss(befehl, i);
+                Ctr.getCom().btfss(befehl);
                 break;
             case 0x3000:
                 System.out.println("MOVLW");
                 Ctr.getCom().movlw(befehl);
                 break;
             case 0x3400:
-                System.out.println("RETLW; PC = " + i);
-                i = Ctr.getCom().retlw(befehl);
+                System.out.println("RETLW");
+                Ctr.getCom().retlw(befehl);
                 break;
         }
         switch (befehl & 0x3E00) {
             case 0x3E00:
-                System.out.println("ADDLW; PC = " + i);
+                System.out.println("ADDLW");
                 Ctr.getCom().addlw(befehl);
                 break;
             case 0x3C00:
@@ -172,15 +171,14 @@ public class Masks {
         }
         switch (befehl & 0x3800) {
             case 0x2000:
-                System.out.println("CALL; PC = " + i);
-                i = Ctr.getCom().call(befehl, i);
+                System.out.println("CALL");
+                Ctr.getCom().call(befehl);
                 break;
             case 0x2800:
-                System.out.println("GOTO; PC = " + i);
-                i = Ctr.getCom().gotobef(befehl);
+                System.out.println("GOTO");
+                Ctr.getCom().gotobef(befehl);
                 // brauch i
                 break;
         }
-        return i;
     }
 }

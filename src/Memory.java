@@ -103,8 +103,8 @@ public class Memory extends Thread {
 		return aktuellerPC;
 	}
 
-	public void setAktuellerPC(int aktuellerPC) {
-		this.aktuellerPC = aktuellerPC;
+	public void setPC(int PC) {
+		this.aktuellerPC = PC;
 	}
 	public int getCurrentCommand(int pc) {
 		return this.progmem[pc];

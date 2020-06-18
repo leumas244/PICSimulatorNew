@@ -28,17 +28,6 @@ public class Controller {
 		this.Rd = new Read(this);
 	}
 	
-	public void startprogramm() {
-		int[] programmSpeicher = Mem.getProgcount();
-        for (int i = 0; i < 1024; i++) {
-        	Mem.setAktuellerPC(i);
-        //	int row = getrow();
-
-
-            
-        }
-	}
-
 	
 	public void loadFile() {
 		JFileChooser fc = new JFileChooser();
@@ -48,7 +37,7 @@ public class Controller {
         String filename = file.getAbsolutePath();
         Mem.setFilename(filename);
         
-        //Gui.lblUsedFileValue.setText(filename);
+        this.gui.setFileValue(filename);
         
         FileReader fileReader;
         BufferedReader bufferedReader;
@@ -100,7 +89,6 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.gui.setFileValue(filename);
 	}
 	
 	public int getrow() {
