@@ -108,7 +108,7 @@ public class Controller {
 		
 	}
 	public void updateRamGui(int x, int y, int value) {
-		gui.updateRamtable(x, y, value);
+		gui.updateRamtable(x, y, Integer.toHexString(value));
 	}
 	private void initializeRamtable() {
 		for(int i=0;i<32;i++) {

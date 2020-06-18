@@ -6,9 +6,11 @@ public class Processor extends Thread {
 	public Processor(Controller ctr) {
 		this.ctr = ctr;
 	}
+	@Override
 	public void run() {
+		ctr.setRunning(true);
 		while (!exit) {
-			ctr.setRunning(true);
+			
 			int code = ctr.getMem().getCurrentCommand(ctr.getMem().getAktuellerPC());
             ctr.getMk().vorsortieren(code);
 			

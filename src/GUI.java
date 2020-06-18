@@ -22,7 +22,6 @@ public class GUI {
 
 	public JFrame frame;
 	public Controller Ctr;
-	public JTable pinreg;
 	public JTable ramtable;
 	public JTable table;
 	private JLabel lblUsedFileValue;
@@ -66,34 +65,19 @@ public class GUI {
 	
 	public void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1076, 689);
+		frame.setBounds(100, 100, 1221, 722);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel spezialfunktionsregister = new JPanel();
-		spezialfunktionsregister.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		spezialfunktionsregister.setBounds(26, 229, 191, 363);
-		frame.getContentPane().add(spezialfunktionsregister);
-		spezialfunktionsregister.setLayout(new BorderLayout(0, 0));
-		
-		JPanel pins = new JPanel();
-		pins.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		pins.setBounds(227, 24, 127, 196);
-		frame.getContentPane().add(pins);
-		
-		JPanel Register = new JPanel();
-		Register.setBounds(227, 24, 127, 196);
-		frame.getContentPane().add(Register);
-		
 		JPanel Steuerung = new JPanel();
 		Steuerung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		Steuerung.setBounds(949, 229, 101, 249);
+		Steuerung.setBounds(1082, 343, 113, 249);
 		frame.getContentPane().add(Steuerung);
 		Steuerung.setLayout(null);
 		
 		JButton btnStart = new JButton("Start");
 		btnStart.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnStart.setBounds(5, 215, 89, 23);
+		btnStart.setBounds(10, 215, 89, 23);
 		Steuerung.add(btnStart);
 		
 		JButton btnStop = new JButton("Stop");
@@ -102,22 +86,8 @@ public class GUI {
 				Ctr.stopProcessor();
 			}
 		});
-		btnStop.setBounds(5, 181, 89, 23);
+		btnStop.setBounds(10, 181, 89, 23);
 		Steuerung.add(btnStop);
-    
-		pinreg = new JTable();
-		pins.add(pinreg);
-		
-		JPanel steuerung = new JPanel();
-		steuerung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		steuerung.setBounds(949, 229, 101, 249);
-		frame.getContentPane().add(steuerung);
-
-		
-		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_5.setBounds(840, 229, 96, 248);
-		frame.getContentPane().add(panel_5);
 		
 		JPanel lcd = new JPanel();
 		lcd.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -136,7 +106,7 @@ public class GUI {
 		
 		JPanel led = new JPanel();
 		led.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		led.setBounds(937, 24, 113, 128);
+		led.setBounds(1082, 24, 113, 128);
 		frame.getContentPane().add(led);
 		
 		JPanel taster = new JPanel();
@@ -147,7 +117,7 @@ public class GUI {
 		JPanel laufzeit = new JPanel();
 		laufzeit.setToolTipText("Laufzeit");
 		laufzeit.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		laufzeit.setBounds(949, 163, 101, 57);
+		laufzeit.setBounds(1082, 163, 111, 57);
 		frame.getContentPane().add(laufzeit);
 		
 		JButton reset_time = new JButton("resettime");
@@ -160,7 +130,7 @@ public class GUI {
 		JScrollPane ram = new JScrollPane();
 		ram.setInheritsPopupMenu(true);
 		ram.setIgnoreRepaint(true);
-		ram.setBounds(26, 24, 191, 194);
+		ram.setBounds(26, 24, 265, 544);
 		frame.getContentPane().add(ram);
 		
 		
@@ -178,7 +148,7 @@ public class GUI {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setVerifyInputWhenFocusTarget(false);
-		scrollPane.setBounds(227, 229, 602, 363);
+		scrollPane.setBounds(301, 229, 771, 363);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -202,11 +172,11 @@ public class GUI {
 		scrollPane.setViewportView(table);
 		
 		JLabel lblUsedFile = new JLabel("Used File:");
-		lblUsedFile.setBounds(227, 603, 63, 14);
+		lblUsedFile.setBounds(311, 603, 63, 14);
 		frame.getContentPane().add(lblUsedFile);
 		
 		lblUsedFileValue = new JLabel(" ");
-		lblUsedFileValue.setBounds(287, 603, 543, 14);
+		lblUsedFileValue.setBounds(364, 603, 519, 14);
 		frame.getContentPane().add(lblUsedFileValue);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -231,7 +201,7 @@ public class GUI {
 			}
 		});
 	}
-	public void updateRamtable(int x,int y, int value) {
+	public void updateRamtable(int x,int y, String value) {
 		this.ramtable.getModel().setValueAt(value, y, x+1);
 	}
 	public void addRowToRam(Object[] data) {
