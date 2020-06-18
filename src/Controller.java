@@ -1,23 +1,27 @@
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Controller {
-	public GUI Gui;
-	public Memory Mem;
-	public Comands Com;
-	public Adresschecking Ac;
-	public Masks Mk;
-	public Read Rd;
+	private GUI gui;
+	private Memory Mem;
+	private Comands Com;
+	private Adresschecking Ac;
+	private Masks Mk;
+	private Read Rd;
+	private Processor prc;
+	private boolean isRunning = false;
 	
 	public Controller(GUI gui) {
-		this.Gui = gui;
+		this.gui = gui;
 		this.Mem = new Memory(this);
+		this.initializeRamtable();
+		this.Mem.start();
 		this.Com = new Comands(this);
 		this.Ac = new Adresschecking();
 		this.Mk = new Masks(this);
@@ -29,38 +33,16 @@ public class Controller {
         for (int i = 0; i < 1024; i++) {
         	Mem.setAktuellerPC(i);
         //	int row = getrow();
-            i = Mk.vorsortieren(programmSpeicher[i], i);
-    		Gui.ramtable.repaint();
+
+
             
         }
 	}
-	public Object[][] ramUmwandeln() {
-		int [] ram = Mem.getRam();
-		Object[][] newram = new Object [32][8];
-		int h = 0;
-		int g = 0;
-		
-		for(int i = 0; i<255; i++) {
-			if (h==8) {
-				h = 0;
-				g++;
-			}
-			newram[g][h]=ram[i];
-			h++;
-			}
 
-
-
-			
-		 return newram;	
-	}
-	public void ramaktualisieren() {
-		Gui.ramtable.repaint();
-	}
 	
 	public void loadFile() {
 		JFileChooser fc = new JFileChooser();
-        fc.showOpenDialog(Gui.frame);
+        fc.showOpenDialog(gui.frame);
  
         File file = fc.getSelectedFile();
         String filename = file.getAbsolutePath();
@@ -107,7 +89,7 @@ public class Controller {
 	            	}
 	            }
 	            
-	            DefaultTableModel model = (DefaultTableModel)Gui.table.getModel();
+	            DefaultTableModel model = (DefaultTableModel)gui.table.getModel();
 	            model.addRow(new Object [] {pCounter, pCode, row, label, comand, coment});
 	            }
             bufferedReader.close();
@@ -118,14 +100,15 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.gui.setFileValue(filename);
 	}
 	
 	public int getrow() {
-		int h = Gui.table.getRowCount();
+		int h = gui.table.getRowCount();
 		int testint = 1234;
 		int PC = Mem.getAktuellerPC();
 		for (int i=0; i<h; i++) {
-			String test = (String) Gui.table.getValueAt(i,0);
+			String test = (String) gui.table.getValueAt(i,0);
 			if (!(test.equals("    "))) {
 				testint = Integer.parseInt(test);
 				if (PC == testint) {
@@ -135,5 +118,49 @@ public class Controller {
 		}
 		return 0;
 		
+	}
+	public void updateRamGui(int x, int y, int value) {
+		gui.updateRamtable(x, y, value);
+	}
+	private void initializeRamtable() {
+		for(int i=0;i<32;i++) {
+			gui.addRowToRam(new Object[] {Integer.toHexString(i*8), "00", "00", "00", "00", "00", "00", "00", "00"});
+		}
+	}
+	public void startProcessor() {
+		if (isRunning==false) {
+			prc = new Processor(this);
+			prc.start();
+		}
+	
+	}
+	public void stopProcessor() {
+		if(isRunning) {
+			prc.exit=true;
+		}
+	}
+
+	public boolean isRunning() {
+		return isRunning;
+	}
+
+	public void setRunning(boolean isRunning) {
+		this.isRunning = isRunning;
+	}
+
+	public Memory getMem() {
+		return Mem;
+	}
+
+	public Comands getCom() {
+		return Com;
+	}
+
+	public Adresschecking getAc() {
+		return Ac;
+	}
+
+	public Masks getMk() {
+		return Mk;
 	}
 }

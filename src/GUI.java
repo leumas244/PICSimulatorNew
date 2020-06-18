@@ -16,8 +16,6 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 
 public class GUI {
@@ -27,7 +25,8 @@ public class GUI {
 	public JTable pinreg;
 	public JTable ramtable;
 	public JTable table;
-	public JLabel lblUsedFileValue;
+	private JLabel lblUsedFileValue;
+	private DefaultTableModel ramtbl; 
 
 
 	/**
@@ -51,13 +50,20 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
-		Ctr = new Controller(this);
 		initialize();
+		Ctr = new Controller(this);
 	}
+
+	public void updateVariables(Object[][] newram, String[] columnNames) {
+		  DefaultTableModel dtm = new DefaultTableModel(newram, columnNames);
+		  dtm.fireTableDataChanged();
+		}
+	
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
 	public void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1076, 689);
@@ -143,14 +149,20 @@ public class GUI {
 		laufzeit.add(reset_time);
 		
 		JScrollPane ram = new JScrollPane();
+		ram.setInheritsPopupMenu(true);
+		ram.setIgnoreRepaint(true);
 		ram.setBounds(26, 24, 191, 194);
 		frame.getContentPane().add(ram);
 		
 		
-		String[] columnNames = {"0","1","2","3","4","5","6","7"};
-		Object[][] newram = Ctr.ramUmwandeln();
-		ramtable = new JTable(newram, columnNames);
+		String[] columnNames = {" ","+0","+1","+2","+3","+4","+5","+6","+7"};
+		ramtable = new JTable();
+		ramtable.setEnabled(false);
+		ramtbl = new DefaultTableModel();
+		ramtbl.setColumnIdentifiers(columnNames);
+		ramtable.setModel(ramtbl);
 		ram.setViewportView(ramtable);
+		
 		
 			
 		
@@ -184,7 +196,7 @@ public class GUI {
 		lblUsedFile.setBounds(227, 603, 63, 14);
 		frame.getContentPane().add(lblUsedFile);
 		
-		JLabel lblUsedFileValue = new JLabel(" ");
+		lblUsedFileValue = new JLabel(" ");
 		lblUsedFileValue.setBounds(287, 603, 543, 14);
 		frame.getContentPane().add(lblUsedFileValue);
 		
@@ -200,15 +212,27 @@ public class GUI {
 		btnLoadFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Ctr.loadFile();
-				String filename = Ctr.Mem.getFilename();
-				lblUsedFileValue.setText(filename);
+
 			}
 		});
 		
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Ctr.startprogramm();
+				Ctr.startProcessor();
 			}
 		});
+	}
+	public void updateRamtable(int x,int y, int value) {
+		this.ramtable.getModel().setValueAt(value, y, x+1);
+	}
+	public void addRowToRam(Object[] data) {
+		this.ramtbl.addRow(data);
+	}
+
+	public DefaultTableModel getRamtbl() {
+		return ramtbl;
+	}
+	public void setFileValue(String file) {
+		this.lblUsedFileValue.setText(file);
 	}
 }

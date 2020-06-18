@@ -16,7 +16,7 @@ public class Read {
 	         */
 	        FileReader fileReader = new FileReader(filename);
 	        BufferedReader bufferedReader = new BufferedReader(fileReader);     //Die Datei wird mit dem BufferedReader gelesen
-	        int[] progCounter = Ctr.Mem.getProgcount();                         //Programmspeicher wird erstellt
+	        int[] progCounter = Ctr.getMem().getProgcount();                         //Programmspeicher wird erstellt
 	        
 
 	        String line = null;
@@ -37,6 +37,6 @@ public class Read {
 	                System.out.println(progCounter[i]);
 	            }
 	        }
-	        Ctr.Mem.setProgcount(progCounter);                                            //fertiges Array mit allen Befehlsziffern zurückgegeben
+	        Ctr.getMem().setProgcount(progCounter);                                            //fertiges Array mit allen Befehlsziffern zurückgegeben
 	}
 }

@@ -1,19 +1,20 @@
 
-public class Memory {
-	int[] ram = new int[256];
-    int wRegister = 0;
-    int[] stack = new int[8];
-    int stackpointer = 0;
-    int[] progcount = new int[1024];
-    String filename = "";
-    int aktuellerPC;
+public class Memory extends Thread {
+	public static final int RAMLENGTH = 256;
+	private int[] ram = new int[RAMLENGTH];
+	private int wRegister = 0;
+	private int[] stack = new int[8];
+	private int stackpointer = 0;
+	private int[] progmem = new int[1024];
+	private String filename = "";
+	private int aktuellerPC;
 
-	Controller Ctr;
+	private Controller Ctr;
 
     public Memory(Controller ctr) {
     	this.Ctr = ctr;
         wRegister = 0;
-        for (int i = 0; i < 256; i++) {
+        for (int i = 0; i < RAMLENGTH; i++) {
             if (i == 0x3) {
                 ram[i] = 0x18;
             } else if (i == 0x81) {
@@ -29,6 +30,18 @@ public class Memory {
                 ram[i] = 0;
             }
         }
+    }
+    public void run() {
+    	for(int i = 0; i < RAMLENGTH; i++) {
+    		
+    		Ctr.updateRamGui(i%8, i/8, this.ram[i]);
+    	}
+    	try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public int[] getRam() {
@@ -71,11 +84,11 @@ public class Memory {
     }
     
     public int[] getProgcount() {
-        return progcount;
+        return progmem;
     }
     
     public void setProgcount(int[] progcount) {
-        this.progcount = progcount;
+        this.progmem = progcount;
     }
     
     public String getFilename() {
@@ -92,5 +105,11 @@ public class Memory {
 
 	public void setAktuellerPC(int aktuellerPC) {
 		this.aktuellerPC = aktuellerPC;
+	}
+	public int getCurrentCommand(int pc) {
+		return this.progmem[pc];
+	}
+	public void incPc() {
+		this.aktuellerPC++;
 	}
 }

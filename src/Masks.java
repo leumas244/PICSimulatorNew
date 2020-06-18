@@ -18,23 +18,23 @@ public class Masks {
             case 0x0040:
             case 0x0060:
                 System.out.println("NOP; PC = " + i);
-                Ctr.Com.nop();
+                Ctr.getCom().nop();
                 break;
             case 0x0064:
                 System.out.println("CLRWDT");
-                Ctr.Com.clrwdt(befehl);
+                Ctr.getCom().clrwdt(befehl);
                 break;
             case 0x0009:
                 System.out.println("RETFIE");
-                i = Ctr.Com.retfie();
+                i = Ctr.getCom().retfie();
                 break;
             case 0x0008:
                 System.out.println("RETURN; PC = " + i);
-                i = Ctr.Com.returnbef();
+                i = Ctr.getCom().returnbef();
                 break;
             case 0x0063:
                 System.out.println("SLEEP");
-                Ctr.Com.sleep();
+                Ctr.getCom().sleep();
                 break;
             default:
                 i = sortieren(befehl, i);
@@ -53,131 +53,131 @@ public class Masks {
         switch (befehl & 0x3F00) {
             case 0x0700:
                 System.out.println("ADDWF");
-                Ctr.Com.addwf(befehl);
+                Ctr.getCom().addwf(befehl);
                 break;
             case 0x0500:
                 System.out.println("ANDWF");
-                Ctr.Com.andwf(befehl);
+                Ctr.getCom().andwf(befehl);
                 break;
             case 0x0900:
                 System.out.println("COMF");
-                Ctr.Com.comf(befehl);
+                Ctr.getCom().comf(befehl);
                 break;
             case 0x0300:
                 System.out.println("DECF");
-                Ctr.Com.decf(befehl);
+                Ctr.getCom().decf(befehl);
                 break;
             case 0x0B00:
                 System.out.println("DECFSZ");
-                i = Ctr.Com.decfsz(befehl, i);
+                i = Ctr.getCom().decfsz(befehl, i);
                 break;
             case 0x0A00:
                 System.out.println("INCF");
-                Ctr.Com.incf(befehl);
+                Ctr.getCom().incf(befehl);
                 break;
             case 0x0F00:
                 System.out.println("INCFSZ");
-                i = Ctr.Com.incfsz(befehl, i);
+                i = Ctr.getCom().incfsz(befehl, i);
                 break;
             case 0x0400:
                 System.out.println("IORWF");
-                Ctr.Com.iorwf(befehl);
+                Ctr.getCom().iorwf(befehl);
                 break;
             case 0x0800:
                 System.out.println("MOVF");
-                Ctr.Com.movf(befehl);
+                Ctr.getCom().movf(befehl);
                 break;
             case 0x0D00:
                 System.out.println("RLF");
-                Ctr.Com.rlf(befehl);
+                Ctr.getCom().rlf(befehl);
                 break;
             case 0x0C00:
                 System.out.println("RRF");
-                Ctr.Com.rrf(befehl);
+                Ctr.getCom().rrf(befehl);
                 break;
             case 0x0200:
                 System.out.println("SUBWF");
-                Ctr.Com.subwf(befehl);
+                Ctr.getCom().subwf(befehl);
                 break;
             case 0x0E00:
                 System.out.println("SWAPF");
-                Ctr.Com.swapf(befehl);
+                Ctr.getCom().swapf(befehl);
                 break;
             case 0x0600:
                 System.out.println("XORWF");
-                Ctr.Com.xorwf(befehl);
+                Ctr.getCom().xorwf(befehl);
                 break;
             case 0x3900:
                 System.out.println("ANDLW");
-                Ctr.Com.andlw(befehl);
+                Ctr.getCom().andlw(befehl);
                 break;
             case 0x3800:
                 System.out.println("IORLW");
-                Ctr.Com.iorlw(befehl);
+                Ctr.getCom().iorlw(befehl);
                 break;
             case 0x3A00:
                 System.out.println("XORLW");
-                Ctr.Com.xorlw(befehl);
+                Ctr.getCom().xorlw(befehl);
                 break;
         }
         switch (befehl & 0x3F80) {
             case 0x0180:
                 System.out.println("CLRF");
-                Ctr.Com.clrf(befehl);
+                Ctr.getCom().clrf(befehl);
                 break;
             case 0x0100:
                 System.out.println("CLRW");
-                Ctr.Com.clrw();
+                Ctr.getCom().clrw();
                 break;
             case 0x0080:
                 System.out.println("MOVEF");
-                Ctr.Com.movwf(befehl);
+                Ctr.getCom().movwf(befehl);
                 break;
         }
         switch (befehl & 0x3C00) {
             case 0x1000:
                 System.out.println("BCF");
-                Ctr.Com.bcf(befehl);
+                Ctr.getCom().bcf(befehl);
                 break;
             case 0x1400:
                 System.out.println("BSF");
-                Ctr.Com.bsf(befehl);
+                Ctr.getCom().bsf(befehl);
                 break;
             case 0x1800:
                 System.out.println("BTSFC");
-                i = Ctr.Com.btfsc(befehl, i);
+                i = Ctr.getCom().btfsc(befehl, i);
                 break;
             case 0x1C00:
                 System.out.println("BTFSS");
-                i = Ctr.Com.btfss(befehl, i);
+                i = Ctr.getCom().btfss(befehl, i);
                 break;
             case 0x3000:
                 System.out.println("MOVLW");
-                Ctr.Com.movlw(befehl);
+                Ctr.getCom().movlw(befehl);
                 break;
             case 0x3400:
                 System.out.println("RETLW; PC = " + i);
-                i = Ctr.Com.retlw(befehl);
+                i = Ctr.getCom().retlw(befehl);
                 break;
         }
         switch (befehl & 0x3E00) {
             case 0x3E00:
                 System.out.println("ADDLW; PC = " + i);
-                Ctr.Com.addlw(befehl);
+                Ctr.getCom().addlw(befehl);
                 break;
             case 0x3C00:
                 System.out.println("SUBLW");
-                Ctr.Com.sublw(befehl);
+                Ctr.getCom().sublw(befehl);
                 break;
         }
         switch (befehl & 0x3800) {
             case 0x2000:
                 System.out.println("CALL; PC = " + i);
-                i = Ctr.Com.call(befehl, i);
+                i = Ctr.getCom().call(befehl, i);
                 break;
             case 0x2800:
                 System.out.println("GOTO; PC = " + i);
-                i = Ctr.Com.gotobef(befehl);
+                i = Ctr.getCom().gotobef(befehl);
                 // brauch i
                 break;
         }

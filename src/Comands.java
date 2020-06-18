@@ -19,14 +19,14 @@ public class Comands {
 
 	    public int retfie() {
 	        System.out.println("START - Return from Interrupt");
-	        int i = Ctr.Mem.getStack();
+	        int i = Ctr.getMem().getStack();
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int intconReg = RAM[0xB];
 	        intconReg |= 0x80;
 
 	        RAM[0xB] = intconReg;
-	        Ctr.Mem.setRam(RAM);
+	        Ctr.getMem().setRam(RAM);
 	        printCDCZ();
 	        System.out.println("FINISH - Return from Interrupt");
 	        return i;
@@ -34,7 +34,7 @@ public class Comands {
 
 	    public int returnbef() {
 	        System.out.println("START - Retrun from Subroutine");
-	        int i = Ctr.Mem.getStack();
+	        int i = Ctr.getMem().getStack();
 
 	        int i3 = i +1;
 	        System.out.println("Kehre zurück zu: "+ i3);
@@ -51,13 +51,13 @@ public class Comands {
 
 	    public void addwf(int befehl) {
 	        System.out.println("START - Add w to f");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        // setzen des DC
@@ -110,21 +110,21 @@ public class Comands {
 	            wRegister = ergebniss;
 	        }
 
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Add w to f");
 	    }
 
 	    public void andwf(int befehl) {
 	        System.out.println("START - And w with f");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        int ergebniss = fRegister & wRegister;
@@ -137,21 +137,21 @@ public class Comands {
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - And w with f");
 	    }
 
 	    public void comf(int befehl) {
 	        System.out.println("START - Compliment f");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        int ergebnis = fRegister ^ 0xFF;
@@ -164,21 +164,21 @@ public class Comands {
 	        } else if (dest == 0) {
 	            wRegister = ergebnis;
 	        }
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Compliment f");
 	    }
 
 	    public void decf(int befehl) {
 	        System.out.println("START - Decrement f");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        int ergebniss = fRegister - 1;
@@ -195,21 +195,21 @@ public class Comands {
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Decrement f");
 	    }
 
 	    public int decfsz(int befehl, int i) {
 	        System.out.println("START - Decrement f, Skip if 0");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        int ergebniss = fRegister - 1;
@@ -230,8 +230,8 @@ public class Comands {
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Decrement f, Skip if 0");
 	        return i;
@@ -239,13 +239,13 @@ public class Comands {
 
 	    public void incf(int befehl) {
 	        System.out.println("START - Increment f");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        int ergebniss = fRegister + 1;
@@ -262,21 +262,21 @@ public class Comands {
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Increment f");
 	    }
 
 	    public int incfsz(int befehl, int i) {
 	        System.out.println("START - Increment f, Skip if 0");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        int ergebniss = fRegister + 1;
@@ -297,8 +297,8 @@ public class Comands {
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 
 	        printCDCZ();
 	        System.out.println("FINISH - Increment f, Skip if 0");
@@ -307,13 +307,13 @@ public class Comands {
 
 	    public void iorwf(int befehl) {
 	        System.out.println("START - Inclusive Or w with f");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        int ergebniss = fRegister | wRegister;
@@ -326,21 +326,21 @@ public class Comands {
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Inclusive Or w with f");
 	    }
 
 	    public void movf(int befehl) {
 	        System.out.println("START - Move f to destiantion w or f");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        hRegister = checkZflag(fRegister, hRegister);
@@ -351,8 +351,8 @@ public class Comands {
 	        } else if (dest == 0) {
 	            wRegister = fRegister;
 	        }
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Move f to destiantion w or f");
 	    }
@@ -360,11 +360,11 @@ public class Comands {
 	    public void rlf(int befehl) {
 	        System.out.println("START - Rotate Left f through Carry");
 
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
 	        int C = RAM[3] & 0x1;
 
@@ -379,14 +379,14 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = fRegisterNeu;
-	            Ctr.Mem.setRam(RAM);
+	            Ctr.getMem().setRam(RAM);
 	        } else if (dest == 0) {
-	            Ctr.Mem.setwRegister(fRegisterNeu);
+	            Ctr.getMem().setwRegister(fRegisterNeu);
 	        }
 
 	        RAM[3] = (RAM[3] & 0xFE) + CNeu;
 
-	        Ctr.Mem.setRam(RAM);
+	        Ctr.getMem().setRam(RAM);
 
 	        System.out.println(RAM[fAddr]);
 	        System.out.println(CNeu);
@@ -396,11 +396,11 @@ public class Comands {
 
 	    public void rrf(int befehl) {
 	        System.out.println("START - Rotate Right f through Carry");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
 	        int C = RAM[3] & 0x1;
 	        if (C == 0x1) {
@@ -416,14 +416,14 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = fRegisterNeu;
-	            Ctr.Mem.setRam(RAM);
+	            Ctr.getMem().setRam(RAM);
 	        } else if (dest == 0) {
-	            Ctr.Mem.setwRegister(fRegisterNeu);
+	            Ctr.getMem().setwRegister(fRegisterNeu);
 	        }
 
 	        RAM[3] = (RAM[3] & 0xFE) + CNeu;
 
-	        Ctr.Mem.setRam(RAM);
+	        Ctr.getMem().setRam(RAM);
 
 	        System.out.println(RAM[fAddr]);
 	        System.out.println(CNeu);
@@ -433,14 +433,14 @@ public class Comands {
 
 	    public void subwf(int befehl) {
 	        System.out.println("START - Subtract W from f");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
 	        int hRegister = RAM[3];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 
 	        // setzen des DC
 	        int DChilfeW = wRegister & 0xF;
@@ -488,21 +488,21 @@ public class Comands {
 	            wRegister = ergebnis;
 	        }
 
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Subtract W from f");
 	    }
 
 	    public void swapf(int befehl) {
 	        System.out.println("START - Swap nibbles in f");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 
 	        int rechteSeite = fRegister & 0xF;
 	        int linkeSeite = fRegister & 0xF0;
@@ -517,8 +517,8 @@ public class Comands {
 	            wRegister = ergebniss;
 	        }
 
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Swap nibbles in f");
 	    }
@@ -526,13 +526,13 @@ public class Comands {
 	    public void xorwf(int befehl) {
 	        System.out.println("START - Exclusive OR W with f");
 
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int dest = Ctr.Ac.byteOrientedDesination(lAcht);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int dest = Ctr.getAc().byteOrientedDesination(lAcht);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        int ergebniss = fRegister ^ wRegister;
@@ -545,17 +545,17 @@ public class Comands {
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Exclusive OR W with f");
 	    }
 
 	    public void andlw(int befehl) {
 	        System.out.println("START - Add literal and W");
-	        int k = Ctr.Ac.byteDefault(befehl);
-	        int[] RAM = Ctr.Mem.getRam();
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int k = Ctr.getAc().byteDefault(befehl);
+	        int[] RAM = Ctr.getMem().getRam();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        wRegister &= k;
@@ -563,8 +563,8 @@ public class Comands {
 	        hRegister = checkZflag(wRegister, hRegister);
 	        RAM[3] = hRegister;
 
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 
 	        printCDCZ();
 	        System.out.println("FINISH - Add literal and W");
@@ -573,9 +573,9 @@ public class Comands {
 	    public void iorlw(int befehl) {
 	        System.out.println("START - Inclusive OR literal with W");
 
-	        int k = Ctr.Ac.byteDefault(befehl);
-	        int wRegister = Ctr.Mem.getwRegister();
-	        int[] RAM = Ctr.Mem.getRam();
+	        int k = Ctr.getAc().byteDefault(befehl);
+	        int wRegister = Ctr.getMem().getwRegister();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int hRegister = RAM[3];
 
 	        wRegister = wRegister | k;
@@ -583,8 +583,8 @@ public class Comands {
 	        hRegister = checkZflag(wRegister, hRegister);
 	        RAM[3] = hRegister;
 
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 
 	        printCDCZ();
 	        System.out.println("FINISH - Inclusive OR literal with W");
@@ -593,9 +593,9 @@ public class Comands {
 	    public void xorlw(int befehl) {
 	        System.out.println("START - Exclusive OR literal with W");
 
-	        int k = Ctr.Ac.byteDefault(befehl);
-	        int wRegister = Ctr.Mem.getwRegister();
-	        int[] RAM = Ctr.Mem.getRam();
+	        int k = Ctr.getAc().byteDefault(befehl);
+	        int wRegister = Ctr.getMem().getwRegister();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int hRegister = RAM[3];
 
 	        wRegister = wRegister ^ k;
@@ -603,18 +603,18 @@ public class Comands {
 	        hRegister = checkZflag(wRegister, hRegister);
 	        RAM[3] = hRegister;
 
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Exclusive OR literal with W");
 	    }
 
 	    public void clrf(int befehl) {
 	        System.out.println("START - Clear f");
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int Z = RAM[3] & 0x4;
 	        RAM[fAddr] = 0;
 
@@ -622,7 +622,7 @@ public class Comands {
 	            RAM[3] += 0x4;
 	        }
 
-	        Ctr.Mem.setRam(RAM);
+	        Ctr.getMem().setRam(RAM);
 	        printCDCZ();
 
 	        System.out.println("FINISH - Clear f");
@@ -630,7 +630,7 @@ public class Comands {
 
 	    public void clrw() {
 	        System.out.println("START - Clear w");
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int Z = RAM[3] & 0x4;
 
 	        int wRegister = 0;
@@ -639,8 +639,8 @@ public class Comands {
 	            RAM[3] += 0x4;
 	        }
 
-	        Ctr.Mem.setwRegister(wRegister);
-	        Ctr.Mem.setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
 	        printCDCZ();
 
 	        System.out.println("FINISH - Clear w");
@@ -649,68 +649,68 @@ public class Comands {
 	    public void movwf(int befehl) {
 	        System.out.println("START - Move W to f");
 
-	        int lAcht = Ctr.Ac.byteDefault(befehl);
-	        int fAddr = Ctr.Ac.getfAddress(lAcht);
+	        int lAcht = Ctr.getAc().byteDefault(befehl);
+	        int fAddr = Ctr.getAc().getfAddress(lAcht);
 
-	        int[] RAM = Ctr.Mem.getRam();
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int[] RAM = Ctr.getMem().getRam();
+	        int wRegister = Ctr.getMem().getwRegister();
 
 	        RAM[fAddr] = wRegister;
 
-	        Ctr.Mem.setRam(RAM);
+	        Ctr.getMem().setRam(RAM);
 	        printCDCZ();
 	        System.out.println("FINISH - Move W to f");
 	    }
 
 	    public void bcf(int befehl) {
 	        System.out.println("START - Bit Clear f");
-	        int lZehn = Ctr.Ac.bitOrientDefault(befehl);
-	        int b = Ctr.Ac.bitConv(lZehn);
-	        int fAddr = Ctr.Ac.getfAddress(lZehn);
+	        int lZehn = Ctr.getAc().bitOrientDefault(befehl);
+	        int b = Ctr.getAc().bitConv(lZehn);
+	        int fAddr = Ctr.getAc().getfAddress(lZehn);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
 
 	        switch (b) {
 	            case 0:
 	                fRegister &= 0xFE;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 1:
 	                fRegister &= 0xFD;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 2:
 	                fRegister &= 0xFB;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 3:
 	                fRegister &= 0xF7;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 4:
 	                fRegister &= 0xEF;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 5:
 	                fRegister &= 0xDF;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 6:
 	                fRegister &= 0xBF;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 7:
 	                fRegister &= 0x7F;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	        }
 
@@ -722,53 +722,53 @@ public class Comands {
 
 	    public void bsf(int befehl) {
 	        System.out.println("START - Bit Set f");
-	        int lZehn = Ctr.Ac.bitOrientDefault(befehl);
-	        int b = Ctr.Ac.bitConv(lZehn);
-	        int fAddr = Ctr.Ac.getfAddress(lZehn);
+	        int lZehn = Ctr.getAc().bitOrientDefault(befehl);
+	        int b = Ctr.getAc().bitConv(lZehn);
+	        int fAddr = Ctr.getAc().getfAddress(lZehn);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
 
 	        switch (b) {
 	            case 0:
 	                fRegister |= 0x1;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 1:
 	                fRegister |= 0x2;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 2:
 	                fRegister |= 0x4;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 3:
 	                fRegister |= 0x8;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 4:
 	                fRegister |= 0x10;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 5:
 	                fRegister |= 0x20;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 6:
 	                fRegister |= 0x40;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 7:
 	                fRegister |= 0x80;
 	                RAM[fAddr] = fRegister;
-	                Ctr.Mem.setRam(RAM);
+	                Ctr.getMem().setRam(RAM);
 	                break;
 	        }
 
@@ -780,11 +780,11 @@ public class Comands {
 
 	    public int btfsc(int befehl, int i) {
 	        System.out.println("START - Bit Test f, Skip if Clear");
-	        int lZehn = Ctr.Ac.bitOrientDefault(befehl);
-	        int b = Ctr.Ac.bitConv(lZehn);
-	        int fAddr = Ctr.Ac.getfAddress(lZehn);
+	        int lZehn = Ctr.getAc().bitOrientDefault(befehl);
+	        int b = Ctr.getAc().bitConv(lZehn);
+	        int fAddr = Ctr.getAc().getfAddress(lZehn);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
 	        int ergebnis;
 
@@ -845,11 +845,11 @@ public class Comands {
 
 	    public int btfss(int befehl, int i) {
 	        System.out.println("START - Bit Test f, Skip if Set");
-	        int lZehn = Ctr.Ac.bitOrientDefault(befehl);
-	        int b = Ctr.Ac.bitConv(lZehn);
-	        int fAddr = Ctr.Ac.getfAddress(lZehn);
+	        int lZehn = Ctr.getAc().bitOrientDefault(befehl);
+	        int b = Ctr.getAc().bitConv(lZehn);
+	        int fAddr = Ctr.getAc().getfAddress(lZehn);
 
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
 	        int ergebnis;
 
@@ -911,19 +911,19 @@ public class Comands {
 	    public void movlw(int befehl) {
 	        System.out.println("START - Move literal to W");
 
-	        int k = Ctr.Ac.byteDefault(befehl);
+	        int k = Ctr.getAc().byteDefault(befehl);
 
-	        Ctr.Mem.setwRegister(k);
+	        Ctr.getMem().setwRegister(k);
 	        printCDCZ();
 	        System.out.println("FINISH - Move literal to W");
 	    }
 
 	    public int retlw(int befehl) {
 	        System.out.println("START - Return with literal in W");
-	        int i = Ctr.Mem.getStack();
+	        int i = Ctr.getMem().getStack();
 
-	        int k = Ctr.Ac.byteDefault(befehl);
-	        Ctr.Mem.setwRegister(k);
+	        int k = Ctr.getAc().byteDefault(befehl);
+	        Ctr.getMem().setwRegister(k);
 
 	        int i3 = i + 1;
 	        System.out.println("Kehre zurück zu: "+ i3);
@@ -935,9 +935,9 @@ public class Comands {
 	    public void addlw(int befehl) {
 	        System.out.println("START - Add literal and W");
 
-	        int k = Ctr.Ac.byteDefault(befehl);
-	        int[] RAM = Ctr.Mem.getRam();
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int k = Ctr.getAc().byteDefault(befehl);
+	        int[] RAM = Ctr.getMem().getRam();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int hRegister = RAM[3];
 
 	        // setzen des DC
@@ -984,18 +984,18 @@ public class Comands {
 	        }
 	        RAM[3] = hRegister;
 
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Add literal and W");
 	    }
 
 	    public void sublw(int befehl) {
 	        System.out.println("START - Subtract W from literal");
-	        int k = Ctr.Ac.byteDefault(befehl);
-	        int[] RAM = Ctr.Mem.getRam();
+	        int k = Ctr.getAc().byteDefault(befehl);
+	        int[] RAM = Ctr.getMem().getRam();
 	        int hRegister = RAM[3];
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 
 	        // setzen des DC
 	        int DChilfeW = wRegister & 0xF;
@@ -1039,8 +1039,8 @@ public class Comands {
 	        }
 	        RAM[3] = hRegister;
 
-	        Ctr.Mem.setRam(RAM);
-	        Ctr.Mem.setwRegister(wRegister);
+	        Ctr.getMem().setRam(RAM);
+	        Ctr.getMem().setwRegister(wRegister);
 	        printCDCZ();
 	        System.out.println("FINISH - Subtract W from literal");
 
@@ -1048,10 +1048,10 @@ public class Comands {
 
 	    public int call(int befehl, int i) {
 	        System.out.println("START - Call subroutine");
-	        Ctr.Mem.setStack(i);
+	        Ctr.getMem().setStack(i);
 
-	        int k = Ctr.Ac.elvenbitconv(befehl);
-	        int[] RAM = Ctr.Mem.getRam();
+	        int k = Ctr.getAc().elvenbitconv(befehl);
+	        int[] RAM = Ctr.getMem().getRam();
 	        int pclath = RAM[0xA];
 
 	        pclath &= 0x18;
@@ -1067,8 +1067,8 @@ public class Comands {
 
 	    public int gotobef(int befehl) {
 	        System.out.println("START - Go to address");
-	        int k = Ctr.Ac.elvenbitconv(befehl);
-	        int[] RAM = Ctr.Mem.getRam();
+	        int k = Ctr.getAc().elvenbitconv(befehl);
+	        int[] RAM = Ctr.getMem().getRam();
 	        int pclath = RAM[0xA];
 
 	        pclath &= 0x18;
@@ -1094,7 +1094,7 @@ public class Comands {
 	    }
 
 	    public void printCDCZ() {
-	        int[] RAM = Ctr.Mem.getRam();
+	        int[] RAM = Ctr.getMem().getRam();
 	        int sRegister = RAM[3];
 	        int Cflag;
 	        int DCflag;
@@ -1116,7 +1116,7 @@ public class Comands {
 	            Zflag = 0;
 	        }
 
-	        int wRegister = Ctr.Mem.getwRegister();
+	        int wRegister = Ctr.getMem().getwRegister();
 	        int wert1 = RAM[0xC];
 	        int wert2 = RAM[0xD];
 	        System.out.println("W = " + wRegister + "; wert1 = " + wert1 +"; wert2 = "+ wert2 + "; DC = " + DCflag + "; C = " + Cflag + "; Z = " + Zflag);
