@@ -25,6 +25,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JInternalFrame;
+import javax.swing.border.LineBorder;
 
 public class GUI {
 
@@ -71,6 +72,15 @@ public class GUI {
 	private JLabel lblTIFValue;
 	private JLabel lblIFValue;
 	private JLabel lblRIFValue;
+	
+	private JLabel lblStack_7Value;
+	private JLabel lblStack_6Value;
+	private JLabel lblStack_5Value;
+	private JLabel lblStack_4Value;
+	private JLabel lblStack_3Value;
+	private JLabel lblStack_2Value;
+	private JLabel lblStack_1Value;
+	private JLabel lblStack_0Value;
 
 
 	/**
@@ -515,6 +525,98 @@ public class GUI {
 		lblRAM.setBounds(41, 0, 37, 25);
 		frame.getContentPane().add(lblRAM);
 		
+		JPanel stack = new JPanel();
+		stack.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		stack.setBounds(686, 24, 77, 196);
+		frame.getContentPane().add(stack);
+		stack.setLayout(null);
+		
+		JPanel panelStack = new JPanel();
+		panelStack.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panelStack.setBounds(10, 11, 57, 174);
+		stack.add(panelStack);
+		
+		lblStack_7Value = new JLabel("0");
+		lblStack_7Value.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblStack_6Value = new JLabel("0");
+		lblStack_6Value.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblStack_5Value = new JLabel("0");
+		lblStack_5Value.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblStack_4Value = new JLabel("0");
+		lblStack_4Value.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblStack_3Value = new JLabel("0");
+		lblStack_3Value.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblStack_2Value = new JLabel("0");
+		lblStack_2Value.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblStack_1Value = new JLabel("0");
+		lblStack_1Value.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblStack_0Value = new JLabel("0");
+		lblStack_0Value.setHorizontalAlignment(SwingConstants.CENTER);
+		GroupLayout gl_panelStack = new GroupLayout(panelStack);
+		gl_panelStack.setHorizontalGroup(
+			gl_panelStack.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelStack.createSequentialGroup()
+					.addGroup(gl_panelStack.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelStack.createSequentialGroup()
+							.addGap(10)
+							.addComponent(lblStack_7Value, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelStack.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblStack_6Value, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelStack.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblStack_5Value, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelStack.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblStack_4Value, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelStack.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblStack_3Value, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelStack.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblStack_2Value, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelStack.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblStack_1Value, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelStack.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblStack_0Value, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_panelStack.setVerticalGroup(
+			gl_panelStack.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelStack.createSequentialGroup()
+					.addGap(11)
+					.addComponent(lblStack_7Value)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblStack_6Value)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblStack_5Value)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblStack_4Value)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblStack_3Value)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblStack_2Value)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblStack_1Value)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblStack_0Value)
+					.addGap(9))
+		);
+		panelStack.setLayout(gl_panelStack);
+		
+		JLabel lblStack = new JLabel("Stack");
+		lblStack.setBounds(695, 5, 46, 14);
+		frame.getContentPane().add(lblStack);
+		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
@@ -533,6 +635,7 @@ public class GUI {
 	public void updateRamtable(int x,int y, String value) {
 		this.ramtable.getModel().setValueAt(value, y, x+1);
 	}
+	
 	public void addRowToRam(Object[] data) {
 		this.ramtbl.addRow(data);
 	}
@@ -540,6 +643,7 @@ public class GUI {
 	public DefaultTableModel getRamtbl() {
 		return ramtbl;
 	}
+	
 	public void setFileValue(String file) {
 		this.lblUsedFileValue.setText(file);
 	}
@@ -671,4 +775,37 @@ public class GUI {
 	public void updatePCLATH(String text) {
 		this.lblPCLATHValue.setText(text);
 	}
+	
+	public void updateStack_7(String text) {
+		this.lblStack_7Value.setText(text);
+	}
+	
+	public void updateStack_6(String text) {
+		this.lblStack_6Value.setText(text);
+	}
+	
+	public void updateStack_5(String text) {
+		this.lblStack_5Value.setText(text);
+	}
+	
+	public void updateStack_4(String text) {
+		this.lblStack_4Value.setText(text);
+	}
+	
+	public void updateStack_3(String text) {
+		this.lblStack_3Value.setText(text);
+	}
+	
+	public void updateStack_2(String text) {
+		this.lblStack_2Value.setText(text);
+	}
+	
+	public void updateStack_1(String text) {
+		this.lblStack_1Value.setText(text);
+	}
+	
+	public void updateStack_0(String text) {
+		this.lblStack_0Value.setText(text);
+	}
+	
 }

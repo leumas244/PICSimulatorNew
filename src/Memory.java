@@ -35,6 +35,7 @@ public class Memory extends Thread {
     public void run() {
     	while(true) {
 			Ctr.updateSFR();
+			Ctr.updateStack();
 			for(int i = 0; i < RAMLENGTH; i++) {
 			
 				Ctr.updateRamGui(i%8, i/8, this.ram[i]);
@@ -70,6 +71,10 @@ public class Memory extends Thread {
         int aktuellerStack = stack[stackpointer];
         this.stack[stackpointer] = 0x0;
         return aktuellerStack;
+    }
+    
+    public int[] getganzenStack() {
+    	return stack;
     }
 
     public void setStack(int aktuelleaddresse){

@@ -263,6 +263,18 @@ public class Controller {
 		}
 	}
 	
+	public void updateStack() {
+		int[] stack = getMem().getganzenStack();
+		gui.updateStack_0(Integer.toHexString(stack[0]));
+		gui.updateStack_1(Integer.toHexString(stack[1]));
+		gui.updateStack_2(Integer.toHexString(stack[2]));
+		gui.updateStack_3(Integer.toHexString(stack[3]));
+		gui.updateStack_4(Integer.toHexString(stack[4]));
+		gui.updateStack_5(Integer.toHexString(stack[5]));
+		gui.updateStack_6(Integer.toHexString(stack[6]));
+		gui.updateStack_7(Integer.toHexString(stack[7]));
+	}
+	
 	private void initializeRamtable() {
 		for(int i=0;i<32;i++) {
 			gui.addRowToRam(new Object[] {Integer.toHexString(i*8), "00", "00", "00", "00", "00", "00", "00", "00"});
