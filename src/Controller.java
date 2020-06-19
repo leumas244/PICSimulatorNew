@@ -46,6 +46,7 @@ public class Controller {
 			bufferedReader = new BufferedReader(fileReader);
 			String line = null;
             while ((line = bufferedReader.readLine()) != null) {
+            	String BP = " ";
 	            String pCounter = line.substring(0, 4);
 	            String pCode = line.substring(5, 9);
 	            String row = line.substring(20, 25);
@@ -79,7 +80,7 @@ public class Controller {
 	            }
 	            
 	            DefaultTableModel model = (DefaultTableModel)gui.table.getModel();
-	            model.addRow(new Object [] {pCounter, pCode, row, label, comand, coment});
+	            model.addRow(new Object [] {BP, pCounter, pCode, row, label, comand, coment});
 	            }
             bufferedReader.close();
             
@@ -121,6 +122,7 @@ public class Controller {
 	    
 	    this.updateSFRStatus();
 	    this.updateSFROption();
+	    this.updateSFRIntcon();
 	}
 	
 	public void updateSFRStatus() {
@@ -212,6 +214,52 @@ public class Controller {
 			gui.updateOptionPs0("1");
 		} else {
 			gui.updateOptionPs0("0");
+		}
+	}
+	
+	public void updateSFRIntcon() {
+		int[] RAM = getMem().getRam();
+		int Intcon = RAM[0xB];
+		gui.updateIntcon(Integer.toHexString(Intcon));
+		if ((Intcon & 0x80) == 0x80) {
+			gui.updateIntconGIE("1");
+		} else {
+			gui.updateIntconGIE("0");
+		}
+		if ((Intcon & 0x40) == 0x40) {
+			gui.updateIntconEIE("1");
+		} else {
+			gui.updateIntconEIE("0");
+		}
+		if ((Intcon & 0x20) == 0x20) {
+			gui.updateIntconTIE("1");
+		} else {
+			gui.updateIntconTIE("0");
+		}
+		if ((Intcon & 0x10) == 0x10) {
+			gui.updateIntconIE("1");
+		} else {
+			gui.updateIntconIE("0");
+		}
+		if ((Intcon & 0x8) == 0x8) {
+			gui.updateIntconRIE("1");
+		} else {
+			gui.updateIntconRIE("0");
+		}
+		if ((Intcon & 0x4) == 0x4) {
+			gui.updateIntconTIF("1");
+		} else {
+			gui.updateIntconTIF("0");
+		}
+		if ((Intcon & 0x2) == 0x2) {
+			gui.updateIntconIF("1");
+		} else {
+			gui.updateIntconIF("0");
+		}
+		if ((Intcon & 0x1) == 0x1) {
+			gui.updateIntconRIF("1");
+		} else {
+			gui.updateIntconRIF("0");
 		}
 	}
 	

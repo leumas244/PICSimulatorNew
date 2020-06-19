@@ -35,11 +35,13 @@ public class GUI {
 	private JLabel lblUsedFileValue;
 	
 	private DefaultTableModel ramtbl;
+	
 	private JLabel lblWRegValue;
 	private JLabel lblFSRValue;
 	private JLabel lblPCValue;
 	private JLabel lblPCLValue;
 	private JLabel lblPCLATHValue;
+	
 	private JLabel lblStatusValue;
 	private JLabel lblIRPValue;
 	private JLabel lblRP1Value;
@@ -49,6 +51,7 @@ public class GUI {
 	private JLabel lblZValue;
 	private JLabel lblDcValue;
 	private JLabel lblCValue;
+	
 	private JLabel lblOptionValue;
 	private JLabel lblRBPValue;
 	private JLabel lblIntEdgValue;
@@ -58,6 +61,16 @@ public class GUI {
 	private JLabel lblPs2Value;
 	private JLabel lblPs1Value;
 	private JLabel lblPs0Value;
+	
+	private JLabel lblIntconValue;
+	private JLabel lblGIEValue;
+	private JLabel lblEIEValue;
+	private JLabel lblTIEValue;
+	private JLabel lblIEValue;
+	private JLabel lblRIEValue;
+	private JLabel lblTIFValue;
+	private JLabel lblIFValue;
+	private JLabel lblRIFValue;
 
 
 	/**
@@ -103,13 +116,13 @@ public class GUI {
 		
 		JPanel Steuerung = new JPanel();
 		Steuerung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		Steuerung.setBounds(1082, 401, 113, 249);
+		Steuerung.setBounds(1080, 504, 113, 146);
 		frame.getContentPane().add(Steuerung);
 		Steuerung.setLayout(null);
 		
 		JButton btnStart = new JButton("Start");
 		btnStart.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnStart.setBounds(10, 215, 89, 23);
+		btnStart.setBounds(10, 113, 89, 23);
 		Steuerung.add(btnStart);
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -118,8 +131,16 @@ public class GUI {
 		});
 		
 		JButton btnStop = new JButton("Stop");
-		btnStop.setBounds(10, 181, 89, 23);
+		btnStop.setBounds(10, 11, 89, 23);
 		Steuerung.add(btnStop);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(10, 79, 89, 23);
+		Steuerung.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(10, 45, 89, 23);
+		Steuerung.add(btnNewButton_1);
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Ctr.stopProcessor();
@@ -128,207 +149,298 @@ public class GUI {
 		
 		JPanel sfr = new JPanel();
 		sfr.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		sfr.setBounds(301, 24, 393, 252);
+		sfr.setBounds(301, 24, 375, 259);
 		frame.getContentPane().add(sfr);
 		sfr.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_1.setBounds(0, 0, 112, 178);
-		sfr.add(panel_1);
+		JPanel panelWRegSFR = new JPanel();
+		panelWRegSFR.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panelWRegSFR.setBounds(10, 75, 104, 117);
+		sfr.add(panelWRegSFR);
+		panelWRegSFR.setLayout(null);
 		
 		JLabel lblWReg = new JLabel("W-Register");
-		panel_1.add(lblWReg);
+		lblWReg.setBounds(8, 7, 54, 14);
+		panelWRegSFR.add(lblWReg);
 		
 		JLabel lblFSR = new JLabel("FSR");
-		panel_1.add(lblFSR);
+		lblFSR.setBounds(8, 26, 19, 14);
+		panelWRegSFR.add(lblFSR);
 		
 		JLabel lblPC = new JLabel("PC");
-		panel_1.add(lblPC);
+		lblPC.setBounds(8, 45, 19, 14);
+		panelWRegSFR.add(lblPC);
 		
 		JLabel lblPCL = new JLabel("PCL");
-		panel_1.add(lblPCL);
+		lblPCL.setBounds(8, 66, 18, 14);
+		panelWRegSFR.add(lblPCL);
 		
 		JLabel lblPCLath = new JLabel("PCLATH");
-		panel_1.add(lblPCLath);
+		lblPCLath.setBounds(8, 86, 38, 14);
+		panelWRegSFR.add(lblPCLath);
 		
 		lblWRegValue = new JLabel("00");
-		panel_1.add(lblWRegValue);
+		lblWRegValue.setBounds(72, 7, 12, 14);
+		panelWRegSFR.add(lblWRegValue);
 		
 		lblFSRValue = new JLabel("00");
-		panel_1.add(lblFSRValue);
-		
-		lblPCValue = new JLabel("00");
-		panel_1.add(lblPCValue);
+		lblFSRValue.setBounds(72, 26, 12, 14);
+		panelWRegSFR.add(lblFSRValue);
 		
 		lblPCLValue = new JLabel("00");
-		panel_1.add(lblPCLValue);
+		lblPCLValue.setBounds(72, 66, 12, 14);
+		panelWRegSFR.add(lblPCLValue);
+		
+		lblPCValue = new JLabel("00");
+		lblPCValue.setBounds(72, 45, 12, 14);
+		panelWRegSFR.add(lblPCValue);
 		
 		lblPCLATHValue = new JLabel("00");
-		panel_1.add(lblPCLATHValue);
+		lblPCLATHValue.setBounds(72, 86, 12, 14);
+		panelWRegSFR.add(lblPCLATHValue);
 		
 		JPanel panel = new JPanel();
+		panel.setBounds(81, 51, 1, 1);
 		panel.setLayout(null);
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_1.add(panel);
+		panelWRegSFR.add(panel);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setLayout(null);
-		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_2.setBounds(110, 0, 246, 93);
-		sfr.add(panel_2);
+		JPanel panelStatus = new JPanel();
+		panelStatus.setLayout(null);
+		panelStatus.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panelStatus.setBounds(124, 4, 241, 79);
+		sfr.add(panelStatus);
 		
 		JLabel lblStatus = new JLabel("Status");
 		lblStatus.setBounds(10, 11, 46, 14);
-		panel_2.add(lblStatus);
+		panelStatus.add(lblStatus);
 		
 		lblStatusValue = new JLabel("00");
 		lblStatusValue.setBounds(66, 11, 20, 14);
-		panel_2.add(lblStatusValue);
+		panelStatus.add(lblStatusValue);
 		
 		JLabel lblIRP = new JLabel("IRP");
 		lblIRP.setBounds(10, 36, 26, 14);
-		panel_2.add(lblIRP);
+		panelStatus.add(lblIRP);
 		
 		JLabel lblRP1 = new JLabel("RP1");
 		lblRP1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		lblRP1.setBounds(40, 36, 26, 14);
-		panel_2.add(lblRP1);
+		panelStatus.add(lblRP1);
 		
 		JLabel lblRP0 = new JLabel("RP0");
 		lblRP0.setBounds(76, 36, 26, 14);
-		panel_2.add(lblRP0);
+		panelStatus.add(lblRP0);
 		
 		JLabel lblTo = new JLabel("TO");
 		lblTo.setBounds(106, 36, 26, 14);
-		panel_2.add(lblTo);
+		panelStatus.add(lblTo);
 		
 		JLabel lblPd = new JLabel("PD");
 		lblPd.setBounds(135, 36, 26, 14);
-		panel_2.add(lblPd);
+		panelStatus.add(lblPd);
 		
 		JLabel lblZ = new JLabel("Z");
 		lblZ.setBounds(161, 36, 26, 14);
-		panel_2.add(lblZ);
+		panelStatus.add(lblZ);
 		
 		JLabel lblDc = new JLabel("DC");
 		lblDc.setBounds(187, 36, 26, 14);
-		panel_2.add(lblDc);
+		panelStatus.add(lblDc);
 		
 		JLabel lblC = new JLabel("C");
 		lblC.setBounds(213, 36, 26, 14);
-		panel_2.add(lblC);
+		panelStatus.add(lblC);
 		
 		lblIRPValue = new JLabel("0");
 		lblIRPValue.setBounds(10, 61, 26, 14);
-		panel_2.add(lblIRPValue);
+		panelStatus.add(lblIRPValue);
 		
 		lblRP1Value = new JLabel("0");
 		lblRP1Value.setBounds(40, 61, 26, 14);
-		panel_2.add(lblRP1Value);
+		panelStatus.add(lblRP1Value);
 		
 		lblRP0Value = new JLabel("0");
 		lblRP0Value.setBounds(76, 61, 26, 14);
-		panel_2.add(lblRP0Value);
+		panelStatus.add(lblRP0Value);
 		
 		lblToValue = new JLabel("0");
 		lblToValue.setBounds(106, 61, 26, 14);
-		panel_2.add(lblToValue);
+		panelStatus.add(lblToValue);
 		
 		lblPdValue = new JLabel("0");
 		lblPdValue.setBounds(135, 61, 26, 14);
-		panel_2.add(lblPdValue);
+		panelStatus.add(lblPdValue);
 		
 		lblZValue = new JLabel("0");
 		lblZValue.setBounds(161, 61, 26, 14);
-		panel_2.add(lblZValue);
+		panelStatus.add(lblZValue);
 		
 		lblDcValue = new JLabel("0");
 		lblDcValue.setBounds(187, 61, 26, 14);
-		panel_2.add(lblDcValue);
+		panelStatus.add(lblDcValue);
 		
 		lblCValue = new JLabel("0");
 		lblCValue.setBounds(213, 61, 26, 14);
-		panel_2.add(lblCValue);
+		panelStatus.add(lblCValue);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_3.setBounds(110, 93, 246, 88);
-		sfr.add(panel_3);
+		JPanel panelOption = new JPanel();
+		panelOption.setLayout(null);
+		panelOption.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panelOption.setBounds(124, 90, 241, 79);
+		sfr.add(panelOption);
 		
 		JLabel lblOption = new JLabel("Option");
 		lblOption.setBounds(10, 11, 46, 14);
-		panel_3.add(lblOption);
+		panelOption.add(lblOption);
 		
 		lblOptionValue = new JLabel("00");
 		lblOptionValue.setBounds(66, 11, 20, 14);
-		panel_3.add(lblOptionValue);
+		panelOption.add(lblOptionValue);
 		
 		JLabel lblRBP = new JLabel("RBP");
 		lblRBP.setBounds(10, 36, 26, 14);
-		panel_3.add(lblRBP);
+		panelOption.add(lblRBP);
 		
 		JLabel lblIntedg = new JLabel("IntEdg");
 		lblIntedg.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		lblIntedg.setBounds(40, 36, 37, 14);
-		panel_3.add(lblIntedg);
+		panelOption.add(lblIntedg);
 		
 		JLabel lblT0CS = new JLabel("T0CS");
 		lblT0CS.setBounds(76, 36, 26, 14);
-		panel_3.add(lblT0CS);
+		panelOption.add(lblT0CS);
 		
 		JLabel lblT0SE = new JLabel("T0SE");
 		lblT0SE.setBounds(106, 36, 26, 14);
-		panel_3.add(lblT0SE);
+		panelOption.add(lblT0SE);
 		
 		JLabel lblPsa = new JLabel("PSA");
 		lblPsa.setBounds(135, 36, 26, 14);
-		panel_3.add(lblPsa);
+		panelOption.add(lblPsa);
 		
 		JLabel lblPs2 = new JLabel("PS2");
 		lblPs2.setBounds(161, 36, 26, 14);
-		panel_3.add(lblPs2);
+		panelOption.add(lblPs2);
 		
 		JLabel lblPs1 = new JLabel("PS1");
 		lblPs1.setBounds(187, 36, 26, 14);
-		panel_3.add(lblPs1);
+		panelOption.add(lblPs1);
 		
 		JLabel lblPs0 = new JLabel("PS0");
 		lblPs0.setBounds(213, 36, 26, 14);
-		panel_3.add(lblPs0);
+		panelOption.add(lblPs0);
 		
 		lblRBPValue = new JLabel("0");
 		lblRBPValue.setBounds(10, 61, 26, 14);
-		panel_3.add(lblRBPValue);
+		panelOption.add(lblRBPValue);
 		
 		lblIntEdgValue = new JLabel("0");
 		lblIntEdgValue.setBounds(40, 61, 26, 14);
-		panel_3.add(lblIntEdgValue);
+		panelOption.add(lblIntEdgValue);
 		
 		lblT0CSValue = new JLabel("0");
 		lblT0CSValue.setBounds(76, 61, 26, 14);
-		panel_3.add(lblT0CSValue);
+		panelOption.add(lblT0CSValue);
 		
 		lblT0SEValue = new JLabel("0");
 		lblT0SEValue.setBounds(106, 61, 26, 14);
-		panel_3.add(lblT0SEValue);
+		panelOption.add(lblT0SEValue);
 		
 		lblPsaValue = new JLabel("0");
 		lblPsaValue.setBounds(135, 61, 26, 14);
-		panel_3.add(lblPsaValue);
+		panelOption.add(lblPsaValue);
 		
 		lblPs2Value = new JLabel("0");
 		lblPs2Value.setBounds(161, 61, 26, 14);
-		panel_3.add(lblPs2Value);
+		panelOption.add(lblPs2Value);
 		
 		lblPs1Value = new JLabel("0");
 		lblPs1Value.setBounds(187, 61, 26, 14);
-		panel_3.add(lblPs1Value);
+		panelOption.add(lblPs1Value);
 		
 		lblPs0Value = new JLabel("0");
 		lblPs0Value.setBounds(213, 61, 26, 14);
-		panel_3.add(lblPs0Value);
+		panelOption.add(lblPs0Value);
+		
+		JPanel panelIntCon = new JPanel();
+		panelIntCon.setLayout(null);
+		panelIntCon.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panelIntCon.setBounds(124, 173, 241, 79);
+		sfr.add(panelIntCon);
+		
+		JLabel lblIntcon = new JLabel("Intcon");
+		lblIntcon.setBounds(10, 11, 46, 14);
+		panelIntCon.add(lblIntcon);
+		
+		lblIntconValue = new JLabel("00");
+		lblIntconValue.setBounds(66, 11, 20, 14);
+		panelIntCon.add(lblIntconValue);
+		
+		JLabel lblGIE = new JLabel("GIE");
+		lblGIE.setBounds(10, 36, 26, 14);
+		panelIntCon.add(lblGIE);
+		
+		JLabel lblEIE = new JLabel("EIE");
+		lblEIE.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		lblEIE.setBounds(40, 36, 37, 14);
+		panelIntCon.add(lblEIE);
+		
+		JLabel lblTIE = new JLabel("TIE");
+		lblTIE.setBounds(76, 36, 26, 14);
+		panelIntCon.add(lblTIE);
+		
+		JLabel lblIE = new JLabel("IE");
+		lblIE.setBounds(106, 36, 26, 14);
+		panelIntCon.add(lblIE);
+		
+		JLabel lblRIE = new JLabel("RIE");
+		lblRIE.setBounds(135, 36, 26, 14);
+		panelIntCon.add(lblRIE);
+		
+		JLabel lblTIF = new JLabel("TIF");
+		lblTIF.setBounds(161, 36, 26, 14);
+		panelIntCon.add(lblTIF);
+		
+		JLabel lblIF = new JLabel("IF");
+		lblIF.setBounds(187, 36, 26, 14);
+		panelIntCon.add(lblIF);
+		
+		JLabel lblRIF = new JLabel("RIF");
+		lblRIF.setBounds(213, 36, 26, 14);
+		panelIntCon.add(lblRIF);
+		
+		lblGIEValue = new JLabel("0");
+		lblGIEValue.setBounds(10, 61, 26, 14);
+		panelIntCon.add(lblGIEValue);
+		
+		lblEIEValue = new JLabel("0");
+		lblEIEValue.setBounds(40, 61, 26, 14);
+		panelIntCon.add(lblEIEValue);
+		
+		lblTIEValue = new JLabel("0");
+		lblTIEValue.setBounds(76, 61, 26, 14);
+		panelIntCon.add(lblTIEValue);
+		
+		lblIEValue = new JLabel("0");
+		lblIEValue.setBounds(106, 61, 26, 14);
+		panelIntCon.add(lblIEValue);
+		
+		lblRIEValue = new JLabel("0");
+		lblRIEValue.setBounds(135, 61, 26, 14);
+		panelIntCon.add(lblRIEValue);
+		
+		lblTIFValue = new JLabel("0");
+		lblTIFValue.setBounds(161, 61, 26, 14);
+		panelIntCon.add(lblTIFValue);
+		
+		lblIFValue = new JLabel("0");
+		lblIFValue.setBounds(187, 61, 26, 14);
+		panelIntCon.add(lblIFValue);
+		
+		lblRIFValue = new JLabel("0");
+		lblRIFValue.setBounds(213, 61, 26, 14);
+		panelIntCon.add(lblRIFValue);
 		
 		JPanel laufzeit = new JPanel();
 		laufzeit.setToolTipText("Laufzeit");
@@ -370,19 +482,21 @@ public class GUI {
 			new Object[][] {
 			},
 			new String[] {
-				"ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"
+				"BP", "ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"
 			}
 		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(35);
-		table.getColumnModel().getColumn(0).setMaxWidth(35);
+		table.getColumnModel().getColumn(0).setPreferredWidth(70);
+		table.getColumnModel().getColumn(0).setMaxWidth(30);
 		table.getColumnModel().getColumn(1).setPreferredWidth(35);
 		table.getColumnModel().getColumn(1).setMaxWidth(35);
-		table.getColumnModel().getColumn(2).setPreferredWidth(45);
-		table.getColumnModel().getColumn(2).setMaxWidth(45);
-		table.getColumnModel().getColumn(3).setPreferredWidth(60);
-		table.getColumnModel().getColumn(3).setMaxWidth(60);
-		table.getColumnModel().getColumn(4).setPreferredWidth(130);
-		table.getColumnModel().getColumn(4).setMaxWidth(200);
+		table.getColumnModel().getColumn(2).setPreferredWidth(35);
+		table.getColumnModel().getColumn(2).setMaxWidth(35);
+		table.getColumnModel().getColumn(3).setPreferredWidth(45);
+		table.getColumnModel().getColumn(3).setMaxWidth(45);
+		table.getColumnModel().getColumn(4).setPreferredWidth(60);
+		table.getColumnModel().getColumn(4).setMaxWidth(60);
+		table.getColumnModel().getColumn(5).setPreferredWidth(130);
+		table.getColumnModel().getColumn(5).setMaxWidth(200);
 		FileViewer.setViewportView(table);
 		
 		JLabel lblUsedFile = new JLabel("Used File:");
@@ -400,12 +514,6 @@ public class GUI {
 		JLabel lblRAM = new JLabel("RAM");
 		lblRAM.setBounds(41, 0, 37, 25);
 		frame.getContentPane().add(lblRAM);
-		
-		JPanel led = new JPanel();
-		led.setLayout(null);
-		led.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		led.setBounds(937, 160, 135, 116);
-		frame.getContentPane().add(led);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -514,6 +622,42 @@ public class GUI {
 	
 	public void updateOptionPs0(String text) {
 		this.lblPs0Value.setText(text);
+	}
+	
+	public void updateIntcon(String text) {
+		this.lblIntconValue.setText(text);
+	}
+	
+	public void updateIntconGIE(String text) {
+		this.lblGIEValue.setText(text);
+	}
+	
+	public void updateIntconEIE(String text) {
+		this.lblEIEValue.setText(text);
+	}
+	
+	public void updateIntconTIE(String text) {
+		this.lblTIEValue.setText(text);
+	}
+	
+	public void updateIntconIE(String text) {
+		this.lblIEValue.setText(text);
+	}
+	
+	public void updateIntconRIE(String text) {
+		this.lblRIEValue.setText(text);
+	}
+	
+	public void updateIntconTIF(String text) {
+		this.lblTIFValue.setText(text);
+	}
+	
+	public void updateIntconIF(String text) {
+		this.lblIFValue.setText(text);
+	}
+	
+	public void updateIntconRIF(String text) {
+		this.lblRIFValue.setText(text);
 	}
 	
 	public void updateFSR(String text) {
