@@ -35,6 +35,29 @@ public class GUI {
 	private JLabel lblUsedFileValue;
 	
 	private DefaultTableModel ramtbl;
+	private JLabel lblWRegValue;
+	private JLabel lblFSRValue;
+	private JLabel lblPCValue;
+	private JLabel lblPCLValue;
+	private JLabel lblPCLATHValue;
+	private JLabel lblStatusValue;
+	private JLabel lblIRPValue;
+	private JLabel lblRP1Value;
+	private JLabel lblRP0Value;
+	private JLabel lblToValue;
+	private JLabel lblPdValue;
+	private JLabel lblZValue;
+	private JLabel lblDcValue;
+	private JLabel lblCValue;
+	private JLabel lblOptionValue;
+	private JLabel lblRBPValue;
+	private JLabel lblIntEdgValue;
+	private JLabel lblT0CSValue;
+	private JLabel lblT0SEValue;
+	private JLabel lblPsaValue;
+	private JLabel lblPs2Value;
+	private JLabel lblPs1Value;
+	private JLabel lblPs0Value;
 
 
 	/**
@@ -129,19 +152,19 @@ public class GUI {
 		JLabel lblPCLath = new JLabel("PCLATH");
 		panel_1.add(lblPCLath);
 		
-		JLabel lblWRegValue = new JLabel("00");
+		lblWRegValue = new JLabel("00");
 		panel_1.add(lblWRegValue);
 		
-		JLabel lblFSRValue = new JLabel("00");
+		lblFSRValue = new JLabel("00");
 		panel_1.add(lblFSRValue);
 		
-		JLabel lblPCValue = new JLabel("00");
+		lblPCValue = new JLabel("00");
 		panel_1.add(lblPCValue);
 		
-		JLabel lblPCLValue = new JLabel("00");
+		lblPCLValue = new JLabel("00");
 		panel_1.add(lblPCLValue);
 		
-		JLabel lblPCLATHValue = new JLabel("00");
+		lblPCLATHValue = new JLabel("00");
 		panel_1.add(lblPCLATHValue);
 		
 		JPanel panel = new JPanel();
@@ -159,7 +182,7 @@ public class GUI {
 		lblStatus.setBounds(10, 11, 46, 14);
 		panel_2.add(lblStatus);
 		
-		JLabel lblStatusValue = new JLabel("00");
+		lblStatusValue = new JLabel("00");
 		lblStatusValue.setBounds(66, 11, 20, 14);
 		panel_2.add(lblStatusValue);
 		
@@ -196,35 +219,35 @@ public class GUI {
 		lblC.setBounds(213, 36, 26, 14);
 		panel_2.add(lblC);
 		
-		JLabel lblIRPValue = new JLabel("0");
+		lblIRPValue = new JLabel("0");
 		lblIRPValue.setBounds(10, 61, 26, 14);
 		panel_2.add(lblIRPValue);
 		
-		JLabel lblRP1Value = new JLabel("0");
+		lblRP1Value = new JLabel("0");
 		lblRP1Value.setBounds(40, 61, 26, 14);
 		panel_2.add(lblRP1Value);
 		
-		JLabel lblRP0Value = new JLabel("0");
+		lblRP0Value = new JLabel("0");
 		lblRP0Value.setBounds(76, 61, 26, 14);
 		panel_2.add(lblRP0Value);
 		
-		JLabel lblToValue = new JLabel("0");
+		lblToValue = new JLabel("0");
 		lblToValue.setBounds(106, 61, 26, 14);
 		panel_2.add(lblToValue);
 		
-		JLabel lblPdValue = new JLabel("0");
+		lblPdValue = new JLabel("0");
 		lblPdValue.setBounds(135, 61, 26, 14);
 		panel_2.add(lblPdValue);
 		
-		JLabel lblZValue = new JLabel("0");
+		lblZValue = new JLabel("0");
 		lblZValue.setBounds(161, 61, 26, 14);
 		panel_2.add(lblZValue);
 		
-		JLabel lblDcValue = new JLabel("0");
+		lblDcValue = new JLabel("0");
 		lblDcValue.setBounds(187, 61, 26, 14);
 		panel_2.add(lblDcValue);
 		
-		JLabel lblCValue = new JLabel("0");
+		lblCValue = new JLabel("0");
 		lblCValue.setBounds(213, 61, 26, 14);
 		panel_2.add(lblCValue);
 		
@@ -238,7 +261,7 @@ public class GUI {
 		lblOption.setBounds(10, 11, 46, 14);
 		panel_3.add(lblOption);
 		
-		JLabel lblOptionValue = new JLabel("00");
+		lblOptionValue = new JLabel("00");
 		lblOptionValue.setBounds(66, 11, 20, 14);
 		panel_3.add(lblOptionValue);
 		
@@ -275,35 +298,35 @@ public class GUI {
 		lblPs0.setBounds(213, 36, 26, 14);
 		panel_3.add(lblPs0);
 		
-		JLabel lblRBPValue = new JLabel("0");
+		lblRBPValue = new JLabel("0");
 		lblRBPValue.setBounds(10, 61, 26, 14);
 		panel_3.add(lblRBPValue);
 		
-		JLabel lblIntEdgValue = new JLabel("0");
+		lblIntEdgValue = new JLabel("0");
 		lblIntEdgValue.setBounds(40, 61, 26, 14);
 		panel_3.add(lblIntEdgValue);
 		
-		JLabel lblT0CSValue = new JLabel("0");
+		lblT0CSValue = new JLabel("0");
 		lblT0CSValue.setBounds(76, 61, 26, 14);
 		panel_3.add(lblT0CSValue);
 		
-		JLabel lblT0SEValue = new JLabel("0");
+		lblT0SEValue = new JLabel("0");
 		lblT0SEValue.setBounds(106, 61, 26, 14);
 		panel_3.add(lblT0SEValue);
 		
-		JLabel lblPsaValue = new JLabel("0");
+		lblPsaValue = new JLabel("0");
 		lblPsaValue.setBounds(135, 61, 26, 14);
 		panel_3.add(lblPsaValue);
 		
-		JLabel lblPs2Value = new JLabel("0");
+		lblPs2Value = new JLabel("0");
 		lblPs2Value.setBounds(161, 61, 26, 14);
 		panel_3.add(lblPs2Value);
 		
-		JLabel lblPs1Value = new JLabel("0");
+		lblPs1Value = new JLabel("0");
 		lblPs1Value.setBounds(187, 61, 26, 14);
 		panel_3.add(lblPs1Value);
 		
-		JLabel lblPs0Value = new JLabel("0");
+		lblPs0Value = new JLabel("0");
 		lblPs0Value.setBounds(213, 61, 26, 14);
 		panel_3.add(lblPs0Value);
 		
@@ -381,7 +404,7 @@ public class GUI {
 		JPanel led = new JPanel();
 		led.setLayout(null);
 		led.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		led.setBounds(1060, 24, 135, 116);
+		led.setBounds(937, 160, 135, 116);
 		frame.getContentPane().add(led);
 		
 		JMenuBar menuBar = new JMenuBar();
