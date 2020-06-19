@@ -120,13 +120,13 @@ public class GUI {
 		
 		JPanel Steuerung = new JPanel();
 		Steuerung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		Steuerung.setBounds(1080, 504, 113, 146);
+		Steuerung.setBounds(1080, 466, 113, 184);
 		frame.getContentPane().add(Steuerung);
 		Steuerung.setLayout(null);
 		
 		JButton btnStart = new JButton("Start");
 		btnStart.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnStart.setBounds(10, 113, 89, 23);
+		btnStart.setBounds(11, 147, 89, 23);
 		Steuerung.add(btnStart);
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -135,16 +135,26 @@ public class GUI {
 		});
 		
 		JButton btnStop = new JButton("Stop");
-		btnStop.setBounds(10, 11, 89, 23);
+		btnStop.setBounds(11, 45, 89, 23);
 		Steuerung.add(btnStop);
 		
 		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(10, 79, 89, 23);
+		btnNewButton.setBounds(11, 113, 89, 23);
 		Steuerung.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(10, 45, 89, 23);
+		btnNewButton_1.setBounds(11, 79, 89, 23);
 		Steuerung.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("reset");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ctr.stopProcessor();
+				Ctr.resetMem();
+			}
+		});
+		btnNewButton_2.setBounds(11, 9, 89, 23);
+		Steuerung.add(btnNewButton_2);
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Ctr.stopProcessor();
@@ -622,6 +632,7 @@ public class GUI {
 		mnFile.add(btnLoadFile);
 		btnLoadFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Ctr.resetMem();
 				Ctr.loadFile();
 
 			}
@@ -802,5 +813,4 @@ public class GUI {
 	public void updateStack_0(String text) {
 		this.lblStack_0Value.setText(text);
 	}
-	
 }
