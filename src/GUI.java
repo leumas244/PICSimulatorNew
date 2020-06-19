@@ -15,17 +15,11 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
-import java.awt.BorderLayout;
 import javax.swing.border.EtchedBorder;
-import java.awt.Canvas;
 import java.awt.ComponentOrientation;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JInternalFrame;
-import javax.swing.border.LineBorder;
 
 public class GUI {
 
