@@ -190,23 +190,23 @@ public class GUI {
 		panelWRegSFR.add(lblPCLath);
 		
 		lblWRegValue = new JLabel("00");
-		lblWRegValue.setBounds(72, 7, 12, 14);
+		lblWRegValue.setBounds(72, 7, 22, 14);
 		panelWRegSFR.add(lblWRegValue);
 		
 		lblFSRValue = new JLabel("00");
-		lblFSRValue.setBounds(72, 26, 12, 14);
+		lblFSRValue.setBounds(72, 26, 22, 14);
 		panelWRegSFR.add(lblFSRValue);
 		
 		lblPCLValue = new JLabel("00");
-		lblPCLValue.setBounds(72, 66, 12, 14);
+		lblPCLValue.setBounds(72, 66, 22, 14);
 		panelWRegSFR.add(lblPCLValue);
 		
 		lblPCValue = new JLabel("00");
-		lblPCValue.setBounds(72, 45, 12, 14);
+		lblPCValue.setBounds(72, 45, 22, 14);
 		panelWRegSFR.add(lblPCValue);
 		
 		lblPCLATHValue = new JLabel("00");
-		lblPCLATHValue.setBounds(72, 86, 12, 14);
+		lblPCLATHValue.setBounds(72, 86, 22, 14);
 		panelWRegSFR.add(lblPCLATHValue);
 		
 		JPanel panel = new JPanel();

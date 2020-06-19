@@ -30,6 +30,7 @@ public class Controller {
 	
 	
 	public void loadFile() {
+		this.resetMem();
 		JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(gui.frame);
  
@@ -315,5 +316,9 @@ public class Controller {
 
 	public Masks getMk() {
 		return Mk;
+	}
+	
+	public void resetMem() {
+		this.getMem().reset();
 	}
 }

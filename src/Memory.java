@@ -6,30 +6,14 @@ public class Memory extends Thread {
 	private int[] stack = new int[8];
 	private int stackpointer = 0;
 	private int[] progmem = new int[1024];
-	private String filename = "";
+	private String filename = " ";
 	private int aktuellerPC;
 
 	private Controller Ctr;
 
     public Memory(Controller ctr) {
     	this.Ctr = ctr;
-        wRegister = 0;
-        for (int i = 0; i < RAMLENGTH; i++) {
-            if (i == 0x3) {
-                ram[i] = 0x18;
-            } else if (i == 0x81) {
-                ram[i] = 0xFF;
-            } else if (i == 0x83) {
-                ram[i] = 0x18;
-            } else if (i == 0x85) {
-                ram[i] = 0x1F;
-            } else if (i == 0x86) {
-                ram[i] = 0xFF;
-            }
-            else {
-                ram[i] = 0;
-            }
-        }
+        this.reset();
     }
     
     public void run() {
@@ -116,11 +100,37 @@ public class Memory extends Thread {
 		this.aktuellerPC = PC;
 		this.ram[0x2] = aktuellerPC & 0xFF;
 	}
+	
 	public int getCurrentCommand(int pc) {
 		return this.progmem[pc];
 	}
 	public void incPc() {
 		this.aktuellerPC++;
 		this.ram[0x2] = aktuellerPC & 0xFF;
+	}
+	
+	public void reset() {
+		this.wRegister = 0;
+		this.aktuellerPC = 0;
+		this.stackpointer = 0;
+		for (int i = 0; i < 8; i++) {
+			stack[i] = 0;
+		}
+		for (int i = 0; i < RAMLENGTH; i++) {
+            if (i == 0x3) {
+                ram[i] = 0x18;
+            } else if (i == 0x81) {
+                ram[i] = 0xFF;
+            } else if (i == 0x83) {
+                ram[i] = 0x18;
+            } else if (i == 0x85) {
+                ram[i] = 0x1F;
+            } else if (i == 0x86) {
+                ram[i] = 0xFF;
+            }
+            else {
+                ram[i] = 0;
+            }
+		}
 	}
 }
