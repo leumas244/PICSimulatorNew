@@ -33,16 +33,20 @@ public class Memory extends Thread {
     }
     
     public void run() {
-    	for(int i = 0; i < RAMLENGTH; i++) {
-    		
-    		Ctr.updateRamGui(i%8, i/8, this.ram[i]);
+    	while(true) {
+			Ctr.updateSFR();
+			Ctr.updateStack();
+			for(int i = 0; i < RAMLENGTH; i++) {
+			
+				Ctr.updateRamGui(i%8, i/8, this.ram[i]);
+			}
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
-    	try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
 
     public int[] getRam() {
@@ -67,6 +71,10 @@ public class Memory extends Thread {
         int aktuellerStack = stack[stackpointer];
         this.stack[stackpointer] = 0x0;
         return aktuellerStack;
+    }
+    
+    public int[] getganzenStack() {
+    	return stack;
     }
 
     public void setStack(int aktuelleaddresse){
@@ -106,11 +114,13 @@ public class Memory extends Thread {
 
 	public void setPC(int PC) {
 		this.aktuellerPC = PC;
+		this.ram[0x2] = aktuellerPC & 0xFF;
 	}
 	public int getCurrentCommand(int pc) {
 		return this.progmem[pc];
 	}
 	public void incPc() {
 		this.aktuellerPC++;
+		this.ram[0x2] = aktuellerPC & 0xFF;
 	}
 }
