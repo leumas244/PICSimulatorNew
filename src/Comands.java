@@ -687,7 +687,7 @@ public class Comands {
 	        System.out.println("START - Bit Clear f");
 	        int lZehn = Ctr.getAc().bitOrientDefault(befehl);
 	        int b = Ctr.getAc().bitConv(lZehn);
-	        int fAddr = Ctr.getAc().getfAddress(lZehn);
+	        int fAddr = Ctr.getAc().getfAddressbit(lZehn);
 
 	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
@@ -746,7 +746,7 @@ public class Comands {
 	        System.out.println("START - Bit Set f");
 	        int lZehn = Ctr.getAc().bitOrientDefault(befehl);
 	        int b = Ctr.getAc().bitConv(lZehn);
-	        int fAddr = Ctr.getAc().getfAddress(lZehn);
+	        int fAddr = Ctr.getAc().getfAddressbit(lZehn);
 
 	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
@@ -805,7 +805,7 @@ public class Comands {
 	        System.out.println("START - Bit Test f, Skip if Clear");
 	        int lZehn = Ctr.getAc().bitOrientDefault(befehl);
 	        int b = Ctr.getAc().bitConv(lZehn);
-	        int fAddr = Ctr.getAc().getfAddress(lZehn);
+	        int fAddr = Ctr.getAc().getfAddressbit(lZehn);
 
 	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];
@@ -870,7 +870,7 @@ public class Comands {
 	        System.out.println("START - Bit Test f, Skip if Set");
 	        int lZehn = Ctr.getAc().bitOrientDefault(befehl);
 	        int b = Ctr.getAc().bitConv(lZehn);
-	        int fAddr = Ctr.getAc().getfAddress(lZehn);
+	        int fAddr = Ctr.getAc().getfAddressbit(lZehn);
 
 	        int[] RAM = Ctr.getMem().getRam();
 	        int fRegister = RAM[fAddr];

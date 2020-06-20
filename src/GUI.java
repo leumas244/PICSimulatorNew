@@ -515,23 +515,47 @@ public class GUI {
 		frame.getContentPane().add(FileViewer);
 		
 		table = new JTable();
-		programtbl = new DefaultTableModel(new Object[][] {}, new String[] {"BP", "ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"});
-		table.setModel(programtbl);
-		table.setColumnSelectionAllowed(false);
-	    table.setRowSelectionAllowed(true);
-	    table.setEnabled(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(70);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"BP", "ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Boolean.class, Object.class, Object.class, Object.class, Object.class, Object.class, Object.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				true, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(30);
 		table.getColumnModel().getColumn(0).setMaxWidth(30);
+		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(35);
 		table.getColumnModel().getColumn(1).setMaxWidth(35);
+		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(2).setPreferredWidth(35);
 		table.getColumnModel().getColumn(2).setMaxWidth(35);
+		table.getColumnModel().getColumn(3).setResizable(false);
 		table.getColumnModel().getColumn(3).setPreferredWidth(45);
 		table.getColumnModel().getColumn(3).setMaxWidth(45);
+		table.getColumnModel().getColumn(4).setResizable(false);
 		table.getColumnModel().getColumn(4).setPreferredWidth(60);
 		table.getColumnModel().getColumn(4).setMaxWidth(60);
+		table.getColumnModel().getColumn(5).setResizable(false);
 		table.getColumnModel().getColumn(5).setPreferredWidth(130);
 		table.getColumnModel().getColumn(5).setMaxWidth(200);
+		table.getColumnModel().getColumn(6).setResizable(false);
+		table.setColumnSelectionAllowed(false);
+	    table.setRowSelectionAllowed(true);
 		FileViewer.setViewportView(table);
 		
 		JLabel lblUsedFile = new JLabel("Used File:");

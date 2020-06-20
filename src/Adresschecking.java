@@ -68,4 +68,8 @@ public class Adresschecking {
     public int elvenbitconv(int befehl){
         return befehl & 0x07FF;
     }
+    
+    public int getfAddressbit(int lAcht) {
+		return lAcht & 0x7F;
+    }
 }

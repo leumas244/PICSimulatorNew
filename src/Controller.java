@@ -47,7 +47,7 @@ public class Controller {
 			bufferedReader = new BufferedReader(fileReader);
 			String line = null;
             while ((line = bufferedReader.readLine()) != null) {
-            	String BP = " ";
+            	Boolean BP = new Boolean(false);
 	            String pCounter = line.substring(0, 4);
 	            String pCode = line.substring(5, 9);
 	            String row = line.substring(20, 25);
