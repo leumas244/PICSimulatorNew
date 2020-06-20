@@ -1,5 +1,10 @@
 
 public class Adresschecking {
+	Controller Ctr;
+	
+	public Adresschecking(Controller ctr) {
+        this.Ctr = ctr;
+    }
 	
 	public int  byteDefault(int befehl) {
         return befehl & 0x00FF;
@@ -17,7 +22,11 @@ public class Adresschecking {
     }
 
     public int getfAddress(int lAcht) {
-        return lAcht & 0x7F;
+    	int Status = Ctr.getMem().getRam()[0x3];
+    	if ((Status & 0x20) == 0x20) {
+    		return (lAcht & 0x7F) + 0x80;
+    	}
+		return lAcht & 0x7F;
     }
 
     public int bitOrientDefault(int befehl) {

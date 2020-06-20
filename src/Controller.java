@@ -22,7 +22,7 @@ public class Controller {
 		this.initializeRamtable();
 		this.Mem.start();
 		this.Com = new Comands(this);
-		this.Ac = new Adresschecking();
+		this.Ac = new Adresschecking(this);
 		this.Mk = new Masks(this);
 		this.Rd = new Read(this);
 	}
@@ -100,22 +100,6 @@ public class Controller {
 		}
 	}
 	
-	public int getrow() {
-		int h = gui.table.getRowCount();
-		int testint = 1234;
-		int PC = Mem.getAktuellerPC();
-		for (int i=0; i<h; i++) {
-			String test = (String) gui.table.getValueAt(i,0);
-			if (!(test.equals("    "))) {
-				testint = Integer.parseInt(test);
-				if (PC == testint) {
-					return i;
-				}
-			}
-		}
-		return 0;
-		
-	}
 	public void updateRamGui(int x, int y, int value) {
 		gui.updateRamtable(x, y, Integer.toHexString(value));
 	}
@@ -339,5 +323,15 @@ public class Controller {
 	
 	public void resetMem() {
 		this.getMem().reset();
+	}
+	public boolean checkT0CS() {
+		int option = this.getMem().getRam()[0x81];
+		int tocs = option & 0x20;
+		if (tocs == 0x0) {
+			return true;
+					}
+		else {
+			return false;
+		}
 	}
 }
