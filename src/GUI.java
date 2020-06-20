@@ -15,7 +15,6 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.border.EtchedBorder;
 import java.awt.ComponentOrientation;
 import javax.swing.GroupLayout;
@@ -493,6 +492,8 @@ public class GUI {
 		table = new JTable();
 		programtbl = new DefaultTableModel(new Object[][] {}, new String[] {"BP", "ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"});
 		table.setModel(programtbl);
+		table.setColumnSelectionAllowed(false);
+	    table.setRowSelectionAllowed(true);
 		table.getColumnModel().getColumn(0).setPreferredWidth(70);
 		table.getColumnModel().getColumn(0).setMaxWidth(30);
 		table.getColumnModel().getColumn(1).setPreferredWidth(35);
@@ -810,10 +811,20 @@ public class GUI {
 	public void programtablelöschen() {
 		DefaultTableModel programtable = (DefaultTableModel) table.getModel();
 		int rowCount = programtable.getRowCount();
-		//Remove rows one by one from the end of the table
 		for (int i = rowCount - 1; i >= 0; i--) {
 			programtable.removeRow(i);
 		}
 		
+	}
+	
+	public void markarow(int x) {
+		table.setRowSelectionInterval(x-1, x-1);
+	}
+	
+	public void demarkallrows() {
+		int rowCount = table.getRowCount();
+		if (rowCount != 0) {
+			table.removeRowSelectionInterval(0, (rowCount-1));
+		}
 	}
 }
