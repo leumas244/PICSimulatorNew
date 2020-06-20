@@ -340,4 +340,14 @@ public class Controller {
 	public void resetMem() {
 		this.getMem().reset();
 	}
+	public boolean checkT0CS() {
+		int option = this.getMem().getRam()[0x81];
+		int tocs = option & 0x20;
+		if (tocs == 0x0) {
+			return true;
+					}
+		else {
+			return false;
+		}
+	}
 }

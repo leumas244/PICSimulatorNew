@@ -10,6 +10,7 @@ public class Memory extends Thread {
 	private int aktuellerPC;
 	private int[] PCtoRow = new int[1024];
 
+
 	private Controller Ctr;
 
     public Memory(Controller ctr) {
@@ -152,5 +153,16 @@ public class Memory extends Thread {
 		for (int i = 0; i < 1024; i++) {
 			PCtoRow[i] = 0;
 		}
+	}
+
+	public int getTmr0() {
+		return ram[0x1];
+	}
+
+	public void setTmr0(int tmr0) {
+		this.ram[0x1] = tmr0;
+	}
+	public void incTmr0() {
+		this.ram[0x1]++;
 	}
 }
