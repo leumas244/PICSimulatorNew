@@ -20,6 +20,7 @@ import java.awt.ComponentOrientation;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JCheckBox;
 
 public class GUI {
 
@@ -75,6 +76,8 @@ public class GUI {
 	private JLabel lblStack_2Value;
 	private JLabel lblStack_1Value;
 	private JLabel lblStack_0Value;
+	private JLabel lblLaufzeitValue;
+	private JLabel lblWatchdogValue;
 
 
 	/**
@@ -142,15 +145,15 @@ public class GUI {
 		btnStep.setBounds(11, 79, 89, 23);
 		Steuerung.add(btnStep);
 		
-		JButton btnNewButton_2 = new JButton("Reset");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ctr.stopProcessor();
 				Ctr.resetMem();
 			}
 		});
-		btnNewButton_2.setBounds(11, 9, 89, 23);
-		Steuerung.add(btnNewButton_2);
+		btnReset.setBounds(11, 9, 89, 23);
+		Steuerung.add(btnReset);
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Ctr.stopProcessor();
@@ -455,15 +458,37 @@ public class GUI {
 		JPanel laufzeit = new JPanel();
 		laufzeit.setToolTipText("Laufzeit");
 		laufzeit.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		laufzeit.setBounds(1082, 333, 111, 57);
+		laufzeit.setBounds(1080, 301, 113, 144);
 		frame.getContentPane().add(laufzeit);
 		
-		JButton reset_time = new JButton("resettime");
-		reset_time.addActionListener(new ActionListener() {
+		JButton btnreset_time = new JButton("resettime");
+		btnreset_time.setBounds(18, 7, 77, 23);
+		btnreset_time.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		laufzeit.add(reset_time);
+		laufzeit.setLayout(null);
+		laufzeit.add(btnreset_time);
+		
+		JLabel lblLaufzeit = new JLabel("Laufzeit:");
+		lblLaufzeit.setBounds(10, 38, 46, 14);
+		laufzeit.add(lblLaufzeit);
+		
+		JLabel lblWatchdog = new JLabel("Watchdog:");
+		lblWatchdog.setBounds(10, 101, 58, 14);
+		laufzeit.add(lblWatchdog);
+		
+		JCheckBox chckbxWatchdog = new JCheckBox("Watchdog");
+		chckbxWatchdog.setBounds(6, 71, 77, 23);
+		laufzeit.add(chckbxWatchdog);
+		
+		lblLaufzeitValue = new JLabel("0");
+		lblLaufzeitValue.setBounds(10, 50, 85, 14);
+		laufzeit.add(lblLaufzeitValue);
+		
+		lblWatchdogValue = new JLabel("0");
+		lblWatchdogValue.setBounds(10, 119, 85, 14);
+		laufzeit.add(lblWatchdogValue);
 		
 		JScrollPane ram = new JScrollPane();
 		ram.setViewportBorder(null);
@@ -617,6 +642,160 @@ public class GUI {
 		JLabel lblStack = new JLabel("Stack");
 		lblStack.setBounds(695, 5, 46, 14);
 		frame.getContentPane().add(lblStack);
+		
+		JPanel Ports = new JPanel();
+		Ports.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		Ports.setBounds(773, 24, 420, 259);
+		frame.getContentPane().add(Ports);
+		Ports.setLayout(null);
+		
+		JPanel portA = new JPanel();
+		portA.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		portA.setBounds(10, 11, 400, 114);
+		Ports.add(portA);
+		portA.setLayout(null);
+		
+		JLabel lblPortA = new JLabel("Port A");
+		lblPortA.setBounds(10, 11, 46, 14);
+		portA.add(lblPortA);
+		
+		JLabel lblTrisA = new JLabel("Tris");
+		lblTrisA.setBounds(10, 36, 46, 14);
+		portA.add(lblTrisA);
+		
+		JLabel lblPinA = new JLabel("Pin");
+		lblPinA.setBounds(10, 61, 46, 14);
+		portA.add(lblPinA);
+		
+		JCheckBox chckbxAT4 = new JCheckBox("4");
+		chckbxAT4.setBounds(162, 36, 31, 23);
+		portA.add(chckbxAT4);
+		
+		JCheckBox chckbxAT3 = new JCheckBox("3");
+		chckbxAT3.setBounds(195, 36, 31, 23);
+		portA.add(chckbxAT3);
+		
+		JCheckBox chckbxAT2 = new JCheckBox("2");
+		chckbxAT2.setBounds(228, 36, 31, 23);
+		portA.add(chckbxAT2);
+		
+		JCheckBox chckbxAT1 = new JCheckBox("1");
+		chckbxAT1.setBounds(261, 36, 31, 23);
+		portA.add(chckbxAT1);
+		
+		JCheckBox chckbxAT0 = new JCheckBox("0");
+		chckbxAT0.setBounds(294, 36, 31, 23);
+		portA.add(chckbxAT0);
+		
+		JCheckBox chckbxAP0 = new JCheckBox("0");
+		chckbxAP0.setBounds(294, 65, 31, 23);
+		portA.add(chckbxAP0);
+		
+		JCheckBox chckbxAP1 = new JCheckBox("1");
+		chckbxAP1.setBounds(261, 65, 31, 23);
+		portA.add(chckbxAP1);
+		
+		JCheckBox chckbxAP2 = new JCheckBox("2");
+		chckbxAP2.setBounds(228, 65, 31, 23);
+		portA.add(chckbxAP2);
+		
+		JCheckBox chckbxAP3 = new JCheckBox("3");
+		chckbxAP3.setBounds(195, 65, 31, 23);
+		portA.add(chckbxAP3);
+		
+		JCheckBox chckbxAP4 = new JCheckBox("4");
+		chckbxAP4.setBounds(162, 65, 31, 23);
+		portA.add(chckbxAP4);
+		
+		JPanel portB = new JPanel();
+		portB.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		portB.setBounds(10, 134, 400, 114);
+		Ports.add(portB);
+		portB.setLayout(null);
+		
+		JLabel lblPortB = new JLabel("Port B");
+		lblPortB.setBounds(10, 11, 46, 14);
+		portB.add(lblPortB);
+		
+		JLabel lblTrisB = new JLabel("Tris");
+		lblTrisB.setBounds(10, 36, 46, 14);
+		portB.add(lblTrisB);
+		
+		JLabel lblPinB = new JLabel("Pin");
+		lblPinB.setBounds(10, 61, 46, 14);
+		portB.add(lblPinB);
+		
+		JCheckBox chckbxBT5 = new JCheckBox("5");
+		chckbxBT5.setBounds(128, 36, 31, 23);
+		portB.add(chckbxBT5);
+		
+		JCheckBox chckbxBT4 = new JCheckBox("4");
+		chckbxBT4.setBounds(161, 36, 31, 23);
+		portB.add(chckbxBT4);
+		
+		JCheckBox chckbxBT3 = new JCheckBox("3");
+		chckbxBT3.setBounds(194, 36, 31, 23);
+		portB.add(chckbxBT3);
+		
+		JCheckBox chckbxBT6 = new JCheckBox("6");
+		chckbxBT6.setBounds(95, 36, 31, 23);
+		portB.add(chckbxBT6);
+		
+		JCheckBox chckbxBT7 = new JCheckBox("7");
+		chckbxBT7.setBounds(62, 36, 31, 23);
+		portB.add(chckbxBT7);
+		
+		JCheckBox chckbxBT0 = new JCheckBox("0");
+		chckbxBT0.setBounds(293, 36, 31, 23);
+		portB.add(chckbxBT0);
+		
+		JCheckBox chckbxBT1 = new JCheckBox("1");
+		chckbxBT1.setBounds(260, 36, 31, 23);
+		portB.add(chckbxBT1);
+		
+		JCheckBox chckbxBT2 = new JCheckBox("2");
+		chckbxBT2.setBounds(227, 36, 31, 23);
+		portB.add(chckbxBT2);
+		
+		JCheckBox chckbxBP0 = new JCheckBox("0");
+		chckbxBP0.setBounds(293, 61, 31, 23);
+		portB.add(chckbxBP0);
+		
+		JCheckBox chckbxBP1 = new JCheckBox("1");
+		chckbxBP1.setBounds(260, 61, 31, 23);
+		portB.add(chckbxBP1);
+		
+		JCheckBox chckbxBP2 = new JCheckBox("2");
+		chckbxBP2.setBounds(227, 61, 31, 23);
+		portB.add(chckbxBP2);
+		
+		JCheckBox chckbxBP3 = new JCheckBox("3");
+		chckbxBP3.setBounds(194, 61, 31, 23);
+		portB.add(chckbxBP3);
+		
+		JCheckBox chckbxBP4 = new JCheckBox("4");
+		chckbxBP4.setBounds(161, 61, 31, 23);
+		portB.add(chckbxBP4);
+		
+		JCheckBox chckbxBP5 = new JCheckBox("5");
+		chckbxBP5.setBounds(128, 61, 31, 23);
+		portB.add(chckbxBP5);
+		
+		JCheckBox chckbxBP6 = new JCheckBox("6");
+		chckbxBP6.setBounds(95, 61, 31, 23);
+		portB.add(chckbxBP6);
+		
+		JCheckBox chckbxBP7 = new JCheckBox("7");
+		chckbxBP7.setBounds(62, 61, 31, 23);
+		portB.add(chckbxBP7);
+		
+		JLabel lblPorts = new JLabel("Ports");
+		lblPorts.setBounds(773, 5, 46, 14);
+		frame.getContentPane().add(lblPorts);
+		
+		JLabel lblNewLabel = new JLabel("timing");
+		lblNewLabel.setBounds(1080, 287, 46, 14);
+		frame.getContentPane().add(lblNewLabel);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
