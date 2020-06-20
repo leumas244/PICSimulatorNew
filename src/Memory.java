@@ -166,7 +166,7 @@ public class Memory extends Thread {
 		int tmr = this.ram[0x1];
 		if (tmr == 255) {
 			this.ram[0x1] = 0;
-			this.ram[0xB] = 1;
+			this.ram[0xB] =+ 4;
 		}
 		else {
 		this.ram[0x1]++;
