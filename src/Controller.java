@@ -22,7 +22,7 @@ public class Controller {
 		this.initializeRamtable();
 		this.Mem.start();
 		this.Com = new Comands(this);
-		this.Ac = new Adresschecking();
+		this.Ac = new Adresschecking(this);
 		this.Mk = new Masks(this);
 		this.Rd = new Read(this);
 	}
