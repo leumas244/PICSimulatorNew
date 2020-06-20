@@ -8,6 +8,7 @@ public class Memory extends Thread {
 	private int[] progmem = new int[1024];
 	private String filename = " ";
 	private int aktuellerPC;
+	private int[] PCtoRow = new int[1024];
 
 	private Controller Ctr;
 
@@ -24,6 +25,10 @@ public class Memory extends Thread {
 			
 				Ctr.updateRamGui(i%8, i/8, this.ram[i]);
 			}
+			
+			
+			Ctr.markrow(aktuellerPC);
+			
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
@@ -109,12 +114,24 @@ public class Memory extends Thread {
 		this.ram[0x2] = aktuellerPC & 0xFF;
 	}
 	
+	public int[] getPCtoRow() {
+		return PCtoRow;
+	}
+
+	public void setPCtoRow(int[] pCtoRow) {
+		PCtoRow = pCtoRow;
+	}
+	
 	public void reset() {
+		Ctr.demarkrow();
 		this.wRegister = 0;
 		this.aktuellerPC = 0;
 		this.stackpointer = 0;
 		for (int i = 0; i < 8; i++) {
 			stack[i] = 0;
+		}
+		for (int i = 0; i < 1024; i++) {
+			PCtoRow[i] = 0;
 		}
 		for (int i = 0; i < RAMLENGTH; i++) {
             if (i == 0x3) {

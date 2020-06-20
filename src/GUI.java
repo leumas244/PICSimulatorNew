@@ -30,6 +30,7 @@ public class GUI {
 	private JLabel lblUsedFileValue;
 	
 	private DefaultTableModel ramtbl;
+	private DefaultTableModel programtbl;
 	
 	private JLabel lblWRegValue;
 	private JLabel lblFSRValue;
@@ -489,13 +490,10 @@ public class GUI {
 		frame.getContentPane().add(FileViewer);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"BP", "ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"
-			}
-		));
+		programtbl = new DefaultTableModel(new Object[][] {}, new String[] {"BP", "ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"});
+		table.setModel(programtbl);
+		table.setColumnSelectionAllowed(false);
+	    table.setRowSelectionAllowed(true);
 		table.getColumnModel().getColumn(0).setPreferredWidth(70);
 		table.getColumnModel().getColumn(0).setMaxWidth(30);
 		table.getColumnModel().getColumn(1).setPreferredWidth(35);
@@ -808,5 +806,25 @@ public class GUI {
 	
 	public void updateStack_0(String text) {
 		this.lblStack_0Value.setText(text);
+	}
+	
+	public void programtablelöschen() {
+		DefaultTableModel programtable = (DefaultTableModel) table.getModel();
+		int rowCount = programtable.getRowCount();
+		for (int i = rowCount - 1; i >= 0; i--) {
+			programtable.removeRow(i);
+		}
+		
+	}
+	
+	public void markarow(int x) {
+		table.setRowSelectionInterval(x-1, x-1);
+	}
+	
+	public void demarkallrows() {
+		int rowCount = table.getRowCount();
+		if (rowCount != 0) {
+			table.removeRowSelectionInterval(0, (rowCount-1));
+		}
 	}
 }

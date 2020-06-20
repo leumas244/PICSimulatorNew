@@ -29,6 +29,7 @@ public class Controller {
 	
 	
 	public void loadFile() {
+		gui.programtablelöschen();
 		JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(gui.frame);
  
@@ -80,6 +81,13 @@ public class Controller {
 	            
 	            DefaultTableModel model = (DefaultTableModel)gui.table.getModel();
 	            model.addRow(new Object [] {BP, pCounter, pCode, row, label, comand, coment});
+	            if (!(pCounter.equals("    "))) {
+	            	int PC = Integer.parseInt(pCounter);
+	            	int rownuber = Integer.parseInt(row);
+	            	int[] PCtoRow = this.getMem().getPCtoRow();
+	            	PCtoRow[PC] = rownuber;
+	            	this.getMem().setPCtoRow(PCtoRow);
+	            }
 	            }
             bufferedReader.close();
             
@@ -272,6 +280,18 @@ public class Controller {
 		gui.updateStack_5(Integer.toHexString(stack[5]));
 		gui.updateStack_6(Integer.toHexString(stack[6]));
 		gui.updateStack_7(Integer.toHexString(stack[7]));
+	}
+	
+	public void markrow(int x) {
+    	int[] PCtoRow = this.getMem().getPCtoRow();
+    	int row = PCtoRow[x];
+    	if (row != 0) {
+		gui.markarow(row);
+    	}
+	}
+	
+	public void demarkrow() {
+		gui.demarkallrows();
 	}
 	
 	private void initializeRamtable() {
