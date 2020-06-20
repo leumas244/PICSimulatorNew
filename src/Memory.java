@@ -147,4 +147,10 @@ public class Memory extends Thread {
             }
 		}
 	}
+	
+	public void resetPCtoRow() {
+		for (int i = 0; i < 1024; i++) {
+			PCtoRow[i] = 0;
+		}
+	}
 }

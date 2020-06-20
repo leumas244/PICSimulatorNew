@@ -30,6 +30,7 @@ public class Controller {
 	
 	public void loadFile() {
 		gui.programtablelöschen();
+		this.getMem().resetPCtoRow();
 		JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(gui.frame);
  

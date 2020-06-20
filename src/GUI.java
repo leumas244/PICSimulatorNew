@@ -519,6 +519,7 @@ public class GUI {
 		table.setModel(programtbl);
 		table.setColumnSelectionAllowed(false);
 	    table.setRowSelectionAllowed(true);
+	    table.setEnabled(false);
 		table.getColumnModel().getColumn(0).setPreferredWidth(70);
 		table.getColumnModel().getColumn(0).setMaxWidth(30);
 		table.getColumnModel().getColumn(1).setPreferredWidth(35);
