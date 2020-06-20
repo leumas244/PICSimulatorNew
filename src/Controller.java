@@ -29,6 +29,7 @@ public class Controller {
 	
 	
 	public void loadFile() {
+		gui.programtablelöschen();
 		JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(gui.frame);
  

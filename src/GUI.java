@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.border.EtchedBorder;
 import java.awt.ComponentOrientation;
 import javax.swing.GroupLayout;
@@ -30,6 +31,7 @@ public class GUI {
 	private JLabel lblUsedFileValue;
 	
 	private DefaultTableModel ramtbl;
+	private DefaultTableModel programtbl;
 	
 	private JLabel lblWRegValue;
 	private JLabel lblFSRValue;
@@ -489,13 +491,8 @@ public class GUI {
 		frame.getContentPane().add(FileViewer);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"BP", "ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"
-			}
-		));
+		programtbl = new DefaultTableModel(new Object[][] {}, new String[] {"BP", "ProgramCounter", "ProgramCode", "Row", "Labels", "Comand", "Coment"});
+		table.setModel(programtbl);
 		table.getColumnModel().getColumn(0).setPreferredWidth(70);
 		table.getColumnModel().getColumn(0).setMaxWidth(30);
 		table.getColumnModel().getColumn(1).setPreferredWidth(35);
@@ -808,5 +805,15 @@ public class GUI {
 	
 	public void updateStack_0(String text) {
 		this.lblStack_0Value.setText(text);
+	}
+	
+	public void programtablelöschen() {
+		DefaultTableModel programtable = (DefaultTableModel) table.getModel();
+		int rowCount = programtable.getRowCount();
+		//Remove rows one by one from the end of the table
+		for (int i = rowCount - 1; i >= 0; i--) {
+			programtable.removeRow(i);
+		}
+		
 	}
 }
