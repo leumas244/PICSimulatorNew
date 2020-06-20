@@ -100,22 +100,6 @@ public class Controller {
 		}
 	}
 	
-	public int getrow() {
-		int h = gui.table.getRowCount();
-		int testint = 1234;
-		int PC = Mem.getAktuellerPC();
-		for (int i=0; i<h; i++) {
-			String test = (String) gui.table.getValueAt(i,0);
-			if (!(test.equals("    "))) {
-				testint = Integer.parseInt(test);
-				if (PC == testint) {
-					return i;
-				}
-			}
-		}
-		return 0;
-		
-	}
 	public void updateRamGui(int x, int y, int value) {
 		gui.updateRamtable(x, y, Integer.toHexString(value));
 	}
