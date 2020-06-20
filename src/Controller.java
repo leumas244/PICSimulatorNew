@@ -82,7 +82,7 @@ public class Controller {
 	            DefaultTableModel model = (DefaultTableModel)gui.table.getModel();
 	            model.addRow(new Object [] {BP, pCounter, pCode, row, label, comand, coment});
 	            if (!(pCounter.equals("    "))) {
-	            	int PC = Integer.parseInt(pCounter);
+	            	int PC = Integer.parseInt(pCounter, 16);
 	            	int rownuber = Integer.parseInt(row);
 	            	int[] PCtoRow = this.getMem().getPCtoRow();
 	            	PCtoRow[PC] = rownuber;

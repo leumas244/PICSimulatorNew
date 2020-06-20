@@ -130,9 +130,6 @@ public class Memory extends Thread {
 		for (int i = 0; i < 8; i++) {
 			stack[i] = 0;
 		}
-		for (int i = 0; i < 1024; i++) {
-			PCtoRow[i] = 0;
-		}
 		for (int i = 0; i < RAMLENGTH; i++) {
             if (i == 0x3) {
                 ram[i] = 0x18;
