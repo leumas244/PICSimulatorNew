@@ -29,7 +29,6 @@ public class Controller {
 	
 	
 	public void loadFile() {
-		this.resetMem();
 		JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(gui.frame);
  

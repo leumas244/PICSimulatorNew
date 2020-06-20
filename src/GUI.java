@@ -120,13 +120,13 @@ public class GUI {
 		
 		JPanel Steuerung = new JPanel();
 		Steuerung.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		Steuerung.setBounds(1080, 466, 113, 184);
+		Steuerung.setBounds(1080, 506, 113, 144);
 		frame.getContentPane().add(Steuerung);
 		Steuerung.setLayout(null);
 		
 		JButton btnStart = new JButton("Start");
 		btnStart.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnStart.setBounds(11, 147, 89, 23);
+		btnStart.setBounds(11, 113, 89, 23);
 		Steuerung.add(btnStart);
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -138,15 +138,11 @@ public class GUI {
 		btnStop.setBounds(11, 45, 89, 23);
 		Steuerung.add(btnStop);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(11, 113, 89, 23);
-		Steuerung.add(btnNewButton);
+		JButton btnStep = new JButton("Step");
+		btnStep.setBounds(11, 79, 89, 23);
+		Steuerung.add(btnStep);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(11, 79, 89, 23);
-		Steuerung.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("reset");
+		JButton btnNewButton_2 = new JButton("Reset");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ctr.stopProcessor();
