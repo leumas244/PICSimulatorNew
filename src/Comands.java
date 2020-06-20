@@ -32,6 +32,7 @@ public class Comands {
 	        printCDCZ();
 	        System.out.println("FINISH - Return from Interrupt");
 	        Ctr.getMem().setPC(pc);
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void returnbef() {
@@ -41,6 +42,7 @@ public class Comands {
 	        printCDCZ();
 	        System.out.println("FINISH - Retrun from Subroutine");
 	        Ctr.getMem().setPC(pc);
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void sleep() {
@@ -950,6 +952,7 @@ public class Comands {
 	        printCDCZ();
 	        System.out.println("FINISH - Return with literal in W");
 	        Ctr.getMem().setPC(pc);
+	        Ctr.getMem().incPc();
 	    }
 
 	    public void addlw(int befehl) {
