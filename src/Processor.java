@@ -10,7 +10,7 @@ public class Processor extends Thread {
 	public void run() {
 		ctr.setRunning(true);
 		while (!exit) {
-			if(ctr.getMem().getBreakPoint()[ctr.getMem().getAktuellerPC()] == true) {
+			if(ctr.getMem().getBreakPoint()[ctr.getMem().getAktuellerPC() + 1] == true) {
 				ctr.setDebugMode(true);
 			}
 			

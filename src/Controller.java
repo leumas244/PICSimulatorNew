@@ -296,6 +296,8 @@ public class Controller {
 	}
 	public void stopProcessor() {
 		if(isRunning) {
+			setDebugMode(false);
+			nextStep();
 			prc.exit=true;
 		}
 	}
