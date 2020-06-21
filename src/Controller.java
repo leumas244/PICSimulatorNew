@@ -289,9 +289,8 @@ public class Controller {
 	}
 	public void startProcessor() {
 		if (isDebugMode) {
-			stopProcessor();
-			prc = new Processor(this);
-			prc.start();
+			nextStep();
+			setDebugMode(false);
 		} else if(isRunning==false) {
 			prc = new Processor(this);
 			prc.start();
