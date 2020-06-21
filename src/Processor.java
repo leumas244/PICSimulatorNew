@@ -10,6 +10,9 @@ public class Processor extends Thread {
 	public void run() {
 		ctr.setRunning(true);
 		while (!exit) {
+			if(ctr.getMem().getBreakPoint()[ctr.getMem().getAktuellerPC()] == true) {
+				ctr.setDebugMode(true);
+			}
 			
 			int code = ctr.getMem().getCurrentCommand(ctr.getMem().getAktuellerPC());
             ctr.getMk().vorsortieren(code);
@@ -17,13 +20,24 @@ public class Processor extends Thread {
             	ctr.getMem().incTmr0();
             }
 			
-            
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+            if (ctr.getisDebugMode()) {
+            	while(!ctr.getnextStep()) {
+            		try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+            	}
+            	ctr.setnextStep(false);
+            } else {
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
 		}
 		ctr.setRunning(false);
 	}

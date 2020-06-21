@@ -22,11 +22,18 @@ public class Adresschecking {
     }
 
     public int getfAddress(int lAcht) {
+    	int adresse = 0;
     	int Status = Ctr.getMem().getRam()[0x3];
     	if ((Status & 0x20) == 0x20) {
-    		return (lAcht & 0x7F) + 0x80;
+    		adresse = (lAcht & 0x7F) + 0x80;
+    	} else {
+    		adresse = lAcht & 0x7F;
     	}
-		return lAcht & 0x7F;
+    	if (adresse == 0x0) {
+    		return Ctr.getMem().getRam()[0x4];
+    	} else {
+    		return adresse;
+    	}
     }
 
     public int bitOrientDefault(int befehl) {
@@ -70,6 +77,11 @@ public class Adresschecking {
     }
     
     public int getfAddressbit(int lAcht) {
-		return lAcht & 0x7F;
+		int adresse = lAcht & 0x7F;
+		if (adresse == 0x0) {
+    		return Ctr.getMem().getRam()[0x4];
+    	} else {
+    		return adresse;
+    	}
     }
 }
