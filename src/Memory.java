@@ -9,6 +9,7 @@ public class Memory extends Thread {
 	private String filename = " ";
 	private int aktuellerPC;
 	private int[] PCtoRow = new int[1024];
+	private int prescalevar = 0;
 
 
 	private Controller Ctr;
@@ -163,6 +164,8 @@ public class Memory extends Thread {
 		this.ram[0x1] = tmr0;
 	}
 	public void incTmr0() {
+		
+		
 		int tmr = this.ram[0x1];
 		if (tmr == 255) {
 			this.ram[0x1] = 0;
@@ -173,4 +176,66 @@ public class Memory extends Thread {
 		this.ram[0x1]++;
 		}
 	}
+	public void prescaler() {
+		int option = this.ram[0x81];
+		int psa = option & 0x8;
+		int ps2 = option & 0x7;
+		
+		
+		switch (ps2) {
+		case 000:
+			if (prescalevar%2 ==0) {
+				this.incTmr0();
+				prescalevar = 0;				
+			}
+			break;
+		case 001:
+			if (prescalevar%4 ==0) {
+				this.incTmr0();
+				prescalevar = 0;				
+			}
+			break;
+		case 010:
+			if (prescalevar%8 ==0) {
+				this.incTmr0();
+				prescalevar = 0;				
+			}
+			break;
+		case 011:
+			if (prescalevar%16 ==0) {
+				this.incTmr0();
+				prescalevar = 0;				
+			}
+			break;
+		case 100:
+			if (prescalevar%32 ==0) {
+				this.incTmr0();
+				prescalevar = 0;				
+			}
+			break;
+		case 101:
+			if (prescalevar%64 ==0) {
+				this.incTmr0();
+				prescalevar = 0;				
+			}
+			break;
+		case 110:
+			if (prescalevar%128 ==0) {
+				this.incTmr0();
+				prescalevar = 0;				
+			}
+			break;
+		case 111:
+			if (prescalevar%256 ==0) {
+				this.incTmr0();
+				prescalevar = 0;				
+			}
+			break;
+		
+		
+		}
+			
+		
+	}
+	
 }

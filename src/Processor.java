@@ -14,7 +14,7 @@ public class Processor extends Thread {
 			int code = ctr.getMem().getCurrentCommand(ctr.getMem().getAktuellerPC());
             ctr.getMk().vorsortieren(code);
             if(ctr.checkT0CS()==true) {
-            	ctr.getMem().incTmr0();
+            	ctr.getMem().prescaler();
             }
 			
             
