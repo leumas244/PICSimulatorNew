@@ -182,60 +182,66 @@ public class Memory extends Thread {
 		int psa = option & 0x8;
 		int ps2 = option & 0x7;
 		this.prescalevar++;
-				
 		
-		switch (ps2) {
-		case 0x0:
-			if (this.prescalevar%2 ==0) {
-				this.incTmr0();
-				this.prescalevar = 0;				
+		if(psa == 0) {
+			switch (ps2) {
+			case 0x0:
+				if (this.prescalevar%2 ==0) {
+					this.incTmr0();
+					this.prescalevar = 0;				
+				}
+				break;
+			case 0x1:
+				if (this.prescalevar%4 ==0) {
+					this.incTmr0();
+					this.prescalevar = 0;				
+				}
+				break;
+			case 0x2:
+				if (this.prescalevar%8 ==0) {
+					this.incTmr0();
+					this.prescalevar = 0;				
+				}
+				break;
+			case 0x3:
+				if (this.prescalevar%16 ==0) {
+					this.incTmr0();
+					this.prescalevar = 0;				
+				}
+				break;
+			case 0x4:
+				if (this.prescalevar%32 ==0) {
+					this.incTmr0();
+					this.prescalevar = 0;				
+				}
+				break;
+			case 0x5:
+				if (this.prescalevar%64 ==0) {
+					this.incTmr0();
+					this.prescalevar = 0;				
+				}
+				break;
+			case 0x6:
+				if (this.prescalevar%128 ==0) {
+					this.incTmr0();
+					this.prescalevar = 0;				
+				}
+				break;
+			case 0x7:
+				if (this.prescalevar%256 ==0) {
+					this.incTmr0();
+					this.prescalevar = 0;				
+				}
+				break;
+			
 			}
-			break;
-		case 0x1:
-			if (this.prescalevar%4 ==0) {
-				this.incTmr0();
-				this.prescalevar = 0;				
-			}
-			break;
-		case 0x2:
-			if (this.prescalevar%8 ==0) {
-				this.incTmr0();
-				this.prescalevar = 0;				
-			}
-			break;
-		case 0x3:
-			if (this.prescalevar%16 ==0) {
-				this.incTmr0();
-				this.prescalevar = 0;				
-			}
-			break;
-		case 0x4:
-			if (this.prescalevar%32 ==0) {
-				this.incTmr0();
-				this.prescalevar = 0;				
-			}
-			break;
-		case 0x5:
-			if (this.prescalevar%64 ==0) {
-				this.incTmr0();
-				this.prescalevar = 0;				
-			}
-			break;
-		case 0x6:
-			if (this.prescalevar%128 ==0) {
-				this.incTmr0();
-				this.prescalevar = 0;				
-			}
-			break;
-		case 0x7:
-			if (this.prescalevar%256 ==0) {
-				this.incTmr0();
-				this.prescalevar = 0;				
-			}
-			break;
-		
-		
+			
 		}
+		else {
+			this.incTmr0();
+		}
+		
+
 			
 		
 	}
