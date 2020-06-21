@@ -171,6 +171,7 @@ public class Memory extends Thread {
 			this.ram[0x1] = 0;
 			this.ram[0xB] = this.ram[0xB] | 0x4;
 			this.ram[0x3] = this.ram[0x3] | 0x4;
+			this.prescalevar = 0;
 		}
 		else {
 		this.ram[0x1]++;
@@ -180,55 +181,56 @@ public class Memory extends Thread {
 		int option = this.ram[0x81];
 		int psa = option & 0x8;
 		int ps2 = option & 0x7;
-		
+		this.prescalevar++;
+				
 		
 		switch (ps2) {
-		case 000:
-			if (prescalevar%2 ==0) {
+		case 0x0:
+			if (this.prescalevar%2 ==0) {
 				this.incTmr0();
-				prescalevar = 0;				
+				this.prescalevar = 0;				
 			}
 			break;
-		case 001:
-			if (prescalevar%4 ==0) {
+		case 0x1:
+			if (this.prescalevar%4 ==0) {
 				this.incTmr0();
-				prescalevar = 0;				
+				this.prescalevar = 0;				
 			}
 			break;
-		case 010:
-			if (prescalevar%8 ==0) {
+		case 0x2:
+			if (this.prescalevar%8 ==0) {
 				this.incTmr0();
-				prescalevar = 0;				
+				this.prescalevar = 0;				
 			}
 			break;
-		case 011:
-			if (prescalevar%16 ==0) {
+		case 0x3:
+			if (this.prescalevar%16 ==0) {
 				this.incTmr0();
-				prescalevar = 0;				
+				this.prescalevar = 0;				
 			}
 			break;
-		case 100:
-			if (prescalevar%32 ==0) {
+		case 0x4:
+			if (this.prescalevar%32 ==0) {
 				this.incTmr0();
-				prescalevar = 0;				
+				this.prescalevar = 0;				
 			}
 			break;
-		case 101:
-			if (prescalevar%64 ==0) {
+		case 0x5:
+			if (this.prescalevar%64 ==0) {
 				this.incTmr0();
-				prescalevar = 0;				
+				this.prescalevar = 0;				
 			}
 			break;
-		case 110:
-			if (prescalevar%128 ==0) {
+		case 0x6:
+			if (this.prescalevar%128 ==0) {
 				this.incTmr0();
-				prescalevar = 0;				
+				this.prescalevar = 0;				
 			}
 			break;
-		case 111:
-			if (prescalevar%256 ==0) {
+		case 0x7:
+			if (this.prescalevar%256 ==0) {
 				this.incTmr0();
-				prescalevar = 0;				
+				this.prescalevar = 0;				
 			}
 			break;
 		
