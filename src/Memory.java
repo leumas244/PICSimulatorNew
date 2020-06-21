@@ -10,8 +10,9 @@ public class Memory extends Thread {
 	private int aktuellerPC;
 	private int[] PCtoRow = new int[1024];
 	private int prescalevar = 0;
+	private Boolean[] BreakPoint = new Boolean[1024];
 
-
+	
 	private Controller Ctr;
 
     public Memory(Controller ctr) {
@@ -30,9 +31,9 @@ public class Memory extends Thread {
 			
 			
 			Ctr.markrow(aktuellerPC);
-			
+			Ctr.checkBPs();
 			try {
-				Thread.sleep(100);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -126,6 +127,7 @@ public class Memory extends Thread {
 	
 	public void reset() {
 		Ctr.demarkrow();
+		Ctr.setDebugMode(false);
 		this.wRegister = 0;
 		this.aktuellerPC = 0;
 		this.stackpointer = 0;
@@ -177,6 +179,7 @@ public class Memory extends Thread {
 		this.ram[0x1]++;
 		}
 	}
+
 	public void prescaler() {
 		int option = this.ram[0x81];
 		int psa = option & 0x8;
@@ -240,10 +243,13 @@ public class Memory extends Thread {
 		else {
 			this.incTmr0();
 		}
-		
-
-			
-		
 	}
 	
+	public Boolean[] getBreakPoint() {
+		return BreakPoint;
+	}
+
+	public void setBreakPoint(Boolean[] breakPoint) {
+		BreakPoint = breakPoint;
+	}
 }

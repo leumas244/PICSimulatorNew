@@ -15,7 +15,10 @@ public class Controller {
 	private Read Rd;
 	private Processor prc;
 	private boolean isRunning = false;
-	
+	private boolean isDebugMode = false;
+	private boolean nextStep = false;
+
+
 	public Controller(GUI gui) {
 		this.gui = gui;
 		this.Mem = new Memory(this);
@@ -29,7 +32,7 @@ public class Controller {
 	
 	
 	public void loadFile() {
-		gui.programtablelöschen();
+		gui.programtablelÃ¶schen();
 		this.getMem().resetPCtoRow();
 		JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(gui.frame);
@@ -47,8 +50,8 @@ public class Controller {
 			bufferedReader = new BufferedReader(fileReader);
 			String line = null;
             while ((line = bufferedReader.readLine()) != null) {
-            	Boolean BP = new Boolean(false);
 	            String pCounter = line.substring(0, 4);
+	            boolean BP = new Boolean(false);
 	            String pCode = line.substring(5, 9);
 	            String row = line.substring(20, 25);
 	            String label = " ";
@@ -285,14 +288,19 @@ public class Controller {
 		}
 	}
 	public void startProcessor() {
-		if (isRunning==false) {
+		if (isDebugMode) {
+			stopProcessor();
+			prc = new Processor(this);
+			prc.start();
+		} else if(isRunning==false) {
 			prc = new Processor(this);
 			prc.start();
 		}
-	
 	}
 	public void stopProcessor() {
 		if(isRunning) {
+			nextStep();
+			setDebugMode(false);
 			prc.exit=true;
 		}
 	}
@@ -334,5 +342,52 @@ public class Controller {
 			return false;
 		}
 	}
+  
+	public boolean getisDebugMode() {
+		return isDebugMode;
+	}
+
+
+	public void setDebugMode(boolean isDebugMode) {
+		this.isDebugMode = isDebugMode;
+	}
 	
+	public boolean getnextStep() {
+		return nextStep;
+	}
+
+
+	public void setnextStep(boolean nextStep) {
+		this.nextStep = nextStep;
+	}
+	
+	public void nextStep() {
+		if (isDebugMode) {
+			this.nextStep = true;
+		}
+	}
+	
+	public Boolean getBP(int x) {
+		Boolean BP = gui.getBP(x);
+		return BP;
+	}
+	
+	public int getrows() {
+		int rowCount = gui.getrows();
+		return rowCount;
+	}
+	
+	public void checkBPs() {
+		Boolean[] BreakPoint = getMem().getBreakPoint();
+		int anzahlrows = getrows();
+		if (anzahlrows != 0) {
+			for (int i = 0; i < anzahlrows; i++) {
+				if (!(gui.getPCfromfile(i).equals("    "))) {
+					int PC = Integer.parseInt(gui.getPCfromfile(i), 16);
+					BreakPoint[PC] = getBP(i);
+				}
+			}
+		}
+		getMem().setBreakPoint(BreakPoint);
+	}
 }

@@ -31,7 +31,6 @@ public class GUI {
 	private JLabel lblUsedFileValue;
 	
 	private DefaultTableModel ramtbl;
-	private DefaultTableModel programtbl;
 	
 	private JLabel lblWRegValue;
 	private JLabel lblFSRValue;
@@ -143,6 +142,11 @@ public class GUI {
 		Steuerung.add(btnStop);
 		
 		JButton btnStep = new JButton("Step");
+		btnStep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Ctr.nextStep();
+			}
+		});
 		btnStep.setBounds(11, 79, 89, 23);
 		Steuerung.add(btnStep);
 		
@@ -846,6 +850,21 @@ public class GUI {
 
 	public DefaultTableModel getRamtbl() {
 		return ramtbl;
+	}
+	
+	public Boolean getBP(int x) {
+		Boolean BP =(Boolean) this.table.getModel().getValueAt(x, 0);
+		return BP;
+	}
+	
+	public String getPCfromfile(int x) {
+		String PC = (String) this.table.getModel().getValueAt(x, 1);
+		return PC;
+	}
+	
+	public int getrows() {
+		int rowCount =this.table.getRowCount();
+		return rowCount;
 	}
 	
 	public void setFileValue(String file) {
