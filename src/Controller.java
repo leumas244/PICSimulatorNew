@@ -288,16 +288,19 @@ public class Controller {
 		}
 	}
 	public void startProcessor() {
-		if (isRunning==false) {
+		if (isDebugMode) {
+			stopProcessor();
+			prc = new Processor(this);
+			prc.start();
+		} else if(isRunning==false) {
 			prc = new Processor(this);
 			prc.start();
 		}
-	
 	}
 	public void stopProcessor() {
 		if(isRunning) {
-			setDebugMode(false);
 			nextStep();
+			setDebugMode(false);
 			prc.exit=true;
 		}
 	}
@@ -359,7 +362,9 @@ public class Controller {
 	}
 	
 	public void nextStep() {
-		this.nextStep = true;
+		if (isDebugMode) {
+			this.nextStep = true;
+		}
 	}
 	
 	public Boolean getBP(int x) {
