@@ -11,6 +11,8 @@ public class Memory extends Thread {
 	private int[] PCtoRow = new int[1024];
 	private int prescalevar = 0;
 	private Boolean[] BreakPoint = new Boolean[1024];
+	private int watchdog;
+	private int preWatchvar = 0;
 
 	private Controller Ctr;
 
@@ -260,5 +262,79 @@ public class Memory extends Thread {
 		} else {
 			// Flanken von RA4 lesen
 		}
+	}
+	public void incWatchdog() {
+		if(watchdog==18000) {
+			watchdog = 0;
+			this.reset();
+			this.ram[0x3] = this.ram[0x3] = 0x10;	// PD bit setzen
+			this.ram[0x83] = this.ram[0x83] = 0x10;	// bank1 status? 
+
+		}
+		this.watchdog++;
+		
+	}
+	public void prewatchdog() {
+		int option = this.ram[0x81];
+		int psa = option & 0x8;
+		int ps2 = option & 0x7;
+		this.preWatchvar++;
+		
+		if (psa == 1) {
+			switch (ps2) {
+			case 0x0:
+					this.incWatchdog();
+
+				break;
+			case 0x1:
+				if (this.preWatchvar % 2 == 0) {
+					this.incWatchdog();
+					this.preWatchvar = 0;
+				}
+				break;
+			case 0x2:
+				if (this.preWatchvar % 4 == 0) {
+					this.incWatchdog();
+					this.preWatchvar = 0;
+				}
+				break;
+			case 0x3:
+				if (this.preWatchvar % 8 == 0) {
+					this.incWatchdog();
+					this.preWatchvar = 0;
+				}
+				break;
+			case 0x4:
+				if (this.preWatchvar % 16 == 0) {
+					this.incWatchdog();
+					this.preWatchvar = 0;
+				}
+				break;
+			case 0x5:
+				if (this.preWatchvar % 32 == 0) {
+					this.incWatchdog();
+					this.preWatchvar = 0;
+				}
+				break;
+			case 0x6:
+				if (this.preWatchvar % 64 == 0) {
+					this.incWatchdog();
+					this.preWatchvar = 0;
+				}
+				break;
+			case 0x7:
+				if (this.preWatchvar % 128 == 0) {
+					this.incWatchdog();
+					this.preWatchvar = 0;
+				}
+				break;
+
+			}
+
+		} else {
+			this.incWatchdog();
+		}
+		
+		
 	}
 }

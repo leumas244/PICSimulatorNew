@@ -386,4 +386,11 @@ public class Controller {
 	public void incTimer() {
 		this.getMem().prescaler();
 	}
+	public void incWatchMem() {
+		
+									// TODO wachdog clickable und hierher verbinden
+									// hier if (häkchen gesetzt){}
+		this.Mem.prewatchdog();
+		
+	}
 }
