@@ -27,6 +27,10 @@ public class Memory extends Thread {
 			Ctr.updateStack();
 			Ctr.updateLaufzeit();
 			Ctr.updateWatchdog();
+			
+			if ((ram[0xB] & 0x80) == 0x80) {
+				Ctr.checkinterrupt();
+			}
 			for (int i = 0; i < RAMLENGTH; i++) {
 
 				Ctr.updateRamGui(i % 8, i / 8, this.ram[i]);

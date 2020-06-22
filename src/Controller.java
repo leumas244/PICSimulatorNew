@@ -311,6 +311,10 @@ public class Controller {
 			}
 		}
 	}
+	
+	public void interupt() {
+		
+	}
 
 	public boolean isRunning() {
 		return isRunning;
@@ -734,5 +738,20 @@ public class Controller {
 	public void updateTris() {
 		updateTrisA();
 		updateTrisB();
+	}
+	
+	public void checkinterrupt() {
+		checkinterruptTMR0();
+	}
+	
+	public void checkinterruptTMR0() {
+		int[] RAM = getMem().getRam();
+		int IntCon = RAM[0xB];
+		if ((IntCon & 0xA4) == 0xA4) {
+			RAM[0xB] &= 0x7F;
+			getMem().setStack(getMem().getAktuellerPC() - 1);
+			getMem().setRam(RAM);
+			getMem().setPC(0x4);
+		}
 	}
 }

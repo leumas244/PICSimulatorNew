@@ -66,7 +66,7 @@ public class Adresschecking {
                 b = 6;
                 break;
             case 0x380:
-                b = 6;
+                b = 7;
                 break;
         }
         return b;
