@@ -597,9 +597,13 @@ public class Controller {
 			boolean entry = gui.getchckbxBP0();
 			if (entry) {
 				RAM[0x6] |= 0x1;
-				RAM[0xB] |= 0x2;
 				getMem().setRam(RAM);
 			} else {
+				int oldValue = RAM[0x6] & 0x1;
+				int newValue = (RAM[0x6] &= 0xFE) & 0x1;
+				if ((oldValue == 0x1) && (newValue == 0x0)) {
+					RAM[0xB] |= 0x2;
+				}
 				RAM[0x6] &= 0xFE;
 				getMem().setRam(RAM);
 			}
@@ -661,9 +665,19 @@ public class Controller {
 		} else {
 			boolean entry = gui.getchckbxBP4();
 			if (entry) {
+				int oldValue = RAM[0x6];
+				int newValue = RAM[0x6] |= 0x10;
+				if (oldValue != newValue) {
+					RAM[0xB] |= 0x1;
+				}
 				RAM[0x6] |= 0x10;
 				getMem().setRam(RAM);
 			} else {
+				int oldValue = RAM[0x6];
+				int newValue = RAM[0x6] &= 0xEF;
+				if (oldValue != newValue) {
+					RAM[0xB] |= 0x1;
+				}
 				RAM[0x6] &= 0xEF;
 				getMem().setRam(RAM);
 			}
@@ -677,9 +691,19 @@ public class Controller {
 		} else {
 			boolean entry = gui.getchckbxBP5();
 			if (entry) {
+				int oldValue = RAM[0x6];
+				int newValue = RAM[0x6] |= 0x20;
+				if (oldValue != newValue) {
+					RAM[0xB] |= 0x1;
+				}
 				RAM[0x6] |= 0x20;
 				getMem().setRam(RAM);
 			} else {
+				int oldValue = RAM[0x6];
+				int newValue = RAM[0x6] &= 0xDF;
+				if (oldValue != newValue) {
+					RAM[0xB] |= 0x1;
+				}
 				RAM[0x6] &= 0xDF;
 				getMem().setRam(RAM);
 			}
@@ -693,9 +717,19 @@ public class Controller {
 		} else {
 			boolean entry = gui.getchckbxBP6();
 			if (entry) {
+				int oldValue = RAM[0x6];
+				int newValue = RAM[0x6] |= 0x40;
+				if (oldValue != newValue) {
+					RAM[0xB] |= 0x1;
+				}
 				RAM[0x6] |= 0x40;
 				getMem().setRam(RAM);
 			} else {
+				int oldValue = RAM[0x6];
+				int newValue = RAM[0x6] &= 0xBF;
+				if (oldValue != newValue) {
+					RAM[0xB] |= 0x1;
+				}
 				RAM[0x6] &= 0xBF;
 				getMem().setRam(RAM);
 			}
@@ -709,9 +743,19 @@ public class Controller {
 		} else {
 			boolean entry = gui.getchckbxBP7();
 			if (entry) {
+				int oldValue = RAM[0x6];
+				int newValue = RAM[0x6] |= 0x80;
+				if (oldValue != newValue) {
+					RAM[0xB] |= 0x1;
+				}
 				RAM[0x6] |= 0x80;
 				getMem().setRam(RAM);
 			} else {
+				int oldValue = RAM[0x6];
+				int newValue = RAM[0x6] &= 0x7F;
+				if (oldValue != newValue) {
+					RAM[0xB] |= 0x1;
+				}
 				RAM[0x6] &= 0x7F;
 				getMem().setRam(RAM);
 			}
@@ -744,6 +788,7 @@ public class Controller {
 	public void checkinterrupt() {
 		checkinterruptTMR0();
 		checkinterruptRB0();
+		checkinterruptRB47();
 	}
 	
 	public void checkinterruptTMR0() {
@@ -761,6 +806,17 @@ public class Controller {
 		int[] RAM = getMem().getRam();
 		int IntCon = RAM[0xB];
 		if ((IntCon & 0x92) == 0x92) {
+			RAM[0xB] &= 0x7F;
+			getMem().setStack(getMem().getAktuellerPC() - 1);
+			getMem().setRam(RAM);
+			getMem().setPC(0x4);
+		}
+	}
+	
+	public void checkinterruptRB47() {
+		int[] RAM = getMem().getRam();
+		int IntCon = RAM[0xB];
+		if ((IntCon & 0x89) == 0x89) {
 			RAM[0xB] &= 0x7F;
 			getMem().setStack(getMem().getAktuellerPC() - 1);
 			getMem().setRam(RAM);
