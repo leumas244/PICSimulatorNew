@@ -17,6 +17,7 @@ public class Controller {
 	private boolean isRunning = false;
 	private boolean isDebugMode = false;
 	private boolean nextStep = false;
+	private int laufzeit = 0;
 
 	public Controller(GUI gui) {
 		this.gui = gui;
@@ -30,7 +31,7 @@ public class Controller {
 	}
 
 	public void loadFile() {
-		gui.programtablelöschen();
+		gui.programtablelÃ¶schen();
 		this.getMem().resetPCtoRow();
 		JFileChooser fc = new JFileChooser();
 		fc.showOpenDialog(gui.frame);
@@ -331,6 +332,7 @@ public class Controller {
 
 	public void resetMem() {
 		this.getMem().reset();
+		this.setLaufzeit(0);
 	}
 
 	public void timerinc() {
@@ -387,10 +389,29 @@ public class Controller {
 		this.getMem().prescaler();
 	}
 	public void incWatchMem() {
+		if(gui.getCheckbxWatchdog()==true) {
+			this.Mem.prewatchdog();
+		}
 		
-									// TODO wachdog clickable und hierher verbinden
-									// hier if (häkchen gesetzt){}
-		this.Mem.prewatchdog();
 		
 	}
+
+	public int getLaufzeit() {
+		return laufzeit;
+	}
+
+	public void setLaufzeit(int laufzeit) {
+		this.laufzeit = laufzeit;
+	}
+	public void incLaufzeit() {
+		this.laufzeit++;
+	}
+	public void updateLaufzeit() {
+		gui.setLaufzeit(Integer.toString(laufzeit) + "Î¼s");
+		
+	}
+	public void updateWatchdog() {
+		gui.setWatchdog(Integer.toString(this.getMem().getWatchdog()) + "Î¼s");
+	}
+	
 }

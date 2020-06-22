@@ -25,6 +25,8 @@ public class Memory extends Thread {
 		while (true) {
 			Ctr.updateSFR();
 			Ctr.updateStack();
+			Ctr.updateLaufzeit();
+			Ctr.updateWatchdog();
 			for (int i = 0; i < RAMLENGTH; i++) {
 
 				Ctr.updateRamGui(i % 8, i / 8, this.ram[i]);
@@ -132,6 +134,7 @@ public class Memory extends Thread {
 		this.wRegister = 0;
 		this.aktuellerPC = 0;
 		this.stackpointer = 0;
+		this.setWatchdog(0);
 		for (int i = 0; i < 8; i++) {
 			stack[i] = 0;
 		}
@@ -265,7 +268,7 @@ public class Memory extends Thread {
 	}
 	public void incWatchdog() {
 		if(watchdog==18000) {
-			watchdog = 0;
+			this.setWatchdog(0);
 			this.reset();
 			this.ram[0x3] = this.ram[0x3] & 0xEF;	// PD bit setzen
 			this.ram[0x83] = this.ram[0x83] & 0xEF;	// bank1 status? 
@@ -337,5 +340,13 @@ public class Memory extends Thread {
 		}
 		
 		
+	}
+
+	public int getWatchdog() {
+		return watchdog;
+	}
+
+	public void setWatchdog(int watchdog) {
+		this.watchdog = watchdog;
 	}
 }

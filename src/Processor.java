@@ -17,7 +17,7 @@ public class Processor extends Thread {
 			int code = ctr.getMem().getCurrentCommand(ctr.getMem().getAktuellerPC());
             ctr.getMk().vorsortieren(code);
             ctr.timerinc();
-//            ctr.incWatchMem();
+            ctr.incWatchMem();
             
 			
             if (ctr.getisDebugMode()) {

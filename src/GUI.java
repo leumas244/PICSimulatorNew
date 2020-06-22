@@ -78,6 +78,7 @@ public class GUI {
 	private JLabel lblStack_0Value;
 	private JLabel lblLaufzeitValue;
 	private JLabel lblWatchdogValue;
+	private JCheckBox chckbxWatchdog;
 
 
 	/**
@@ -483,15 +484,17 @@ public class GUI {
 		lblWatchdog.setBounds(10, 101, 58, 14);
 		laufzeit.add(lblWatchdog);
 		
-		JCheckBox chckbxWatchdog = new JCheckBox("Watchdog");
+		chckbxWatchdog = new JCheckBox("Watchdog");
 		chckbxWatchdog.setBounds(6, 71, 77, 23);
 		laufzeit.add(chckbxWatchdog);
 		
 		lblLaufzeitValue = new JLabel("0");
+		lblLaufzeitValue.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLaufzeitValue.setBounds(10, 50, 85, 14);
 		laufzeit.add(lblLaufzeitValue);
 		
 		lblWatchdogValue = new JLabel("0");
+		lblWatchdogValue.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWatchdogValue.setBounds(10, 119, 85, 14);
 		laufzeit.add(lblWatchdogValue);
 		
@@ -1049,5 +1052,14 @@ public class GUI {
 		if (rowCount != 0) {
 			table.removeRowSelectionInterval(0, (rowCount-1));
 		}
+	}
+	public void setLaufzeit(String lauf) {
+		this.lblLaufzeitValue.setText(lauf);
+	}
+	public boolean getCheckbxWatchdog() {
+		return this.chckbxWatchdog.isSelected();
+		}
+	public void setWatchdog(String wdt) {
+		this.lblWatchdogValue.setText(wdt);
 	}
 }
