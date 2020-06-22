@@ -275,7 +275,11 @@ public class Memory extends Thread {
 		if (tocs == 0) {
 			this.prescaler();
 		} else {
-			// Flanken von RA4 lesen
+			int portA = this.ram[0x5];
+			if ((portA & 0x10) == 0x10) {
+				this.prescaler();
+			}
+			
 		}
 	}
 	public void incWatchdog() {
