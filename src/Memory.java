@@ -29,7 +29,9 @@ public class Memory extends Thread {
 				Ctr.updateRamGui(i%8, i/8, this.ram[i]);
 			}
 			
-			
+			Ctr.updateTris();
+			Ctr.updatePortA();
+			Ctr.updatePortB();
 			Ctr.markrow(aktuellerPC);
 			Ctr.checkBPs();
 			try {
@@ -107,6 +109,7 @@ public class Memory extends Thread {
 	public void setPC(int PC) {
 		this.aktuellerPC = PC;
 		this.ram[0x2] = aktuellerPC & 0xFF;
+		this.ram[0x82] = aktuellerPC & 0xFF;
 	}
 	
 	public int getCurrentCommand(int pc) {
@@ -128,6 +131,7 @@ public class Memory extends Thread {
 	public void reset() {
 		Ctr.demarkrow();
 		Ctr.setDebugMode(false);
+		Ctr.resetPortAB();
 		this.wRegister = 0;
 		this.aktuellerPC = 0;
 		this.stackpointer = 0;

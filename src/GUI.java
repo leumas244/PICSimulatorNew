@@ -78,6 +78,33 @@ public class GUI {
 	private JLabel lblStack_0Value;
 	private JLabel lblLaufzeitValue;
 	private JLabel lblWatchdogValue;
+	
+	private JCheckBox chckbxAT4;
+	private JCheckBox chckbxAT3;
+	private JCheckBox chckbxAT2;
+	private JCheckBox chckbxAT1;
+	private JCheckBox chckbxAT0;
+	private JCheckBox chckbxBT7;
+	private JCheckBox chckbxBT6;
+	private JCheckBox chckbxBT5;
+	private JCheckBox chckbxBT4;
+	private JCheckBox chckbxBT3;
+	private JCheckBox chckbxBT2;
+	private JCheckBox chckbxBT1;
+	private JCheckBox chckbxBT0;
+	private JCheckBox chckbxAP4;
+	private JCheckBox chckbxAP3;
+	private JCheckBox chckbxAP2;
+	private JCheckBox chckbxAP1;
+	private JCheckBox chckbxAP0;
+	private JCheckBox chckbxBP7;
+	private JCheckBox chckbxBP6;
+	private JCheckBox chckbxBP5;
+	private JCheckBox chckbxBP4;
+	private JCheckBox chckbxBP3;
+	private JCheckBox chckbxBP2;
+	private JCheckBox chckbxBP1;
+	private JCheckBox chckbxBP0;
 
 
 	/**
@@ -694,43 +721,48 @@ public class GUI {
 		lblPinA.setBounds(10, 61, 46, 14);
 		portA.add(lblPinA);
 		
-		JCheckBox chckbxAT4 = new JCheckBox("4");
+		chckbxAT4 = new JCheckBox("4");
+		chckbxAT4.setEnabled(false);
 		chckbxAT4.setBounds(162, 36, 31, 23);
 		portA.add(chckbxAT4);
 		
-		JCheckBox chckbxAT3 = new JCheckBox("3");
+		chckbxAT3 = new JCheckBox("3");
+		chckbxAT3.setEnabled(false);
 		chckbxAT3.setBounds(195, 36, 31, 23);
 		portA.add(chckbxAT3);
 		
-		JCheckBox chckbxAT2 = new JCheckBox("2");
+		chckbxAT2 = new JCheckBox("2");
+		chckbxAT2.setEnabled(false);
 		chckbxAT2.setBounds(228, 36, 31, 23);
 		portA.add(chckbxAT2);
 		
-		JCheckBox chckbxAT1 = new JCheckBox("1");
+		chckbxAT1 = new JCheckBox("1");
+		chckbxAT1.setEnabled(false);
 		chckbxAT1.setBounds(261, 36, 31, 23);
 		portA.add(chckbxAT1);
 		
-		JCheckBox chckbxAT0 = new JCheckBox("0");
+		chckbxAT0 = new JCheckBox("0");
+		chckbxAT0.setEnabled(false);
 		chckbxAT0.setBounds(294, 36, 31, 23);
 		portA.add(chckbxAT0);
 		
-		JCheckBox chckbxAP0 = new JCheckBox("0");
+		chckbxAP0 = new JCheckBox("0");
 		chckbxAP0.setBounds(294, 65, 31, 23);
 		portA.add(chckbxAP0);
 		
-		JCheckBox chckbxAP1 = new JCheckBox("1");
+		chckbxAP1 = new JCheckBox("1");
 		chckbxAP1.setBounds(261, 65, 31, 23);
 		portA.add(chckbxAP1);
 		
-		JCheckBox chckbxAP2 = new JCheckBox("2");
+		chckbxAP2 = new JCheckBox("2");
 		chckbxAP2.setBounds(228, 65, 31, 23);
 		portA.add(chckbxAP2);
 		
-		JCheckBox chckbxAP3 = new JCheckBox("3");
+		chckbxAP3 = new JCheckBox("3");
 		chckbxAP3.setBounds(195, 65, 31, 23);
 		portA.add(chckbxAP3);
 		
-		JCheckBox chckbxAP4 = new JCheckBox("4");
+		chckbxAP4 = new JCheckBox("4");
 		chckbxAP4.setBounds(162, 65, 31, 23);
 		portA.add(chckbxAP4);
 		
@@ -752,67 +784,75 @@ public class GUI {
 		lblPinB.setBounds(10, 61, 46, 14);
 		portB.add(lblPinB);
 		
-		JCheckBox chckbxBT5 = new JCheckBox("5");
+		chckbxBT5 = new JCheckBox("5");
+		chckbxBT5.setEnabled(false);
 		chckbxBT5.setBounds(128, 36, 31, 23);
 		portB.add(chckbxBT5);
 		
-		JCheckBox chckbxBT4 = new JCheckBox("4");
+		chckbxBT4 = new JCheckBox("4");
+		chckbxBT4.setEnabled(false);
 		chckbxBT4.setBounds(161, 36, 31, 23);
 		portB.add(chckbxBT4);
 		
-		JCheckBox chckbxBT3 = new JCheckBox("3");
+		chckbxBT3 = new JCheckBox("3");
+		chckbxBT3.setEnabled(false);
 		chckbxBT3.setBounds(194, 36, 31, 23);
 		portB.add(chckbxBT3);
 		
-		JCheckBox chckbxBT6 = new JCheckBox("6");
+		chckbxBT6 = new JCheckBox("6");
+		chckbxBT6.setEnabled(false);
 		chckbxBT6.setBounds(95, 36, 31, 23);
 		portB.add(chckbxBT6);
 		
-		JCheckBox chckbxBT7 = new JCheckBox("7");
+		chckbxBT7 = new JCheckBox("7");
+		chckbxBT7.setEnabled(false);
 		chckbxBT7.setBounds(62, 36, 31, 23);
 		portB.add(chckbxBT7);
 		
-		JCheckBox chckbxBT0 = new JCheckBox("0");
+		chckbxBT0 = new JCheckBox("0");
+		chckbxBT0.setEnabled(false);
 		chckbxBT0.setBounds(293, 36, 31, 23);
 		portB.add(chckbxBT0);
 		
-		JCheckBox chckbxBT1 = new JCheckBox("1");
+		chckbxBT1 = new JCheckBox("1");
+		chckbxBT1.setEnabled(false);
 		chckbxBT1.setBounds(260, 36, 31, 23);
 		portB.add(chckbxBT1);
 		
-		JCheckBox chckbxBT2 = new JCheckBox("2");
+		chckbxBT2 = new JCheckBox("2");
+		chckbxBT2.setEnabled(false);
 		chckbxBT2.setBounds(227, 36, 31, 23);
 		portB.add(chckbxBT2);
 		
-		JCheckBox chckbxBP0 = new JCheckBox("0");
+		chckbxBP0 = new JCheckBox("0");
 		chckbxBP0.setBounds(293, 61, 31, 23);
 		portB.add(chckbxBP0);
 		
-		JCheckBox chckbxBP1 = new JCheckBox("1");
+		chckbxBP1 = new JCheckBox("1");
 		chckbxBP1.setBounds(260, 61, 31, 23);
 		portB.add(chckbxBP1);
 		
-		JCheckBox chckbxBP2 = new JCheckBox("2");
+		chckbxBP2 = new JCheckBox("2");
 		chckbxBP2.setBounds(227, 61, 31, 23);
 		portB.add(chckbxBP2);
 		
-		JCheckBox chckbxBP3 = new JCheckBox("3");
+		chckbxBP3 = new JCheckBox("3");
 		chckbxBP3.setBounds(194, 61, 31, 23);
 		portB.add(chckbxBP3);
 		
-		JCheckBox chckbxBP4 = new JCheckBox("4");
+		chckbxBP4 = new JCheckBox("4");
 		chckbxBP4.setBounds(161, 61, 31, 23);
 		portB.add(chckbxBP4);
 		
-		JCheckBox chckbxBP5 = new JCheckBox("5");
+		chckbxBP5 = new JCheckBox("5");
 		chckbxBP5.setBounds(128, 61, 31, 23);
 		portB.add(chckbxBP5);
 		
-		JCheckBox chckbxBP6 = new JCheckBox("6");
+		chckbxBP6 = new JCheckBox("6");
 		chckbxBP6.setBounds(95, 61, 31, 23);
 		portB.add(chckbxBP6);
 		
-		JCheckBox chckbxBP7 = new JCheckBox("7");
+		chckbxBP7 = new JCheckBox("7");
 		chckbxBP7.setBounds(62, 61, 31, 23);
 		portB.add(chckbxBP7);
 		
@@ -1050,4 +1090,161 @@ public class GUI {
 			table.removeRowSelectionInterval(0, (rowCount-1));
 		}
 	}
+	
+	public void setchckbxAT0(boolean value) {
+		this.chckbxAT0.setSelected(value);
+	}
+	
+	public void setchckbxAT1(boolean value) {
+		this.chckbxAT1.setSelected(value);
+	}
+	
+	public void setchckbxAT2(boolean value) {
+		this.chckbxAT2.setSelected(value);
+	}
+	
+	public void setchckbxAT3(boolean value) {
+		this.chckbxAT3.setSelected(value);
+	}
+	
+	public void setchckbxAT4(boolean value) {
+		this.chckbxAT4.setSelected(value);
+	}
+	
+	public void setchckbxBT0(boolean value) {
+		this.chckbxBT0.setSelected(value);
+	}
+	
+	public void setchckbxBT1(boolean value) {
+		this.chckbxBT1.setSelected(value);
+	}
+	
+	public void setchckbxBT2(boolean value) {
+		this.chckbxBT2.setSelected(value);
+	}
+	
+	public void setchckbxBT3(boolean value) {
+		this.chckbxBT3.setSelected(value);
+	}
+	
+	public void setchckbxBT4(boolean value) {
+		this.chckbxBT4.setSelected(value);
+	}
+	
+	public void setchckbxBT5(boolean value) {
+		this.chckbxBT5.setSelected(value);
+	}
+	
+	public void setchckbxBT6(boolean value) {
+		this.chckbxBT6.setSelected(value);
+	}
+	
+	public void setchckbxBT7(boolean value) {
+		this.chckbxBT7.setSelected(value);
+	}
+	
+	public void setchckbxAP0(boolean value) {
+		this.chckbxAP0.setSelected(value);
+	}
+	
+	public void setchckbxAP1(boolean value) {
+		this.chckbxAP1.setSelected(value);
+	}
+	
+	public void setchckbxAP2(boolean value) {
+		this.chckbxAP2.setSelected(value);
+	}
+	
+	public void setchckbxAP3(boolean value) {
+		this.chckbxAP3.setSelected(value);
+	}
+	
+	public void setchckbxAP4(boolean value) {
+		this.chckbxAP4.setSelected(value);
+	}
+	
+	public void setchckbxBP0(boolean value) {
+		this.chckbxBP0.setSelected(value);
+	}
+	
+	public void setchckbxBP1(boolean value) {
+		this.chckbxBP1.setSelected(value);
+	}
+	
+	public void setchckbxBP2(boolean value) {
+		this.chckbxBP2.setSelected(value);
+	}
+	
+	public void setchckbxBP3(boolean value) {
+		this.chckbxBP3.setSelected(value);
+	}
+	
+	public void setchckbxBP4(boolean value) {
+		this.chckbxBP4.setSelected(value);
+	}
+	
+	public void setchckbxBP5(boolean value) {
+		this.chckbxBP5.setSelected(value);
+	}
+	
+	public void setchckbxBP6(boolean value) {
+		this.chckbxBP6.setSelected(value);
+	}
+	
+	public void setchckbxBP7(boolean value) {
+		this.chckbxBP7.setSelected(value);
+	}
+	
+	public boolean getchckbxAP0() {
+		return this.chckbxAP0.isSelected();
+	}
+	
+	public boolean getchckbxAP1() {
+		return this.chckbxAP1.isSelected();
+	}
+	
+	public boolean getchckbxAP2() {
+		return this.chckbxAP2.isSelected();
+	}
+	
+	public boolean getchckbxAP3() {
+		return this.chckbxAP3.isSelected();
+	}
+	
+	public boolean getchckbxAP4() {
+		return this.chckbxAP4.isSelected();
+	}
+	
+	public boolean getchckbxBP0() {
+		return this.chckbxBP0.isSelected();
+	}
+	
+	public boolean getchckbxBP1() {
+		return this.chckbxBP1.isSelected();
+	}
+	
+	public boolean getchckbxBP2() {
+		return this.chckbxBP2.isSelected();
+	}
+	
+	public boolean getchckbxBP3() {
+		return this.chckbxBP3.isSelected();
+	}
+	
+	public boolean getchckbxBP4() {
+		return this.chckbxBP4.isSelected();
+	}
+	
+	public boolean getchckbxBP5() {
+		return this.chckbxBP5.isSelected();
+	}
+	
+	public boolean getchckbxBP6() {
+		return this.chckbxBP6.isSelected();
+	}
+	
+	public boolean getchckbxBP7() {
+		return this.chckbxBP7.isSelected();
+	}
+	
 }
