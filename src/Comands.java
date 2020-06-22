@@ -120,6 +120,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebniss;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
@@ -150,6 +153,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebniss;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
@@ -179,6 +185,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebnis;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebnis;
 	        }
@@ -212,6 +221,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebniss;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
@@ -250,6 +262,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebniss;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
@@ -283,6 +298,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebniss;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
@@ -321,6 +339,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebniss;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
@@ -351,6 +372,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebniss;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
@@ -378,6 +402,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = fRegister;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = fRegister;
 	        }
@@ -411,6 +438,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = fRegisterNeu;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	            Ctr.getMem().setRam(RAM);
 	        } else if (dest == 0) {
 	            Ctr.getMem().setwRegister(fRegisterNeu);
@@ -450,6 +480,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = fRegisterNeu;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	            Ctr.getMem().setRam(RAM);
 	        } else if (dest == 0) {
 	            Ctr.getMem().setwRegister(fRegisterNeu);
@@ -520,6 +553,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebnis;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebnis;
 	        }
@@ -551,6 +587,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebniss;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
@@ -582,6 +621,9 @@ public class Comands {
 
 	        if (dest == 1) {
 	            RAM[fAddr] = ergebniss;
+	            if (fAddr == 0x1 | fAddr == 0x81) {
+	            	RAM[0x81] = RAM[0x81] | 0xf;
+	            }
 	        } else if (dest == 0) {
 	            wRegister = ergebniss;
 	        }
@@ -665,6 +707,9 @@ public class Comands {
 	        int[] RAM = Ctr.getMem().getRam();
 	        int Z = RAM[3] & 0x4;
 	        RAM[fAddr] = 0;
+            if (fAddr == 0x1) {
+            	RAM[0x81] = RAM[0x81] | 0xf;
+            }
 
 	        if (Z == 0x0) {
 	            RAM[3] += 0x4;
@@ -706,6 +751,9 @@ public class Comands {
 
 	        int[] RAM = Ctr.getMem().getRam();
 	        int wRegister = Ctr.getMem().getwRegister();
+            if (fAddr == 0x1) {
+            	RAM[0x81] = RAM[0x81] | 0xf;
+            }
 
 	        RAM[fAddr] = wRegister;
 
@@ -729,41 +777,65 @@ public class Comands {
 	            case 0:
 	                fRegister &= 0xFE;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 1:
 	                fRegister &= 0xFD;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 2:
 	                fRegister &= 0xFB;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 3:
 	                fRegister &= 0xF7;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 4:
 	                fRegister &= 0xEF;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 5:
 	                fRegister &= 0xDF;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 6:
 	                fRegister &= 0xBF;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 7:
 	                fRegister &= 0x7F;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	        }
@@ -789,41 +861,65 @@ public class Comands {
 	            case 0:
 	                fRegister |= 0x1;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 1:
 	                fRegister |= 0x2;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 2:
 	                fRegister |= 0x4;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 3:
 	                fRegister |= 0x8;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 4:
 	                fRegister |= 0x10;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 5:
 	                fRegister |= 0x20;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 6:
 	                fRegister |= 0x40;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	            case 7:
 	                fRegister |= 0x80;
 	                RAM[fAddr] = fRegister;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                Ctr.getMem().setRam(RAM);
 	                break;
 	        }
@@ -849,6 +945,9 @@ public class Comands {
 	        switch (b) {
 	            case 0:
 	                ergebnis = fRegister & 0x1;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x0) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -856,6 +955,9 @@ public class Comands {
 	                break;
 	            case 1:
 	                ergebnis = fRegister & 0x2;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x0) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -863,6 +965,9 @@ public class Comands {
 	                break;
 	            case 2:
 	                ergebnis = fRegister & 0x4;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x0) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -870,6 +975,9 @@ public class Comands {
 	                break;
 	            case 3:
 	                ergebnis = fRegister & 0x8;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x0) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -877,6 +985,9 @@ public class Comands {
 	                break;
 	            case 4:
 	                ergebnis = fRegister & 0x10;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x0) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -884,6 +995,9 @@ public class Comands {
 	                break;
 	            case 5:
 	                ergebnis = fRegister & 0x20;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x0) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -891,6 +1005,9 @@ public class Comands {
 	                break;
 	            case 6:
 	                ergebnis = fRegister & 0x40;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x0) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -898,6 +1015,9 @@ public class Comands {
 	                break;
 	            case 7:
 	                ergebnis = fRegister & 0x80;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x0) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -923,12 +1043,18 @@ public class Comands {
 	        switch (b) {
 	            case 0:
 	                ergebnis = fRegister & 0x1;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x1) {
 	    	        	Ctr.getMem().incPc();
 	                }
 	                break;
 	            case 1:
 	                ergebnis = fRegister & 0x2;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x2) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -936,6 +1062,9 @@ public class Comands {
 	                break;
 	            case 2:
 	                ergebnis = fRegister & 0x4;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x4) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -943,6 +1072,9 @@ public class Comands {
 	                break;
 	            case 3:
 	                ergebnis = fRegister & 0x8;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x8) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -950,6 +1082,9 @@ public class Comands {
 	                break;
 	            case 4:
 	                ergebnis = fRegister & 0x10;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x10) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -957,6 +1092,9 @@ public class Comands {
 	                break;
 	            case 5:
 	                ergebnis = fRegister & 0x20;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x20) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -964,6 +1102,9 @@ public class Comands {
 	                break;
 	            case 6:
 	                ergebnis = fRegister & 0x40;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x40) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
@@ -971,6 +1112,9 @@ public class Comands {
 	                break;
 	            case 7:
 	                ergebnis = fRegister & 0x80;
+		            if (fAddr == 0x1 | fAddr == 0x81) {
+		            	RAM[0x81] = RAM[0x81] | 0xf;
+		            }
 	                if (ergebnis == 0x80) {
 	    	        	Ctr.getMem().incPc();
 	    	        	Ctr.incLaufzeit();
