@@ -17,8 +17,8 @@ public class Controller {
 	private boolean isRunning = false;
 	private boolean isDebugMode = false;
 	private boolean nextStep = false;
+	private int laufzeit = 0;
 	private boolean fileisread = false;
-
 
 	public Controller(GUI gui) {
 		this.gui = gui;
@@ -30,98 +30,97 @@ public class Controller {
 		this.Mk = new Masks(this);
 		this.Rd = new Read(this);
 	}
-	
-	
+
 	public void loadFile() {
-		gui.programtablel�schen();
+		gui.programtablelöschen();
 		this.getMem().resetPCtoRow();
 		JFileChooser fc = new JFileChooser();
-        fc.showOpenDialog(gui.frame);
- 
-        File file = fc.getSelectedFile();
-        String filename = file.getAbsolutePath();
-        Mem.setFilename(filename);
-        
-        this.gui.setFileValue(filename);
-        
-        FileReader fileReader;
-        BufferedReader bufferedReader;
+		fc.showOpenDialog(gui.frame);
+
+		File file = fc.getSelectedFile();
+		String filename = file.getAbsolutePath();
+		Mem.setFilename(filename);
+
+		this.gui.setFileValue(filename);
+
+		FileReader fileReader;
+		BufferedReader bufferedReader;
 		try {
 			fileReader = new FileReader(filename);
 			bufferedReader = new BufferedReader(fileReader);
 			String line = null;
-            while ((line = bufferedReader.readLine()) != null) {
-	            String pCounter = line.substring(0, 4);
-	            boolean BP = new Boolean(false);
-	            String pCode = line.substring(5, 9);
-	            String row = line.substring(20, 25);
-	            String label = " ";
-            	String comand = " ";
-            	String coment = " ";
-	            if (!(line.substring(27, 28).equals(" "))) {
-	            	label = line.substring(27, 36);
-	            	comand = " ";
-	            	coment = " ";
-	            } else {
-	            	label = " ";
-	            	if (line.length() >=37) {
-	            		if (line.substring(36, 37).equals(";")) {
-	            			comand = " ";
-	            			coment = line.substring(36, line.length());
-	            		} else {
-	            			if (line.length() >= 56) {
-	            			comand = line.substring(36, 56);
-	            			coment = line.substring(56, line.length());
-	            			} else {
-	            				comand = line.substring(36, line.length());
-		            			coment = " ";
-	            			}
-	            			
-	            		}
-	            	} else {
-	            		comand = " ";
-		            	coment = " ";
-	            	}
-	            }
-	            
-	            DefaultTableModel model = (DefaultTableModel)gui.table.getModel();
-	            model.addRow(new Object [] {BP, pCounter, pCode, row, label, comand, coment});
-	            if (!(pCounter.equals("    "))) {
-	            	int PC = Integer.parseInt(pCounter, 16);
-	            	int rownuber = Integer.parseInt(row);
-	            	int[] PCtoRow = this.getMem().getPCtoRow();
-	            	PCtoRow[PC] = rownuber;
-	            	this.getMem().setPCtoRow(PCtoRow);
-	            }
-	            }
-            bufferedReader.close();
-            
-            Rd.readLines(filename);
-            this.fileisread = true;
-			
+			while ((line = bufferedReader.readLine()) != null) {
+				String pCounter = line.substring(0, 4);
+				boolean BP = new Boolean(false);
+				String pCode = line.substring(5, 9);
+				String row = line.substring(20, 25);
+				String label = " ";
+				String comand = " ";
+				String coment = " ";
+				if (!(line.substring(27, 28).equals(" "))) {
+					label = line.substring(27, 36);
+					comand = " ";
+					coment = " ";
+				} else {
+					label = " ";
+					if (line.length() >= 37) {
+						if (line.substring(36, 37).equals(";")) {
+							comand = " ";
+							coment = line.substring(36, line.length());
+						} else {
+							if (line.length() >= 56) {
+								comand = line.substring(36, 56);
+								coment = line.substring(56, line.length());
+							} else {
+								comand = line.substring(36, line.length());
+								coment = " ";
+							}
+
+						}
+					} else {
+						comand = " ";
+						coment = " ";
+					}
+				}
+
+				DefaultTableModel model = (DefaultTableModel) gui.table.getModel();
+				model.addRow(new Object[] { BP, pCounter, pCode, row, label, comand, coment });
+				if (!(pCounter.equals("    "))) {
+					int PC = Integer.parseInt(pCounter, 16);
+					int rownuber = Integer.parseInt(row);
+					int[] PCtoRow = this.getMem().getPCtoRow();
+					PCtoRow[PC] = rownuber;
+					this.getMem().setPCtoRow(PCtoRow);
+				}
+			}
+			bufferedReader.close();
+
+			Rd.readLines(filename);
+      this.fileisread = true;
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void updateRamGui(int x, int y, int value) {
 		gui.updateRamtable(x, y, Integer.toHexString(value));
 	}
-	
+
 	public void updateSFR() {
 		int[] RAM = getMem().getRam();
 		gui.updateWReg(Integer.toHexString(getMem().getwRegister()));
 		gui.updatePC(Integer.toHexString(getMem().getAktuellerPC()));
 		gui.updateFSR(Integer.toHexString(RAM[0x4]));
 		gui.updatePCL(Integer.toHexString(RAM[0x2]));
-	    gui.updatePCLATH(Integer.toHexString(RAM[0xA]));
-	    
-	    this.updateSFRStatus();
-	    this.updateSFROption();
-	    this.updateSFRIntcon();
+		gui.updatePCLATH(Integer.toHexString(RAM[0xA]));
+
+		this.updateSFRStatus();
+		this.updateSFROption();
+		this.updateSFRIntcon();
 	}
-	
+
 	public void updateSFRStatus() {
 		int[] RAM = getMem().getRam();
 		int Status = RAM[0x3];
@@ -167,7 +166,7 @@ public class Controller {
 			gui.updateStatusC("0");
 		}
 	}
-	
+
 	public void updateSFROption() {
 		int[] RAM = getMem().getRam();
 		int Option = RAM[0x81];
@@ -213,7 +212,7 @@ public class Controller {
 			gui.updateOptionPs0("0");
 		}
 	}
-	
+
 	public void updateSFRIntcon() {
 		int[] RAM = getMem().getRam();
 		int Intcon = RAM[0xB];
@@ -259,7 +258,7 @@ public class Controller {
 			gui.updateIntconRIF("0");
 		}
 	}
-	
+
 	public void updateStack() {
 		int[] stack = getMem().getganzenStack();
 		gui.updateStack_0(Integer.toHexString(stack[0]));
@@ -271,24 +270,26 @@ public class Controller {
 		gui.updateStack_6(Integer.toHexString(stack[6]));
 		gui.updateStack_7(Integer.toHexString(stack[7]));
 	}
-	
+
 	public void markrow(int x) {
-    	int[] PCtoRow = this.getMem().getPCtoRow();
-    	int row = PCtoRow[x];
-    	if (row != 0) {
-		gui.markarow(row);
-    	}
+		int[] PCtoRow = this.getMem().getPCtoRow();
+		int row = PCtoRow[x];
+		if (row != 0) {
+			gui.markarow(row);
+		}
 	}
-	
+
 	public void demarkrow() {
 		gui.demarkallrows();
 	}
-	
+
 	private void initializeRamtable() {
-		for(int i=0;i<32;i++) {
-			gui.addRowToRam(new Object[] {Integer.toHexString(i*8), "00", "00", "00", "00", "00", "00", "00", "00"});
+		for (int i = 0; i < 32; i++) {
+			gui.addRowToRam(
+					new Object[] { Integer.toHexString(i * 8), "00", "00", "00", "00", "00", "00", "00", "00" });
 		}
 	}
+
 	public void startProcessor() {
 		if (fileisread) {
 			if (isDebugMode) {
@@ -300,6 +301,7 @@ public class Controller {
 			}
 		}
 	}
+
 	public void stopProcessor() {
 		if (fileisread) {
 			if(isRunning) {
@@ -333,55 +335,48 @@ public class Controller {
 	public Masks getMk() {
 		return Mk;
 	}
-	
+
 	public void resetMem() {
 		this.getMem().reset();
+		this.setLaufzeit(0);
 	}
-	public boolean checkT0CS() {
-		int option = this.getMem().getRam()[0x81];
-		int tocs = option & 0x20;
-		if (tocs == 0x0) {
-			return true;
-					}
-		else {
-			return false;
-		}
+
+	public void timerinc() {
+		this.getMem().checkT0cs();
 	}
-  
+
 	public boolean getisDebugMode() {
 		return isDebugMode;
 	}
 
-
 	public void setDebugMode(boolean isDebugMode) {
 		this.isDebugMode = isDebugMode;
 	}
-	
+
 	public boolean getnextStep() {
 		return nextStep;
 	}
 
-
 	public void setnextStep(boolean nextStep) {
 		this.nextStep = nextStep;
 	}
-	
+
 	public void nextStep() {
 		if (isDebugMode) {
 			this.nextStep = true;
 		}
 	}
-	
+
 	public Boolean getBP(int x) {
 		Boolean BP = gui.getBP(x);
 		return BP;
 	}
-	
+
 	public int getrows() {
 		int rowCount = gui.getrows();
 		return rowCount;
 	}
-	
+
 	public void checkBPs() {
 		Boolean[] BreakPoint = getMem().getBreakPoint();
 		int anzahlrows = getrows();
@@ -394,6 +389,33 @@ public class Controller {
 			}
 		}
 		getMem().setBreakPoint(BreakPoint);
+	}
+
+	public void incTimer() {
+		this.getMem().prescaler();
+	}
+	public void incWatchMem() {
+		if(gui.getCheckbxWatchdog()==true) {
+			this.Mem.prewatchdog();
+		}
+	}
+
+	public int getLaufzeit() {
+		return laufzeit;
+	}
+
+	public void setLaufzeit(int laufzeit) {
+		this.laufzeit = laufzeit;
+	}
+	public void incLaufzeit() {
+		this.laufzeit++;
+	}
+	public void updateLaufzeit() {
+		gui.setLaufzeit(Integer.toString(laufzeit) + "μs");
+		
+	}
+	public void updateWatchdog() {
+		gui.setWatchdog(Integer.toString(this.getMem().getWatchdog()) + "μs");
 	}
 	
 	public void updateTrisA() {

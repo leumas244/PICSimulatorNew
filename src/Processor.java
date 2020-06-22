@@ -16,9 +16,9 @@ public class Processor extends Thread {
 			
 			int code = ctr.getMem().getCurrentCommand(ctr.getMem().getAktuellerPC());
             ctr.getMk().vorsortieren(code);
-            if(ctr.checkT0CS()==true) {
-            	ctr.getMem().prescaler();
-            }
+            ctr.timerinc();
+            ctr.incWatchMem();
+            
 			
             if (ctr.getisDebugMode()) {
             	while(!ctr.getnextStep()) {
@@ -32,7 +32,7 @@ public class Processor extends Thread {
             	ctr.setnextStep(false);
             } else {
 				try {
-					Thread.sleep(300);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
