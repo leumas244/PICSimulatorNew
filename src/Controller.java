@@ -17,6 +17,7 @@ public class Controller {
 	private boolean isRunning = false;
 	private boolean isDebugMode = false;
 	private boolean nextStep = false;
+	private boolean fileisread = false;
 
 
 	public Controller(GUI gui) {
@@ -96,6 +97,7 @@ public class Controller {
             bufferedReader.close();
             
             Rd.readLines(filename);
+            this.fileisread = true;
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -288,19 +290,23 @@ public class Controller {
 		}
 	}
 	public void startProcessor() {
-		if (isDebugMode) {
-			nextStep();
-			setDebugMode(false);
-		} else if(isRunning==false) {
-			prc = new Processor(this);
-			prc.start();
+		if (fileisread) {
+			if (isDebugMode) {
+				nextStep();
+				setDebugMode(false);
+			} else if(isRunning==false) {
+				prc = new Processor(this);
+				prc.start();
+			}
 		}
 	}
 	public void stopProcessor() {
-		if(isRunning) {
-			nextStep();
-			setDebugMode(false);
-			prc.exit=true;
+		if (fileisread) {
+			if(isRunning) {
+				nextStep();
+				setDebugMode(false);
+				prc.exit=true;
+			}
 		}
 	}
 
@@ -388,5 +394,323 @@ public class Controller {
 			}
 		}
 		getMem().setBreakPoint(BreakPoint);
+	}
+	
+	public void updateTrisA() {
+		int[] RAM = getMem().getRam();
+		int TrisA = RAM[0x85];
+		if ((TrisA & 0x1) == 0x1) {
+			gui.setchckbxAT0(true);
+		} else {
+			gui.setchckbxAT0(false);
+		}
+		if ((TrisA & 0x2) == 0x2) {
+			gui.setchckbxAT1(true);
+		} else {
+			gui.setchckbxAT1(false);
+		}
+		if ((TrisA & 0x4) == 0x4) {
+			gui.setchckbxAT2(true);
+		} else {
+			gui.setchckbxAT2(false);
+		}
+		if ((TrisA & 0x8) == 0x8) {
+			gui.setchckbxAT3(true);
+		} else {
+			gui.setchckbxAT3(false);
+		}
+		if ((TrisA & 0x10) == 0x10) {
+			gui.setchckbxAT4(true);
+		} else {
+			gui.setchckbxAT4(false);
+		}
+	}
+	
+	public void updateTrisB() {
+		int[] RAM = getMem().getRam();
+		int TrisB = RAM[0x86];
+		if ((TrisB & 0x1) == 0x1) {
+			gui.setchckbxBT0(true);
+		} else {
+			gui.setchckbxBT0(false);
+		}
+		if ((TrisB & 0x2) == 0x2) {
+			gui.setchckbxBT1(true);
+		} else {
+			gui.setchckbxBT1(false);
+		}
+		if ((TrisB & 0x4) == 0x4) {
+			gui.setchckbxBT2(true);
+		} else {
+			gui.setchckbxBT2(false);
+		}
+		if ((TrisB & 0x8) == 0x8) {
+			gui.setchckbxBT3(true);
+		} else {
+			gui.setchckbxBT3(false);
+		}
+		if ((TrisB & 0x10) == 0x10) {
+			gui.setchckbxBT4(true);
+		} else {
+			gui.setchckbxBT4(false);
+		}
+		if ((TrisB & 0x20) == 0x20) {
+			gui.setchckbxBT5(true);
+		} else {
+			gui.setchckbxBT5(false);
+		}
+		if ((TrisB & 0x40) == 0x40) {
+			gui.setchckbxBT6(true);
+		} else {
+			gui.setchckbxBT6(false);
+		}
+		if ((TrisB & 0x80) == 0x80) {
+			gui.setchckbxBT7(true);
+		} else {
+			gui.setchckbxBT7(false);
+		}
+	}
+	
+	public void updatePortA() {
+		int[] RAM = getMem().getRam();
+		int TrisA = RAM[0x85];
+		int PortA = RAM[0x5];
+		if ((TrisA & 0x1) == 0x0) {
+			if ((PortA & 0x1) == 0x1) {
+				gui.setchckbxAP0(true);
+			} else {
+				gui.setchckbxAP0(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxAP0();
+			if (entry) {
+				RAM[0x5] |= 0x1;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x5] &= 0xFE;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisA & 0x2) == 0x0) {
+			if ((PortA & 0x2) == 0x2) {
+				gui.setchckbxAP1(true);
+			} else {
+				gui.setchckbxAP1(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxAP1();
+			if (entry) {
+				RAM[0x5] |= 0x2;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x5] &= 0xFD;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisA & 0x4) == 0x0) {
+			if ((PortA & 0x4) == 0x4) {
+				gui.setchckbxAP2(true);
+			} else {
+				gui.setchckbxAP2(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxAP2();
+			if (entry) {
+				RAM[0x5] |= 0x4;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x5] &= 0xFB;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisA & 0x8) == 0x0) {
+			if ((PortA & 0x8) == 0x8) {
+				gui.setchckbxAP3(true);
+			} else {
+				gui.setchckbxAP3(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxAP3();
+			if (entry) {
+				RAM[0x5] |= 0x8;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x5] &= 0xF7;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisA & 0x10) == 0x0) {
+			if ((PortA & 0x10) == 0x10) {
+				gui.setchckbxAP4(true);
+			} else {
+				gui.setchckbxAP4(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxAP4();
+			if (entry) {
+				RAM[0x5] |= 0x10;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x5] &= 0xEF;
+				getMem().setRam(RAM);
+			}
+		}
+	}
+	
+	public void updatePortB() {
+		int[] RAM = getMem().getRam();
+		int TrisB = RAM[0x86];
+		int PortB = RAM[0x6];
+		if ((TrisB & 0x1) == 0x0) {
+			if ((PortB & 0x1) == 0x1) {
+				gui.setchckbxBP0(true);
+			} else {
+				gui.setchckbxBP0(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxBP0();
+			if (entry) {
+				RAM[0x6] |= 0x1;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x6] &= 0xFE;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisB & 0x2) == 0x0) {
+			if ((PortB & 0x2) == 0x2) {
+				gui.setchckbxBP1(true);
+			} else {
+				gui.setchckbxBP1(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxBP1();
+			if (entry) {
+				RAM[0x6] |= 0x2;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x6] &= 0xFD;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisB & 0x4) == 0x0) {
+			if ((PortB & 0x4) == 0x4) {
+				gui.setchckbxBP2(true);
+			} else {
+				gui.setchckbxBP2(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxBP2();
+			if (entry) {
+				RAM[0x6] |= 0x4;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x6] &= 0xFB;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisB & 0x8) == 0x0) {
+			if ((PortB & 0x8) == 0x8) {
+				gui.setchckbxBP3(true);
+			} else {
+				gui.setchckbxBP3(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxBP3();
+			if (entry) {
+				RAM[0x6] |= 0x8;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x6] &= 0xF7;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisB & 0x10) == 0x0) {
+			if ((PortB & 0x10) == 0x10) {
+				gui.setchckbxBP4(true);
+			} else {
+				gui.setchckbxBP4(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxBP4();
+			if (entry) {
+				RAM[0x6] |= 0x10;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x6] &= 0xEF;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisB & 0x20) == 0x0) {
+			if ((PortB & 0x20) == 0x20) {
+				gui.setchckbxBP5(true);
+			} else {
+				gui.setchckbxBP5(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxBP5();
+			if (entry) {
+				RAM[0x6] |= 0x20;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x6] &= 0xDF;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisB & 0x40) == 0x0) {
+			if ((PortB & 0x40) == 0x40) {
+				gui.setchckbxBP6(true);
+			} else {
+				gui.setchckbxBP6(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxBP6();
+			if (entry) {
+				RAM[0x6] |= 0x40;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x6] &= 0xBF;
+				getMem().setRam(RAM);
+			}
+		}
+		if ((TrisB & 0x80) == 0x0) {
+			if ((PortB & 0x80) == 0x80) {
+				gui.setchckbxBP7(true);
+			} else {
+				gui.setchckbxBP7(false);
+			}
+		} else {
+			boolean entry = gui.getchckbxBP7();
+			if (entry) {
+				RAM[0x6] |= 0x80;
+				getMem().setRam(RAM);
+			} else {
+				RAM[0x6] &= 0x7F;
+				getMem().setRam(RAM);
+			}
+		}
+	}
+	
+	public void resetPortAB() {
+		gui.setchckbxAP0(false);
+		gui.setchckbxAP1(false);
+		gui.setchckbxAP2(false);
+		gui.setchckbxAP3(false);
+		gui.setchckbxAP4(false);
+		
+		gui.setchckbxBP0(false);
+		gui.setchckbxBP1(false);
+		gui.setchckbxBP2(false);
+		gui.setchckbxBP3(false);
+		gui.setchckbxBP4(false);
+		gui.setchckbxBP5(false);
+		gui.setchckbxBP6(false);
+		gui.setchckbxBP7(false);
+		
+	}
+	
+	public void updateTris() {
+		updateTrisA();
+		updateTrisB();
 	}
 }
