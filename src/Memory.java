@@ -267,8 +267,9 @@ public class Memory extends Thread {
 		if(watchdog==18000) {
 			watchdog = 0;
 			this.reset();
-			this.ram[0x3] = this.ram[0x3] = 0x10;	// PD bit setzen
-			this.ram[0x83] = this.ram[0x83] = 0x10;	// bank1 status? 
+			this.ram[0x3] = this.ram[0x3] & 0xEF;	// PD bit setzen
+			this.ram[0x83] = this.ram[0x83] & 0xEF;	// bank1 status? 
+			this.ram[0x81] = this.ram[0x81] & 0xF8;  // vorteiler (ps2,1,0) zurücksetzen
 
 		}
 		this.watchdog++;
