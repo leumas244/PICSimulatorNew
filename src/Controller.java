@@ -597,6 +597,7 @@ public class Controller {
 			boolean entry = gui.getchckbxBP0();
 			if (entry) {
 				RAM[0x6] |= 0x1;
+				RAM[0xB] |= 0x2;
 				getMem().setRam(RAM);
 			} else {
 				RAM[0x6] &= 0xFE;
@@ -742,12 +743,24 @@ public class Controller {
 	
 	public void checkinterrupt() {
 		checkinterruptTMR0();
+		checkinterruptRB0();
 	}
 	
 	public void checkinterruptTMR0() {
 		int[] RAM = getMem().getRam();
 		int IntCon = RAM[0xB];
 		if ((IntCon & 0xA4) == 0xA4) {
+			RAM[0xB] &= 0x7F;
+			getMem().setStack(getMem().getAktuellerPC() - 1);
+			getMem().setRam(RAM);
+			getMem().setPC(0x4);
+		}
+	}
+	
+	public void checkinterruptRB0() {
+		int[] RAM = getMem().getRam();
+		int IntCon = RAM[0xB];
+		if ((IntCon & 0x92) == 0x92) {
 			RAM[0xB] &= 0x7F;
 			getMem().setStack(getMem().getAktuellerPC() - 1);
 			getMem().setRam(RAM);
