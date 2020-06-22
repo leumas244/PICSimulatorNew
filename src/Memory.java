@@ -175,7 +175,9 @@ public class Memory extends Thread {
 		if (tmr == 255) {
 			this.ram[0x1] = 0;
 			this.ram[0xB] = this.ram[0xB] | 0x4;
+			this.ram[0x8B] = this.ram[0x8B] | 0x4;
 			this.ram[0x3] = this.ram[0x3] | 0x4;
+			this.ram[0x83] = this.ram[0x83] | 0x4;
 			this.prescalevar = 0;
 		} else {
 			this.ram[0x1]++;
