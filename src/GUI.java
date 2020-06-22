@@ -1077,7 +1077,7 @@ public class GUI {
 		this.lblStack_0Value.setText(text);
 	}
 	
-	public void programtablelöschen() {
+	public void programtableloeschen() {
 		DefaultTableModel programtable = (DefaultTableModel) table.getModel();
 		int rowCount = programtable.getRowCount();
 		for (int i = rowCount - 1; i >= 0; i--) {
