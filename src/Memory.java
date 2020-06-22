@@ -193,6 +193,10 @@ public class Memory extends Thread {
 			this.ram[0x1]++;
 		}
 	}
+	
+	public void setprescalevar(int x) {
+		this.prescalevar = x;
+	}
 
 	public void prescaler() {
 		int option = this.ram[0x81];
@@ -274,13 +278,7 @@ public class Memory extends Thread {
 
 		if (tocs == 0) {
 			this.prescaler();
-		} else {
-			int portA = this.ram[0x5];
-			if ((portA & 0x10) == 0x10) {
-				this.prescaler();
-			}
-			
-		}
+		} 
 	}
 	public void incWatchdog() {
 		if(watchdog==18000) {

@@ -578,7 +578,7 @@ public class Controller {
 				getMem().setRam(RAM);
 			} else {
 				int oldValue = RAM[0x5] & 0x10;
-				int newValue = (RAM[0x5] &= 0xEF) & 0x10;
+				int newValue = (RAM[0x5] & 0xEF) & 0x10;
 				if ((oldValue == 0x10) && (newValue == 0x0)) {
 					getMem().prescaler();
 				}
